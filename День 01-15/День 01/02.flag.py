@@ -1,5 +1,10 @@
 """
-Нарисуйте национальный флаг с помощью модуля Python turtle
+Python 3.9 Нарисуйте национальный флаг с помощью модуля Python turtle
+Название файла 02.flag.py
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-02
 """
 import turtle  # импортируем модуль для рисования "черепаха"
 

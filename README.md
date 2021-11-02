@@ -5,6 +5,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/BEPb/Python-100-days) 
 ![GitHub](https://img.shields.io/github/license/BEPb/Python-100-days) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/BEPb/Python-100-days)
+![Profile views](https://gpvc.arturio.dev/BEPb)
 
 ![GitHub User's stars](https://img.shields.io/github/stars/BEPb?style=social)
 ## Python-100 дней от новичка до мастера

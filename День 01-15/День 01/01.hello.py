@@ -5,13 +5,13 @@ Version: 0.1
 Author: Andrej Marinchenko
 Date: 2021-11-02
 
-Назовите файл 00.hello.py
+Назовите файл 01.hello.py
 
 Друзья, использующие Windows, могут запустить программу с помощью следующей команды в командной строке.
-python 00.hello.py
+python 01.hello.py
 
 Для тех, кто использует Linux или macOS, вы можете открыть терминал и ввести следующую команду для запуска программы
-python3 00.hello.py
+python3 01.hello.py
 """
 
 print('hello, world!')   # просто выводим фразу hello, world! помещенную в кавычки

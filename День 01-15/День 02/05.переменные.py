@@ -7,6 +7,7 @@ Author: Andrej Marinchenko
 Date: 2021-11-03
 """
 
+# присваиваем значения переменным
 a = 100
 b = str(a)
 c = 12.345
@@ -19,6 +20,8 @@ i = False
 j = str(i)
 k = 'hello'
 m = bool(k)
+
+# выводим данные
 print(a)
 print(type(a))
 print(b)

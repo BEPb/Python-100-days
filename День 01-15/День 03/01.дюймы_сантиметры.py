@@ -4,7 +4,7 @@
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-03
+Date: 2021-11-04
 """
 
 print('Программа перевода сантиметров в дюймы или наоборот')

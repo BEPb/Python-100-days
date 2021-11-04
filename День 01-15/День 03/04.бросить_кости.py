@@ -6,6 +6,7 @@ Version: 0.1
 Author: Andrej Marinchenko
 Date: 2021-11-04
 """
+
 from random import randint  # подключаем модуль рандомного (произвольного) значения
 
 print("Пусть судьба подскажет, что нужно сделать")

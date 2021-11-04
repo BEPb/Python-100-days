@@ -4,7 +4,7 @@
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-04
+Date: 2021-11-03
 """
 
 a = 321  # присваиваем переменной а значение = 321

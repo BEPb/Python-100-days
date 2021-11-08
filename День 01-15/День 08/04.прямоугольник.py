@@ -8,37 +8,38 @@ Date: 2021-11-08
 """
 
 
-class Rect(object):
+class Rect(object):  # создаем класс прямоугольника
     """Класс прямоугольника"""
 
-    def __init__(self, width=0, height=0):
+    def __init__(self, width=0, height=0):  # инициализируем класс (принимает на входе 2 значения по умолчанию равны 0)
         """Метод инициализации"""
-        self.__width = width
-        self.__height = height
+        self.__width = width  # задаем атрибут  ширина
+        self.__height = height  # задаем атрибут высота
 
-    def perimeter(self):
+    def perimeter(self):  # метод расчета периметра
         """Рассчитать периметр"""
-        return (self.__width + self.__height) * 2
+        return (self.__width + self.__height) * 2  # возвращает значение периметра
 
-    def area(self):
+    def area(self):  # метод расчета площади
         """Рассчитать площадь"""
-        return self.__width * self.__height
+        return self.__width * self.__height  # возвращает значение площади
 
-    def __str__(self):
+    def __str__(self):  # метод преобразования данных в строку, в случае обращения к экземпляру класса, именно такое
+        # представление будет отображаться
         """Строковое выражение объекта Rectangle"""
-        return '矩形[%f,%f]' % (self.__width, self.__height)
+        return 'прямоугольник[%f,%f]' % (self.__width, self.__height)  # возвращает строку прямоугольник с значениями
 
-    def __del__(self):
+    def __del__(self):  # метод очищает данные и выводит строку
         """Анализатор"""
-        print('Уничтожить прямоугольный объект')
+        print('Уничтожить прямоугольный объект')  # выводит строку
 
 
-if __name__ == '__main__':
-    rect1 = Rect()
-    print(rect1)
-    print(rect1.perimeter())
-    print(rect1.area())
-    rect2 = Rect(3.5, 4.5)
-    print(rect2)
-    print(rect2.perimeter())
-    print(rect2.area())
+if __name__ == '__main__':  # если запускаемая программа - эта (имя запущенной программы соответствует этой программе)
+    rect1 = Rect()  # создаем объект - экземпляр класса rect1
+    print(rect1)  # выводит на печать объект rect1 (по умолчанию стороны его равны 0)
+    print(rect1.perimeter())  # выводит на печать периметр объекта rect1
+    print(rect1.area())  # выводит на печать площадь объекта rect1
+    rect2 = Rect(3.5, 4.5)  # создаем объект - экземпляр класса rect2 с соотв. сторонами
+    print(rect2)  # выводит на печать объект rect2
+    print(rect2.perimeter())  # выводит на печать периметр объекта rect2
+    print(rect2.area())  # выводит на печать площадь объекта rect2

@@ -8,19 +8,19 @@ Date: 2021-11-08
 """
 
 
-def bar(self, name):
-    self._name = name
+def bar(self, name):  # функция имени (принимает на вход имя пользователя)
+    self._name = name  # этот атрибут запоминает принятое функции имя
 
 
-def foo(self, course_name):
-    print('%s изучает %s.' % (self._name, course_name))
+def foo(self, course_name):  # функция курса обучения (принимает на вход имя курса обучения)
+    print('%s изучает %s.' % (self._name, course_name))  # выводит имя и курс обучения пользователя
 
 
-def main():
-    Student = type('Student', (object,), dict(__init__=bar, study=foo))
-    stu1 = Student('Олег')
-    stu1.study('Программирование на Python')
+def main():  # главная функция
+    Student = type('Student', (object,), dict(__init__=bar, study=foo))  # создаем класс, и проводим его инициализацию
+    stu1 = Student('Олег')  # создаем экземпляр класса
+    stu1.study('Программирование на Python')  # задаем экземпляру класса свойтво его программа обучения
 
 
-if __name__ == '__main__':
-    main()  
+if __name__ == '__main__':  # если запускаемая программа - эта (имя запущенной программы соответствует этой программе)
+    main()  # выполняем главную функцию

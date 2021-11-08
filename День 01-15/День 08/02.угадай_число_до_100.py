@@ -7,51 +7,52 @@ Author: Andrej Marinchenko
 Date: 2021-11-08
 """
 
-from random import randint
+from random import randint  # загружаем модуль генерации произвольных чисел
 
 
-class GuessMachine(object):
+class GuessMachine(object):  # создаем класс
 
-    def __init__(self):
-        self._answer = None
-        self._counter = None
-        self._hint = None
+    def __init__(self):  # проводим инициализацию класса
+        self._answer = None  # определяем атрибут и присваиваем ему значение None
+        self._counter = None  # определяем атрибут и присваиваем ему значение None
+        self._hint = None  # определяем атрибут и присваиваем ему значение None
 
-    def reset(self):
-        self._answer = randint(1, 100)
-        self._counter = 0
-        self._hint = None
+    def reset(self):  # метод генерации числа при начале работы программы
+        self._answer = randint(1, 100)  # атрибуту итогового числа (ответ) присваиваем произвольное значение от 1 до 100
+        self._counter = 0  # атрибуту число попыток присваиваем значение равное 0
+        self._hint = None  # атрибут оценки ответа пользователя оставляем со значением None
 
-    def guess(self, your_answer):
-        self._counter += 1
-        if your_answer > self._answer:
-            self._hint = 'меньше'
-        elif your_answer < self._answer:
-            self._hint = 'больше'
-        else:
-            self._hint = 'Поздравляю, вы угадали'
-            return True
-        return False
+    def guess(self, your_answer):  # метод обработки ответа (на входе аргумент - Ваше число)
+        self._counter += 1  # число попыток увеличиваем на 1
+        # проводим сравнение введенного нами числа и ответа
+        if your_answer > self._answer:  # если ваше число меньше ответа
+            self._hint = 'меньше'  # то присваиваем атрибуту оценки ответа пользователя - меньше
+        elif your_answer < self._answer:  # если ваше число больше ответа
+            self._hint = 'больше'  # то присваиваем атрибуту оценки ответа пользователя - больше
+        else:  # иначе
+            self._hint = 'Поздравляю, вы угадали'    # то присваиваем атрибуту оценки ответа пользователя - вы угадали
+            return True  # возвращаем значение "истина"
+        return False  # возвращаем значение "ложь"
 
-    @property
-    def counter(self):
-        return self._counter
+    @property  # описываем свойство класса
+    def counter(self):  # свойство число попыток
+        return self._counter  # возвращает значение атрибута числа попыток
 
-    @property
-    def hint(self):
-        return self._hint
+    @property  # описываем свойство класса
+    def hint(self):  # свойство реакция на ответа пользователя
+        return self._hint  # возвращает значение реакция на ответа пользователя
 
 
-if __name__ == '__main__':
-    gm = GuessMachine()
-    play_again = True
-    while play_again:
-        game_over = False
-        gm.reset()
-        while not game_over:
-            your_answer = int(input('Пожалуйста, введите '))
-            game_over = gm.guess(your_answer)
-            print(gm.hint)
-        if gm.counter > 7:
-            print('«Баланс IQ недостаточен!»')
-        play_again = input('Играть снова? (да | нет)') == 'да'
+if __name__ == '__main__':  # если запускаемая программа - эта (имя запущенной программы соответствует этой программе)
+    gm = GuessMachine()  # создаем экземпляр класса
+    play_again = True  # задаем значение переменной сыграть еще раз = Истина
+    while play_again:  # цикл действует пока переменная сыграть еще раз = истина
+        game_over = False  # пеерменной конец игры присваеиваем значение = ложь
+        gm.reset()  # обращаемся к экземпляру класса gm методу reset() -  который устанавливает начальные значения
+        while not game_over:  # пока переменная конец игры не истина
+            your_answer = int(input('Пожалуйста, введите '))  # приглашение ввести Ваше число, присваиваем переменной
+            game_over = gm.guess(your_answer)  # передаем ваш ответ методу обработки guess
+            print(gm.hint)  # печатаем результат ответа пользователя
+        if gm.counter > 7:  # если число попыток больше 7
+            print('«Ваш IQ недостаточен!»')  # то выводим сообщение
+        play_again = input('Играть снова? (да | нет)') == 'да'  # ожидает ответ пользователя

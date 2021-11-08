@@ -7,46 +7,48 @@ Author: Andrej Marinchenko
 Date: 2021-11-08
 """
 
-import time
-import os
+import time  # модуль работы с временем
+import os  # модуль работы с операционной системой
 
 
-class Clock(object):
+class Clock(object):  # создаем класс
 
     # Функции в Python не имеют понятия перегрузки
     # Поскольку параметры функций в Python не имеют типов и поддерживают параметры по умолчанию и параметры переменных
-    # Используйте параметры ключевого слова, чтобы позволить конструктору передавать любое количество параметров для реализации перегрузки конструктора на других языках
-    def __init__(self, **kw):
-        if 'hour' in kw and 'minute' in kw and 'second' in kw:
-            self._hour = kw['hour']
-            self._minute = kw['minute']
-            self._second = kw['second']
-        else:
-            tm = time.localtime(time.time())
-            self._hour = tm.tm_hour
-            self._minute = tm.tm_min
-            self._second = tm.tm_sec
+    # Используйте параметры ключевого слова, чтобы позволить конструктору передавать любое количество параметров
+    # для реализации перегрузки конструктора на других языках
+    def __init__(self, **kw):  # инициализируем класс (принимает именные ключи со значениями)
+        if 'hour' in kw and 'minute' in kw and 'second' in kw:  # если класс получил на входе именные ключи со значениями
+            self._hour = kw['hour']  # атрибуту час присваиваем значение именного аргумента  'hour'
+            self._minute = kw['minute']  # атрибуту минута присваиваем значение именного аргумента  'minute'
+            self._second = kw['second']  # атрибуту секундаа присваиваем значение именного аргумента  'second'
+        else:  # в ином случае, если при запуске программы время пользователем не задавалось
+            tm = time.localtime(time.time())  # то считываем текущее время из системы (обращаясь к модулю time)
+            self._hour = tm.tm_hour  # атрибуту час присваиваем значение считанного из системы
+            self._minute = tm.tm_min  # атрибуту секундаа присваиваем значение считанного из системы
+            self._second = tm.tm_sec  # атрибуту секундаа присваиваем значение считанного из системы
 
-    def run(self):
-        self._second += 1
-        if self._second == 60:
-            self._second = 0
-            self._minute += 1
-            if self._minute == 60:
-                self._minute = 0
-                self._hour += 1
-                if self._hour == 24:
-                    self._hour = 0
+    def run(self):  # метод вычисления изменения времени
+        self._second += 1  # к текущему значению добавим 1 секунду
+        if self._second == 60:  # если количество секунд = 60
+            self._second = 0  # то начинаем отсчет секунд с нуля
+            self._minute += 1  # и к текущемму значению минут добавим 1 минуту
+            if self._minute == 60:  # если количество минут = 60
+                self._minute = 0  # то начинаем отсчет минут с нуля
+                self._hour += 1  # и к текущемму значению часов добавим 1 час
+                if self._hour == 24:  # если количество часов = 24
+                    self._hour = 0  # то начинаем отсчет часов с нуля
 
-    def show(self):
-        return '%02d:%02d:%02d' % (self._hour, self._minute, self._second)
+    def show(self):  # метод отображения времени
+        return '%02d:%02d:%02d' % (self._hour, self._minute, self._second)  # возвращает значение времени в укзанном
+        # формате по два символа на часы, минуты, секунды, разделенные двоеточием
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # если запускаемая программа - эта (имя запущенной программы соответствует этой программе)
     # clock = Clock(hour=10, minute=5, second=58)
-    clock = Clock()
-    while True:
-        os.system('cls')
-        print(clock.show())
-        time.sleep(1)
-        clock.run()
+    clock = Clock()  # создаем экземпляр класса
+    while True:  # бесконечный цикл (пока истина есть истина)
+        os.system('cls')  # очищаем командную строку
+        print(clock.show())  # печатаем значение времени, обращаясь к объекту класса clock методу show()
+        time.sleep(1)  # время ожидание = 1 секунда
+        clock.run()  # проводим расчет времени в следующую секунду

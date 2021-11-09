@@ -10,55 +10,54 @@ Date: 2021-11-09
 """
 
 
-class Car(object):
-
+class Car(object):  # создаем класс
+    # Объекты класса Car могут быть привязаны только к атрибутам '_brand' и '_max_speed'
     __slots__ = ('_brand', '_max_speed')
 
-    def __init__(self, brand, max_speed):
-        self._brand = brand
-        self._max_speed = max_speed
+    def __init__(self, brand, max_speed):  # метод инициализации (на входе 2 аргумента)
+        self._brand = brand  # определяем значение атрибута марки машины = принимаему аргументу
+        self._max_speed = max_speed  # определяем значение атрибута макс. скорости = принимаему аргументу
 
-    @property
-    def brand(self):
-        return self._brand
+    @property  # геттер
+    def brand(self):  # метод позволяет обратится к бренду машины напрямую
+        return self._brand  # выводит значение марки машины
 
-    @brand.setter
-    def brand(self, brand):
-        self._brand = brand
+    @brand.setter  # сеттер
+    def brand(self, brand):  # метод позволяет изменить марку машины напрямую
+        self._brand = brand  # переопределяет значение атрибута марки машины
 
-    @brand.deleter
+    @brand.deleter  # очищает значение атрибута бренда машины
     def brand(self):
         del self._brand
 
-    @property
-    def max_speed(self):
-        return self._max_speed
+    @property  # геттер
+    def max_speed(self):  # метод позволяет обратится к макс.скорости машины напрямую
+        return self._max_speed  # выводит значение макс.скорости машины
 
-    @max_speed.setter
-    def max_speed(self, max_speed):
-        if max_speed < 0:
-            raise ValueError('Invalid max speed for car')
-        self._max_speed = max_speed
+    @max_speed.setter  # сеттер
+    def max_speed(self, max_speed):  # метод позволяет изменить макс.скорость машины напрямую
+        if max_speed < 0:  # если значение макс. скорости меньше 0
+            raise ValueError('Введено не верное значение максимальной скорости автомобиля')
+        self._max_speed = max_speed  # переопределяет значение макс.скорости марки машины
 
-    def __str__(self):
-        return 'Car: [Brand=%s, max speed=%d]' % (self._brand, self._max_speed)
+    def __str__(self):  # метод выводит строчное значение объекта
+        return 'машина: [марка=%s, макс. скорость=%d]' % (self._brand, self._max_speed)  # возвращает строчное значение
 
 
-car = Car('QQ', 120)
-print(car)
+car = Car('QQ', 120)  # создаем объект
+print(car)  # выводит информацю о объекте
 # ValueError
 # car.max_speed = -100
-car.max_speed = 320
-car.brand = "Benz"
+car.max_speed = 320  # переопределяет мак. скорость объекта
+car.brand = "Benz"  # перепределяет маку машины
 # Следующий код вызовет исключение после использования ограничения атрибута __slots__
 # car.current_speed = 80
-print(car)
+print(car)  # выводит информацю о объекте
 # Если предоставляется средство удаления, следующий код может быть выполнен
 # del car.brand
 # Реализация атрибутов
-print(Car.brand)
-print(Car.brand.fget)
-print(Car.brand.fset)
-print(Car.brand.fdel)
-# Используйте приведенный выше код, чтобы помочь учащимся понять концепцию оболочки, упомянутую ранее
-# В Python много похожего синтаксического сахара, и подобные вещи появятся позже
+print(Car.brand)  # выводит информацю о методе класса - свойство по адресу
+print(Car.brand.fget)  # выводит информацю о методе класса - функция по адресу
+print(Car.brand.fset)  # выводит информацю о методе класса - функция по адресу
+print(Car.brand.fdel)  # выводит информацю о методе класса - функция по адресу
+

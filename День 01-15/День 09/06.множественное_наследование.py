@@ -10,40 +10,40 @@ Date: 2021-11-09
 """
 
 
-class Father(object):
+class Father(object):  # определяем класс
 
-    def __init__(self, name):
+    def __init__(self, name):  # инициализация класса
         self._name = name
 
-    def gamble(self):
-        print('%sиграет в карты.' % self._name)
+    def gamble(self):  # метод вывода строки
+        print('%s играет в карты. ' % self._name)
 
-    def eat(self):
-        print('%sест и пьет.' % self._name)
+    def eat(self):  # метод вывода строки
+        print('%s ест и пьет.' % self._name)
 
 
-class Monk(object):
+class Monk(object):  # определяем класс
 
-    def __init__(self, name):
+    def __init__(self, name):  # инициализация класса
         self._name = name
 
-    def eat(self):
-        print('%sбыстро ест.' % self._name)
+    def eat(self):  # метод вывода строки
+        print('%s быстро ест. ' % self._name)
 
-    def chant(self):
-        print('%sпоет песни.' % self._name)
+    def chant(self):  # метод вывода строки
+        print('%s поет песни. ' % self._name)
 
 
-class Musician(object):
+class Musician(object):  # определяем класс
 
-    def __init__(self, name):
+    def __init__(self, name):  # инициализация класса
         self._name = name
 
-    def eat(self):
-        print('%sмедленно жует.' % self._name)
+    def eat(self):  # метод вывода строки
+        print('%s медленно жует. ' % self._name)
 
-    def play_piano(self):
-        print('%sиграет на пианино.' % self._name)
+    def play_piano(self):  # метод вывода строки
+        print('%s играет на пианино. ' % self._name)
 
 
 # Попробуйте код ниже, чтобы увидеть разницу
@@ -51,17 +51,18 @@ class Musician(object):
 # class Son(Musician, Father, Monk):
 
 
-class Son(Father, Monk, Musician):
+class Son(Father, Monk, Musician):  # определяем класс, для которого родительским являются классы описанные выше
 
-    def __init__(self, name):
+    def __init__(self, name):  # инициализация класса
         Father.__init__(self, name)
         Monk.__init__(self, name)
         Musician.__init__(self, name)
 
 
-son = Son('Король Кувалда')
-son.gamble()
-# Вызвать метод eat, унаследованный от отца
-son.eat()
-son.chant()
-son.play_piano()
+son = Son('Иванушка-царевич')  # создаем объект
+son.gamble()  # вызываем метод которого изначально нет в этом классе, но он есть в родительском class Father
+son.eat()  # вызываем метод которого изначально нет в этом классе, но он есть во всех родительских классах,
+# но т.к. при определении класса в первую очередь указан class Father то и метод в первую очередь берется из этого
+# класса, остальные игнорируются
+son.chant()  # вызываем метод которого изначально нет в этом классе, но он есть в родительском class Monk
+son.play_piano()  # вызываем метод которого изначально нет в этом классе, но он есть в родительском class Musician

@@ -7,66 +7,67 @@ Author: Andrej Marinchenko
 Date: 2021-11-09
 """
 
-from math import sqrt
+from math import sqrt  # импорт функции квадратный корень из модуля математических операций
 
 
-class Point(object):
+class Point(object):  # определяем класс точка
 
-    def __init__(self, x=0, y=0):
-        self._x = x
-        self._y = y
+    def __init__(self, x=0, y=0):  # инициализируем класс, на входе 2 аргумента по умолчанию равных 0
+        self._x = x  # создаем атрибут х = первому принимаемому аргументу
+        self._y = y  # создаем атрибут у = первому принимаемому аргументу
 
-    def move_to(self, x, y):
-        self._x = x
-        self._y = y
+    def move_to(self, x, y):  # метод движения - новых координат (изменяет текущие атрибуты координат)
+        self._x = x  # переопределяет значение атрибута х
+        self._y = y  # переопределяет значение атрибута у
 
-    def move_by(self, dx, dy):
-        self._x += dx
-        self._y += dy
+    def move_by(self, dx, dy):  # метод шага движения (принимает аргументы шага изменения атрибуты координат)
+        self._x += dx  # переопределяет значение атрибута х
+        self._y += dy  # переопределяет значение атрибута у
 
-    def distance_to(self, other):
-        dx = self._x - other._x
-        dy = self._y - other._y
-        return sqrt(dx ** 2 + dy ** 2)
+    def distance_to(self, other):  # метод расчета длинны отрезка
+        dx = self._x - other._x  # расчет проекции по оси х
+        dy = self._y - other._y  # расчет проекции по оси у
+        return sqrt(dx ** 2 + dy ** 2)  # возвращает значение длинны отрезка пройденного пути
 
-    def __str__(self):
-        return '(%s, %s)' % (str(self._x), str(self._y))
-
-
-class Line(object):
-
-    def __init__(self, start=Point(0, 0), end=Point(0, 0)):
-        self._start = start
-        self._end = end
-
-    @property
-    def start(self):
-        return self._start
-
-    @start.setter
-    def start(self, start):
-        self._start = start
-
-    @property
-    def end(self):
-        return self.end
-
-    @end.setter
-    def end(self, end):
-        self._end = end
-
-    @property
-    def length(self):
-        return self._start.distance_to(self._end)
+    def __str__(self):  # метод возрата строчного значения координат
+        return '(%s, %s)' % (str(self._x), str(self._y))  # передает строчное значения координат
 
 
-if __name__ == '__main__':
-    p1 = Point(3, 5)
-    print(p1)
-    p2 = Point(-2, -1.5)
-    print(p2)
-    line = Line(p1, p2)
-    print(line.length)
-    line.start.move_to(2, 1)
-    line.end = Point(1, 2)
-    print(line.length)
+class Line(object):  # создаем класс линия
+
+    def __init__(self, start=Point(0, 0), end=Point(0, 0)):  # инициализируем класс (принимает 2 аргумента,
+        # координаты точки начала отрезка и координаты точки конца отрезка)
+        self._start = start  # определяем значение атрибута = аргументу координат начала
+        self._end = end  # определяем значение атрибута = аргументу координат конца
+
+    @property  # свойство-геттер
+    def start(self):  # метод позволяет получить информацию по координатам точки начала
+        return self._start  # возвращает значения координат точки начала
+
+    @start.setter  # свойство-сеттер
+    def start(self, start):  # метод позволяет назначить новые координаты точки начала
+        self._start = start  # переопределяет значения атрибута точки начала
+
+    @property  # свойство-геттер
+    def end(self):  # метод позволяет получить информацию по координатам точки конца
+        return self.end  # возвращает значения координат точки конца
+
+    @end.setter  # свойство-сеттер
+    def end(self, end):  # метод позволяет назначить новые координаты точки конца
+        self._end = end  # переопределяет значения атрибута точки конца
+
+    @property  # свойство-геттер
+    def length(self):  # метод позволяет получить информацию по длины линии
+        return self._start.distance_to(self._end)  # возвращает значения длины линии
+
+
+if __name__ == '__main__':  # если программа главная
+    p1 = Point(3, 5)  # создаем объект класса точка
+    print(p1)  # выводим координаты точки
+    p2 = Point(-2, -1.5)  # создаем новый объект класса точка
+    print(p2)  # выводим координаты точки
+    line = Line(p1, p2)  # создаем объект класса линия
+    print(line.length)  # выводит длинну линии
+    line.start.move_to(2, 1)  # переопределяем значения точки начала линии
+    line.end = Point(1, 2)  # переопределяем значения точки конца линии
+    print(line.length)  # выводит длинну линии

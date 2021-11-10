@@ -1,7 +1,7 @@
 """
-Python 3.9 ИИспользуйте tkinter для создания графического интерфейса
--Используйте холст для рисования
--Обработка событий мыши
+Python 3.9 Используется tkinter для создания графического интерфейса
+-Используйте холст для рисования окна
+-Обработка событий мыши и в момент нажатия кнопки мыши рисуется черный круг в местах к ближайшему пересечения линий
 Название файла '02.игра_камнями.py'
 
 Version: 0.1
@@ -9,34 +9,39 @@ Author: Andrej Marinchenko
 Date: 2021-11-10
 """
 
-import tkinter
+import tkinter  # подключаем модуль работы с графический интерфейсом
 
 
-def mouse_evt_handler(evt=None):
-    row = round((evt.y - 20) / 40)
-    col = round((evt.x - 20) / 40)
-    pos_x = 40 * col
-    pos_y = 40 * row
-    canvas.create_oval(pos_x, pos_y, 40 + pos_x, 40 + pos_y, fill='black')
+def mouse_evt_handler(evt=None):  # функция обработки положения мыши (по умолчанию координаты не заданы) и рисования
+    # черного круга на пересечениях линий в ближайшей точки
+    # анализируя текущее положения мыши, вычисляем ближайший столбец и строку
+    row = round((evt.y - 20) / 40)  # число столбцов - от 0 до ближайшего положения мыши
+    col = round((evt.x - 20) / 40)  # число строк - от 0 до ближайшего положения мыши
+
+    # после анализа запоминаем координаты ближайшего пересечения строки со столбцом (центр будущего круга)
+    pos_x = 40 * col  # положение по оси х
+    pos_y = 40 * row  # положение по оси у
+    canvas.create_oval(pos_x, pos_y, 40 + pos_x, 40 + pos_y, fill='black')  # рисует черный круг
 
 
-top = tkinter.Tk()
-# Установить размер окна
-top.geometry('620x620')
-# Установить заголовок окна
-top.title('игра камнями')
-# Установить размер окна нельзя изменить
-top.resizable(False, False)
-# Установить окно вверх
-top.wm_attributes('-topmost', 1)
-canvas = tkinter.Canvas(top, width=600, height=600, bd=0, highlightthickness=0)
-canvas.bind('<Button-1>', mouse_evt_handler)
-canvas.create_rectangle(0, 0, 600, 600, fill='yellow', outline='white')
-for index in range(15):
-    canvas.create_line(20, 20 + 40 * index, 580, 20 + 40 * index, fill='black')
-    canvas.create_line(20 + 40 * index, 20, 20 + 40 * index, 580, fill='black')
-canvas.create_rectangle(15, 15, 585, 585, outline='black', width=4)
-canvas.pack()
-tkinter.mainloop()
+top = tkinter.Tk()  # создаем объект (окна графического приложения)
+# ниже определяем атрибуты объекта (окна приложения)
+top.geometry('620x620')  # Установливаем размер окна
+top.title('игра камнями')  # Установливаем заголовок окна
+top.resizable(False, False)  # Установить размер окна в режим - нельзя изменить
+top.wm_attributes('-topmost', 1)  # Установить окно вверхнее положение (над другими окнами)
 
-# Пожалуйста, подумайте, как инкапсулировать приведенный выше код с идеями объектно-ориентированного программирования
+
+canvas = tkinter.Canvas(top, width=600, height=600, bd=0, highlightthickness=0)  # создаем объект рабочей области
+# указываем его атрибуты: размер рабочей области,размещение внутри окна top - прижать к верку, отступ
+# ниже определяем атрибуты объекта (рабочей области приложения)
+canvas.bind('<Button-1>', mouse_evt_handler)  # связывает между собой действие нажатие кнопки и рисование черного круга
+canvas.create_rectangle(0, 0, 600, 600, fill='yellow', outline='white')  # рисуем желтый квадрат (снаружи белая линия)
+for index in range(15):  # цикл рисования горизонтальных и вертикальных линий
+    canvas.create_line(20, 20 + 40 * index, 580, 20 + 40 * index, fill='black')  # горизонтальная линия
+    canvas.create_line(20 + 40 * index, 20, 20 + 40 * index, 580, fill='black')  # вертикальная лииния
+canvas.create_rectangle(15, 15, 585, 585, outline='black', width=4)  # рисуем кайму рабочей области - черный квадрат,
+# толщина линии 4 пикселя
+canvas.pack()  # определяем менеджер геометрии pack() - все виджеты распологаются вертикально
+tkinter.mainloop()  # основной обработчик работы в окне
+

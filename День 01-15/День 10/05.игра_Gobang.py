@@ -7,8 +7,9 @@ Author: Andrej Marinchenko
 Date: 2021-11-10
 """
 
-import pygame
+import pygame  # подключить модуль создания игр
 
+# создаем переменные и определяем их значения
 EMPTY = 0
 BLACK = 1
 WHITE = 2
@@ -17,23 +18,23 @@ black_color = [0, 0, 0]
 white_color = [255, 255, 255]
 
 
-class RenjuBoard(object):
+class RenjuBoard(object):  # создаем класс рабочего стола
 
-    def __init__(self):
+    def __init__(self):  # инициализация класса
         self._board = [[]] * 15
         self.reset()
 
-    def reset(self):
+    def reset(self):  # метод сброса
         for row in range(len(self._board)):
             self._board[row] = [EMPTY] * 15
 
-    def move(self, row, col, is_black):
+    def move(self, row, col, is_black):  # метод движения
         if self._board[row][col] == EMPTY:
             self._board[row][col] = BLACK if is_black else WHITE
             return True
         return False
 
-    def draw(self, screen):
+    def draw(self, screen):  # метод рисования
         for index in range(1, 16):
             pygame.draw.line(screen, black_color,
                              [40, 40 * index], [600, 40 * index], 1)
@@ -54,17 +55,17 @@ class RenjuBoard(object):
                     pygame.draw.circle(screen, ccolor, pos, 20, 0)
 
 
-def main():
-    board = RenjuBoard()
-    is_black = True
-    pygame.init()
-    pygame.display.set_caption('игра Gobang')
-    screen = pygame.display.set_mode([640, 640])
-    screen.fill([255, 255, 0])
-    board.draw(screen)
+def main():  # главная функция
+    board = RenjuBoard()  # создаем объект
+    is_black = True  # определяем переменную
+    pygame.init()  # вызываем метод инициализации
+    pygame.display.set_caption('игра Gobang')  # надпись над окном
+    screen = pygame.display.set_mode([640, 640])  # создаем объект, определяем его атрибуты, размер экрана
+    screen.fill([255, 255, 0])  # цвет заливки экрана
+    board.draw(screen)  # рисует экран
     pygame.display.flip()
     running = True
-    while running:
+    while running:  # цикл пока игра запущена
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -80,7 +81,7 @@ def main():
                     screen.fill([255, 255, 0])
                     board.draw(screen)
                     pygame.display.flip()
-    pygame.quit()
+    pygame.quit()  # выход из игры
 
 
 if __name__ == '__main__':

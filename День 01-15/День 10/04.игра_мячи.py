@@ -9,17 +9,17 @@ Author: Andrej Marinchenko
 Date: 2021-11-10
 """
 
-from enum import Enum, unique
-from math import sqrt
-from random import randint
+from enum import Enum, unique  # подключаем модуль перечисления значений и работы с ними
+from math import sqrt  # подключть функцию квадратного корня
+from random import randint  # подключить функцию генерацию случайных чисел
 
-import pygame
+import pygame  # подключить модуль создания игр
 
 
 @unique
-class Color(Enum):
+class Color(Enum):  # создаем класс цвета (наследуем от Enum)
     """цвет"""
-
+    # задаем цвета в rgb-формате
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     BLUE = (0, 0, 255)
@@ -27,51 +27,57 @@ class Color(Enum):
     WHITE = (255, 255, 255)
     GRAY = (242, 242, 242)
 
-    @staticmethod
-    def random_color():
+    @staticmethod  # статический метод
+    def random_color():  # генерирует случайный цвет
         """Получить случайные цвета"""
-        r = randint(0, 255)
-        g = randint(0, 255)
-        b = randint(0, 255)
-        return (r, g, b)
+        r = randint(0, 255)  # генерирует случайное число от 0 до 255 и присваивает значению красного спектра
+        g = randint(0, 255)  # генерирует случайное число от 0 до 255 и присваивает значению зеленого спектра
+        b = randint(0, 255)  # генерирует случайное число от 0 до 255 и присваивает значению синего спектра
+        return (r, g, b)  # возвращает цвет, на основе 3-х случайных цветовых спектров
 
 
-class Ball(object):
+class Ball(object):  # создаем класс мяча
     """мяч"""
 
-    def __init__(self, x, y, radius, sx, sy, color=Color.RED):
+    def __init__(self, x, y, radius, sx, sy, color=Color.RED):  # инициализация класса  (на входе аргументы
+        # координат, радиуса круга, смещение по осям и цвет (по умолчанию красный))
         """Метод инициализации"""
+        # далее определяем атрибуты класса из полученнных аргументов
         self.x = x
         self.y = y
         self.radius = radius
         self.sx = sx
         self.sy = sy
         self.color = color
-        self.alive = True
+        self.alive = True  # отрибут живой = истина
 
-    def move(self, screen):
+    def move(self, screen):  # метод движения
         """двигаться"""
+        # переопределяет новое положение координат шара на основе смещения по осям
         self.x += self.sx
         self.y += self.sy
-        if self.x - self.radius <= 0 or self.x + self.radius >= screen.get_width():
-            self.sx = -self.sx
-        if self.y - self.radius <= 0 or self.y + self.radius >= screen.get_height():
-            self.sy = -self.sy
 
-    def eat(self, other):
+        # определяем изменение направления движения в случае достижения стенок окна
+        if self.x - self.radius <= 0 or self.x + self.radius >= screen.get_width():  # по оси х
+            self.sx = -self.sx  # смещение по оси х меняет знак, тем самым шар отбивается от стенки
+        if self.y - self.radius <= 0 or self.y + self.radius >= screen.get_height():  # по оси у
+            self.sy = -self.sy  # смещение по оси х меняет знак, тем самым шар отбивается от стенки
+
+    def eat(self, other):  # метод поедания других мячей
         """Ешьте другие мячи"""
-        if self.alive and other.alive and self != other:
-            dx, dy = self.x - other.x, self.y - other.y
-            distance = sqrt(dx ** 2 + dy ** 2)
+        if self.alive and other.alive and self != other:  # если оцениваемые мячи живы
+            dx, dy = self.x - other.x, self.y - other.y  # вычисляем проекцию между центрами мячей
+            distance = sqrt(dx ** 2 + dy ** 2)  # вычисляем растояние между мячами
             if distance < self.radius + other.radius \
-                    and self.radius > other.radius:
-                other.alive = False
-               	self.radius = self.radius + int(other.radius * 0.146)
+                    and self.radius > other.radius:  # если сумма радиусов меньше дистанции между мячами
+                other.alive = False  # то меняем статус мяча на не живой
+               	self.radius = self.radius + int(other.radius * 0.146)  # увеличиваем радиус мяча в зависимости от
+            # радиуса поглащенного мяча
 
-    def draw(self, screen):
+    def draw(self, screen):  # метод рисования мяча
         """Нарисуйте мяч на окне"""
         pygame.draw.circle(screen, self.color,
-                           (self.x, self.y), self.radius, 0)
+                           (self.x, self.y), self.radius, 0)  # рисуем мяч
 
 
 def main():  # главная функция
@@ -88,7 +94,8 @@ def main():  # главная функция
     # Определить переменные для представления положения мяча на экране
     x, y = 50, 50
     running = True
-    # Открываем цикл обработки событий для обработки происходящих событий
+
+    # Открываем цикл обработки событий
     while running:
         # Получить события из очереди сообщений и обработать их
         for event in pygame.event.get():
@@ -108,6 +115,7 @@ def main():  # главная функция
             else:
                 balls.remove(ball)
         pygame.display.flip()
+
         # Менять положение шара каждые 50 миллисекунд и обновлять окно
         pygame.time.delay(50)
         for ball in balls:

@@ -1,5 +1,5 @@
 """
-实现进程间的通信
+Осуществляйте межпроцессное взаимодействие
 
 Version: 0.1
 Author: 骆昊
@@ -10,7 +10,7 @@ import os
 
 
 def sub_task(queue):
-    print('子进程进程号:', os.getpid())
+    print('Номер дочернего процесса:', os.getpid())
     counter = 0
     while counter < 1000:
         queue.put('Pong')
@@ -18,7 +18,7 @@ def sub_task(queue):
 
 
 if __name__ == '__main__':
-    print('当前进程号:', os.getpid())
+    print('Текущий номер процесса:', os.getpid())
     queue = multiprocessing.Queue()
     p = multiprocessing.Process(target=sub_task, args=(queue,))
     p.start()
@@ -27,6 +27,6 @@ if __name__ == '__main__':
         queue.put('Ping')
         counter += 1
     p.join()
-    print('子任务已经完成.')
+    print('Подзадача выполнена.')
     for _ in range(2000):
         print(queue.get(), end='')

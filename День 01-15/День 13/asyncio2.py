@@ -1,5 +1,5 @@
 """
-异步I/O操作 - async和await
+Асинхронные операции ввода-вывода - async и await
 
 Version: 0.1
 Author: 骆昊
@@ -9,8 +9,8 @@ import asyncio
 import threading
 
 
-# 通过async修饰的函数不再是普通函数而是一个协程
-# 注意async和await将在Python 3.7中作为关键字出现
+# Функция, измененная async, больше не обычная функция, а сопрограмма
+# Обратите внимание, что async и await будут отображаться как ключевые слова в Python 3.7
 async def hello():
     print('%s: hello, world!' % threading.current_thread())
     await asyncio.sleep(2)
@@ -19,6 +19,6 @@ async def hello():
 
 loop = asyncio.get_event_loop()
 tasks = [hello(), hello()]
-# 等待两个异步I/O操作执行结束
+# Дождитесь завершения двух операций асинхронного ввода-вывода
 loop.run_until_complete(asyncio.wait(tasks))
 loop.close()

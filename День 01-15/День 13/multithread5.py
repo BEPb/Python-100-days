@@ -1,5 +1,5 @@
 """
-多个线程共享数据 - 没有锁的情况
+Несколько потоков обмениваются данными без блокировки
 
 Version: 0.1
 Author: 骆昊
@@ -17,14 +17,14 @@ class Account(object):
         self._lock = Lock()
 
     def deposit(self, money):
-        # 先获取锁才能执行后续的代码
+        # Получить блокировку перед выполнением последующего кода
         self._lock.acquire()
         try:
             new_balance = self._balance + money
             sleep(0.01)
             self._balance = new_balance
         finally:
-            # 这段代码放在finally中保证释放锁的操作一定要执行
+            # Этот код помещается наконец, чтобы гарантировать, что операция снятия блокировки должна быть выполнена
             self._lock.release()
 
     @property
@@ -46,12 +46,12 @@ class AddMoneyThread(Thread):
 def main():
     account = Account()
     threads = []
-    # 创建100个存款的线程向同一个账户中存钱
+    # Создайте 100 потоков депозита для внесения денег на тот же счет
     for _ in range(100):
         t = AddMoneyThread(account, 1)
         threads.append(t)
         t.start()
-    # 等所有存款的线程都执行完毕∫
+    # Дождитесь выполнения всех потоков депозита ∫
     for t in threads:
         t.join()
     print('账户余额为: ￥%d元' % account.balance)

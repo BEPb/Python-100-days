@@ -1,5 +1,5 @@
 """
-Python 3.9 Общие методы-операции со строками для переворота строк
+Python 3.9 Общие методы-операции со строками для переворота строк (5 способов)
 Название файла '02.переворот_строки.py'
 
 Version: 0.1
@@ -10,51 +10,53 @@ Date: 2021-11-11
 from io import StringIO
 
 
-def reverse_str1(str):
-    return str[::-1]
+def reverse_str1(str):  # функция переворота  (на входе исходная строка)
+    return str[::-1]  # возвращает все символы в обратной последовательности
 
 
-def reverse_str2(str):
-    if len(str) <= 1:
-        return str
-    return reverse_str2(str[1:]) + str[0:1]
+def reverse_str2(str):  # функция переворота  (на входе исходная строка)
+    if len(str) <= 1:  # если длинна строки меньше или ровна 1 символу
+        return str  # вывести эту строку
+    return reverse_str2(str[1:]) + str[0:1]  # вывести все символы кроме первого, в конце добавить 1-й
 
 
-def reverse_str3(str):
+def reverse_str3(str):  # функция переворота  (на входе исходная строка)
     # Объекты StringIO - это переменные строки в Python
-    # Вы не должны использовать неизменяемые строки для операций конкатенации строк, потому что будет сгенерировано много бесполезных строковых объектов
-    rstr = StringIO()
-    str_len = len(str)
-    for index in range(str_len - 1, -1, -1):
-        rstr.write(str[index])
-    return rstr.getvalue()
+    # Вы не должны использовать неизменяемые строки для операций конкатенации строк, потому что будет сгенерировано
+    # много бесполезных строковых объектов
+    rstr = StringIO()  # генерируем новую строку
+    str_len = len(str)  # определяем длинну принятой строки
+    for index in range(str_len - 1, -1, -1):  # в диапазоне длинны исходной строки перебираем все символы с конца
+        rstr.write(str[index])  # перезаписываем сгенерированную строку в символому принятой строки но в обрятном
+        # порядке
+    return rstr.getvalue()  # возвращаем результат преобразования
 
 
-def reverse_str4(str):
-    return ''.join(str[index] for index in range(len(str) - 1, -1, -1))
+def reverse_str4(str):  # функция переворота  (на входе исходная строка)
+    return ''.join(str[index] for index in range(len(str) - 1, -1, -1))  # возвращаем результат преобразования,
+    # к пустрой строке добовляем символы исходной строки в обратном порядке
 
 
-def reverse_str5(str):
-    # Преобразуем строку в список
-    str_list = list(str)
-    str_len = len(str)
+def reverse_str5(str):  # функция переворота  (на входе исходная строка)
+    str_list = list(str)  # Преобразуем строку в список
+    str_len = len(str)  # определим длинну списка
     # Используйте функцию zip для объединения двух последовательностей в один итератор, который создает кортежи
     # Каждый раз вы можете получить два нижних индекса, один передний и один задний, чтобы добиться обмена элементами
     for i, j in zip(range(str_len // 2), range(str_len - 1, str_len // 2, -1)):
-        str_list[i], str_list[j] = str_list[j], str_list[i]
+        str_list[i], str_list[j] = str_list[j], str_list[i]  # меняем местами первый символ и последний
     # Объединить элементы списка в строки
-    return ''.join(str_list)
+    return ''.join(str_list)  # возвращает результат
 
 
-if __name__ == '__main__':
-    str = 'I love Python'
-    print(reverse_str1(str))
-    print(str)
-    print(reverse_str2(str))
-    print(str)
-    print(reverse_str3(str))
-    print(str)
-    print(reverse_str4(str))
-    print(str)
-    print(reverse_str5(str))
-    print(str)
+if __name__ == '__main__':  # если запущена это программа как главная
+    str = 'Я люблю Python'  # задаем начальное значение строки
+    print(reverse_str1(str))  # переворачиваем строку 1-м способом (функцией)
+    print(str)  # выводим первоначальную строку
+    print(reverse_str2(str))  # переворачиваем строку 2-м способом (функцией)
+    print(str)  # выводим первоначальную строку
+    print(reverse_str3(str))  # переворачиваем строку 3-м способом (функцией)
+    print(str)  # выводим первоначальную строку
+    print(reverse_str4(str))  # переворачиваем строку 4-м способом (функцией)
+    print(str)  # выводим первоначальную строку
+    print(reverse_str5(str))  # переворачиваем строку 5-м способом (функцией)
+    print(str)  # выводим первоначальную строку

@@ -7,16 +7,18 @@ Author: Andrej Marinchenko
 Date: 2021-11-11
 """
 
-import pyperclip
+import pyperclip  # модуль работы с буфером обмена системы
 
+print('Печатаем две строки с спец. симвалами')
 # Escape character
-print('My brother\'s name is \'007\'')
-# Исходная строка
-print(r'My brother\'s name is \'007\'')
+print('Обратите внимаение\'Текст строк ондинаков \'но выводится по разному\'')  # в этой строке слеш - это спец.
+# символ, который преобразует следующий за ним символ в служебный
+print(r'Обратите внимаение\'Текст строк ондинаков \'но выводится по разному\'')  # в начале строки символ r позволяет
+# использывать все специальные символы и они воспринимаются как элементы строки
 
-str = 'hello123world'
-print('he' in str)
-print('her' in str)
+str = 'привет_мир_99'
+print('пр' in str)
+print('при' in str)
 # Строка содержит только буквы
 print(str.isalpha())
 # Строка содержит только буквы и цифры
@@ -24,20 +26,20 @@ print(str.isalnum())
 # Строка содержит только числа
 print(str.isdecimal())
 
-print(str[0:5].isalpha())
-print(str[5:8].isdecimal())
+print(str[0:5].isalpha())  # выводит первые 5 символов букв
+print(str[5:13].isdecimal())  # выводит с 5 по 8 символы цифр
 
 list = ['Лунный свет перед кроватью', 'Подозреваемый иней на земле', 'Посмотри на луну', 'Склони голову и подумай о родном городе']
 print('-'.join(list))
-sentence = 'You go your way I will go mine'
+sentence = 'Ты думал о том что будет с нами?'
 words_list = sentence.split()
 print(words_list)
-email = 'jackfrued@126.com'
+email = 'jacklacki@999.com'
 print(email)
 print(email.strip())
 print(email.lstrip())
 
-# Поместите текст в системный буфер обмена
+# Поместить текст в системный буфер обмена
 pyperclip.copy('Если тигр не пришлет кошку, ты относишься ко мне как к умирающему')
 # Получить текст из системного буфера обмена
 # print(pyperclip.paste())

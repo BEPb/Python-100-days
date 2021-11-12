@@ -6,15 +6,15 @@ Version: 0.1
 Author: Andrej Marinchenko
 Date: 2021-11-11
 """
-import re
+import re  # подключаем модуль регулярных выражений
 
 
-def main():
-    sentence = 'Ты глуп? Я трахнул твоего дядю. Пошел ты на хуй.'
-    purified = re.sub('[иметь]|на хуй|дерьмо|глупо[тупо]|урод',
-                      '*', sentence, flags=re.IGNORECASE)
-    print(purified)
+def main():  # главная функция
+    sentence = 'Ты туп? Я имел твоего дядю. Пошел ты на хутор.'  # переменной присваиваем значение строки
+    purified = re.sub('[имел]|на хутор|сволочь|глупо[туп]|урод',
+                      '*', sentence, flags=re.IGNORECASE)  # производим замену запретных символов
+    print(purified)  # выведем на экран полученный результат
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__':  # если запущена это программа как главная
+    main()  # запускаем главную функцию

@@ -1,13 +1,13 @@
 """
-元 - meta
-元数据 - 描述数据的数据 - metadata
-元类 - 描述类的类 - metaclass - 继承自type
+Мета
+Метаданные-данные, описывающие данные-метаданные
+Метакласс - класс, описывающий метакласс класса, унаследованный от типа
 """
 import threading
 
 
 class SingletonMeta(type):
-    """自定义元类"""
+    """Пользовательский метакласс"""
 
     def __init__(cls, *args, **kwargs):
         cls.__instance = None
@@ -23,7 +23,7 @@ class SingletonMeta(type):
 
 
 class President(metaclass=SingletonMeta):
-    """总统(单例类)"""
+    """Президент (одноэлементный класс)"""
 
     def __init__(self, name, country):
         self.name = name
@@ -34,10 +34,10 @@ class President(metaclass=SingletonMeta):
 
 
 def main():
-    """主函数"""
-    p1 = President('特朗普', '美国')
-    p2 = President('奥巴马', '美国')
-    p3 = President.__call__('克林顿', '美国')
+    """Основная функция"""
+    p1 = President('Путин', 'Россия')
+    p2 = President('Медведев', 'Россия')
+    p3 = President.__call__('Ельцин', 'Россия')
     print(p1 == p2)
     print(p1 == p3)
     print(p1, p2, p3, sep='\n')

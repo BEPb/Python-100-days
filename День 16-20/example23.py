@@ -1,5 +1,5 @@
 """
-协程（coroutine）- 可以在需要时进行切换的相互协作的子程序
+Coroutine - кооперативная подпрограмма, которую можно переключать при необходимости
 """
 import asyncio
 
@@ -7,12 +7,12 @@ from example15 import is_prime
 
 
 def num_generator(m, n):
-    """指定范围的数字生成器"""
+    """Генератор чисел указанного диапазона"""
     yield from range(m, n + 1)
 
 
 async def prime_filter(m, n):
-    """素数过滤器"""
+    """Главный фильтр"""
     primes = []
     for i in num_generator(m, n):
         if is_prime(i):
@@ -24,7 +24,7 @@ async def prime_filter(m, n):
 
 
 async def square_mapper(m, n):
-    """平方映射器"""
+    """Квадратный картограф"""
     squares = []
     for i in num_generator(m, n):
         print('Square =>', i * i)
@@ -35,7 +35,7 @@ async def square_mapper(m, n):
 
 
 def main():
-    """主函数"""
+    """Основная функция"""
     loop = asyncio.get_event_loop()
     future = asyncio.gather(prime_filter(2, 100), square_mapper(1, 100))
     future.add_done_callback(lambda x: print(x.result()))

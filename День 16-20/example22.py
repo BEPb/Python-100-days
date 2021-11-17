@@ -1,11 +1,11 @@
 """
-多进程和进程池的使用
-多线程因为GIL的存在不能够发挥CPU的多核特性
-对于计算密集型任务应该考虑使用多进程
-time python3 example22.py
-real    0m11.512s
-user    0m39.319s
-sys     0m0.169s
+Использование многопроцессного и технологического пула
+Многопоточность не может использовать преимущества многоядерных характеристик ЦП из-за существования GIL
+Для ресурсоемких задач следует учитывать многопроцессорность.
+время python3 example22.py
+реальный 0 мин. 11,512 сек.
+пользователь 0m39.319s
+sys 0m0.169s
 """
 import concurrent.futures
 import math
@@ -28,7 +28,7 @@ PRIMES = [
 
 
 def is_prime(n):
-    """判断素数"""
+    """Оценка простых чисел"""
     if n % 2 == 0:
         return False
 
@@ -40,7 +40,7 @@ def is_prime(n):
 
 
 def main():
-    """主函数"""
+    """Основная функция"""
     with concurrent.futures.ProcessPoolExecutor() as executor:
         for number, prime in zip(PRIMES, executor.map(is_prime, PRIMES)):
             print('%d is prime: %s' % (number, prime))

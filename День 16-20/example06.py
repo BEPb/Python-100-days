@@ -1,4 +1,5 @@
 """
+Python 3.9
 Кодирование и декодирование-BASE64
 0-9A-Za-z + /
 1100 0101 1001 0011 0111 0110
@@ -13,6 +14,11 @@ b64encode / b64decode
 json-сериализация в символьной форме
 pickle-сериализация в байтах
 свалки / загрузки
+Название файла 'example06.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-18
 """
 import base64
 import json

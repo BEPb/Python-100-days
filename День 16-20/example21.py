@@ -1,7 +1,13 @@
 """
+Python 3.9
 Несколько потоков конкурируют за блокировку критических ресурсов для защиты ресурсов (Lock / RLock)
 Несколько потоков конкурируют за несколько ресурсов (количество потоков> количество ресурсов) -Semaphore
 Многопоточное планирование - приостановка выполнения потока / пробуждение ожидающих потоков - Condition
+Название файла 'example21.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-18
 """
 from concurrent.futures import ThreadPoolExecutor
 from random import randint

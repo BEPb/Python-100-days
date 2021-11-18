@@ -1,10 +1,16 @@
 """
+Python 3.9
 Рекурсивный вызов функции - функция вызывает себя прямо или косвенно
 1. Условия сходимости
 2. Рекурсивная формула
 п! = п * (п-1)!
 е (п) = е (п-1) + е (п-2)
 1 1 2 3 5 8 13 21 34 55 ...
+Название файла 'example03.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-18
 """
 from contextlib import contextmanager
 from time import perf_counter

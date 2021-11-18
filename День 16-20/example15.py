@@ -1,6 +1,12 @@
 """
+Python 3.9
 итераторы - __iter__ / __next__
 	itertools - инструмент модуль для создания итеративной последовательности
+	Название файла 'example15.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-18
 """
 import itertools
 

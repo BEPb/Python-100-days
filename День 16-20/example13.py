@@ -1,3 +1,11 @@
+'''
+Python 3.9
+Название файла 'example13.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-18
+'''
 from example12 import EmployeeFactory
 
 

@@ -1,5 +1,11 @@
 """
+Python 3.9
 Coroutine - кооперативная подпрограмма, которую можно переключать при необходимости
+Название файла 'example23.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-11-18
 """
 import asyncio
 

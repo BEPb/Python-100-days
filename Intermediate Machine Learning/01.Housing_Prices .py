@@ -21,15 +21,14 @@ from sklearn.ensemble import RandomForestRegressor
 # Define the models
 model_1 = RandomForestRegressor(n_estimators=50, random_state=0)
 model_2 = RandomForestRegressor(n_estimators=100, random_state=0)
-model_3 = RandomForestRegressor(n_estimators=100, criterion='mae', random_state=0)
+model_3 = RandomForestRegressor(n_estimators=100, criterion='absolute_error', random_state=0)
 model_4 = RandomForestRegressor(n_estimators=200, min_samples_split=20, random_state=0)
 model_5 = RandomForestRegressor(n_estimators=100, max_depth=7, random_state=0)
 
 models = [model_1, model_2, model_3, model_4, model_5]
 
-# Чтобы выбрать лучшую модель из пяти, мы определяем функцию score_model () ниже. Эта функция возвращает среднюю
-# абсолютную ошибку (MAE) из набора проверки. Напомним, что лучшая модель получит самую низкую MAE.  (Чтобы
-# просмотреть среднюю абсолютную ошибку, посмотрите здесь.)
+# Чтобы выбрать лучшую модель из пяти, мы определяем функцию score_model() ниже. Эта функция возвращает среднюю
+# абсолютную ошибку (MAE) из набора проверки. Напомним, что лучшая модель получит самую низкую MAE.
 
 from sklearn.metrics import mean_absolute_error
 

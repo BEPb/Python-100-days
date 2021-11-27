@@ -1,7 +1,7 @@
 # Introduction
-from learntools.core import binder
-binder.bind(globals())
-from learntools.game_ai.ex1 import *
+# from learntools.core import binder
+# binder.bind(globals())
+# from learntools.game_ai.ex1 import *
 
 # 1) Более умный агент
 # Мы можем улучшить производительность, не изобретая сложной стратегии, просто выбрав выигрышный ход, если он доступен.
@@ -152,7 +152,7 @@ def write_agent_to_file(function, file):
 write_agent_to_file(my_agent, "submission.py")
 
 # Check that submission file was created
-q_5.check()
+# q_5.check()
 
 
 

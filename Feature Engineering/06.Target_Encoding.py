@@ -1,7 +1,7 @@
 # Setup feedback system
-from learntools.core import binder
-binder.bind(globals())
-from learntools.feature_engineering_new.ex6 import *
+# from learntools.core import binder
+# binder.bind(globals())
+# from learntools.feature_engineering_new.ex6 import *
 
 import matplotlib.pyplot as plt
 import numpy as np

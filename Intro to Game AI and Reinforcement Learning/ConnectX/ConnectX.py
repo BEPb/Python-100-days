@@ -221,6 +221,7 @@ def cell_swarm(obs, conf):  # функция клеточный рой
 
 # Test your Agent
 
+
 env.reset()
 # Play as the first agent against "negamax" agent.
 env.run([cell_swarm, cell_swarm])

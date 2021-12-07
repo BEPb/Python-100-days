@@ -1,21 +1,19 @@
+"""
+Python 3.9 о визуализации данных
+Название файла '03.BarCharts_Heatmaps.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-07
+"""
 import pandas as pd
 pd.plotting.register_matplotlib_converters()
 import matplotlib.pyplot as plt
-%matplotlib inline
 import seaborn as sns
 print("Setup Complete")
 
-# Set up code checking
-import os
-if not os.path.exists("../input/ign_scores.csv"):
-    os.symlink("../input/data-for-datavis/ign_scores.csv", "../input/ign_scores.csv")
-from learntools.core import binder
-binder.bind(globals())
-from learntools.data_viz_to_coder.ex3 import *
-print("Setup Complete")
-
 # Path of the file to read
-ign_filepath = "../input/ign_scores.csv"
+ign_filepath = r"/home/user/PycharmProjects/Python-100-days/Data Visualization/archive/ign_scores.csv"
 
 # Fill in the line below to read the file into a variable ign_data
 ign_data = pd.read_csv(ign_filepath, index_col="Platform")
@@ -35,7 +33,7 @@ sns.barplot(x=ign_data['Racing'], y=ign_data.index)
 plt.xlabel("")
 # Add label for vertical axis
 plt.title("Average Score for Racing Games, by Platform")
-
+plt.show()
 
 
 
@@ -48,3 +46,4 @@ sns.heatmap(ign_data, annot=True)
 plt.xlabel("Genre")
 # Add label for vertical axis
 plt.title("Average Game Score, by Platform and Genre")
+plt.show()

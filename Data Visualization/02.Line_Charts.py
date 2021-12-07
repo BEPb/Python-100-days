@@ -1,27 +1,23 @@
-import pandas as pd
-pd.plotting.register_matplotlib_converters()
-import matplotlib.pyplot as plt
-%matplotlib inline
-import seaborn as sns
-print("Setup Complete")
+"""
+Python 3.9 о визуализации данных
+Название файла '02.Line_Charts.py'
 
-# Set up code checking
-import os
-if not os.path.exists("../input/museum_visitors.csv"):
-    os.symlink("../input/data-for-datavis/museum_visitors.csv", "../input/museum_visitors.csv")
-from learntools.core import binder
-binder.bind(globals())
-from learntools.data_viz_to_coder.ex2 import *
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-07
+"""
+import pandas as pd  # data analysis library
+import matplotlib.pyplot as plt  # provides an implicit way of plotting
+import seaborn as sns  # for visualization
 print("Setup Complete")
-
 # Path of the file to read
-museum_filepath = "../input/museum_visitors.csv"
+museum_filepath = r"/home/user/PycharmProjects/Python-100-days/Data Visualization/archive/museum_visitors.csv"
 
 # Fill in the line below to read the file into a variable museum_data
 museum_data = pd.read_csv(museum_filepath, index_col="Date", parse_dates=True)
 
 # Print the last five rows of the data
-museum_data.tail()
+print(museum_data.tail())
 # How many visitors did the Chinese American Museum
 # receive in July 2018?
 ca_museum_jul18 = 2620
@@ -45,11 +41,13 @@ avila_oct18 = 14658
 # этом случае поместите ее после step_3.check () ниже) - в противном случае проверочный код вернет ошибку!
 
 # Set the width and height of the figure
-plt.figure(figsize=(12,6))
+plt.figure(figsize=(12, 6))
 # Line chart showing the number of visitors to each museum over time
 sns.lineplot(data=museum_data)
 # Add title
 plt.title("Monthly Visitors to Los Angeles City Museums")
+
+plt.show()
 
 
 # Шаг 4. Оцените сезонность
@@ -67,7 +65,7 @@ plt.title("Monthly Visitors to Los Angeles City Museums")
 # Line plot showing the number of visitors to Avila Adobe over time
 
 # Set the width and height of the figure
-plt.figure(figsize=(12,6))
+plt.figure(figsize=(12, 6))
 # Add title
 plt.title("Monthly Visitors to Avila Adobe")
 # Line chart showing the number of visitors to Avila Adobe over time
@@ -81,7 +79,7 @@ plt.xlabel("Date")
 # в сентябре-феврале (в Лос-Анджелесе осенние и зимние месяцы), или
 # в марте-августе (в ЛА весной и летом)?
 # Используя эту информацию, когда следует укомплектовать музей дополнительными сезонными сотрудниками?
-
+plt.show()
 
 
 

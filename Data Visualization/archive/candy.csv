@@ -1,0 +1,84 @@
+id,competitorname,chocolate,fruity,caramel,peanutyalmondy,nougat,crispedricewafer,hard,bar,pluribus,sugarpercent,pricepercent,winpercent
+0,100 Grand,Yes,No,Yes,No,No,Yes,No,Yes,No,0.73199999,0.86000001,66.971725
+1,3 Musketeers,Yes,No,No,No,Yes,No,No,Yes,No,0.60399997,0.51099998,67.602936
+2,Air Heads,No,Yes,No,No,No,No,No,No,No,0.90600002,0.51099998,52.341465
+3,Almond Joy,Yes,No,No,Yes,No,No,No,Yes,No,0.465,0.76700002,50.347546
+4,Baby Ruth,Yes,No,Yes,Yes,Yes,No,No,Yes,No,0.60399997,0.76700002,56.914547
+5,Boston Baked Beans,No,No,No,Yes,No,No,No,No,Yes,0.31299999,0.51099998,23.417824
+6,Candy Corn,No,No,No,No,No,No,No,No,Yes,0.90600002,0.32499999,38.010963000000004
+7,Caramel Apple Pops,No,Yes,Yes,No,No,No,No,No,No,0.60399997,0.32499999,34.517681
+8,Charleston Chew,Yes,No,No,No,Yes,No,No,Yes,No,0.60399997,0.51099998,38.975037
+9,Chewey Lemonhead Fruit Mix,No,Yes,No,No,No,No,No,No,Yes,0.73199999,0.51099998,36.017628
+10,Chiclets,No,Yes,No,No,No,No,No,No,Yes,0.046,0.32499999,24.524988
+11,Dots,No,Yes,No,No,No,No,No,No,Yes,0.73199999,0.51099998,42.272076
+12,Dum Dums,No,Yes,No,No,No,No,Yes,No,No,0.73199999,0.034000002,39.460556
+13,Fruit Chews,No,Yes,No,No,No,No,No,No,Yes,0.127,0.034000002,43.088924
+14,Fun Dip,No,Yes,No,No,No,No,Yes,No,No,0.73199999,0.32499999,39.185505
+15,Gobstopper,No,Yes,No,No,No,No,Yes,No,Yes,0.90600002,0.45300001,46.783348
+16,Haribo Gold Bears,No,Yes,No,No,No,No,No,No,Yes,0.465,0.465,57.11974
+17,Haribo Happy Cola,No,No,No,No,No,No,No,No,Yes,0.465,0.465,34.158958
+18,Haribo Sour Bears,No,Yes,No,No,No,No,No,No,Yes,0.465,0.465,51.41243
+19,Haribo Twin Snakes,No,Yes,No,No,No,No,No,No,Yes,0.465,0.465,42.178771999999995
+20,Hershey's Kisses,Yes,No,No,No,No,No,No,No,Yes,0.127,0.093000002,55.375454000000005
+21,Hershey's Krackel,Yes,No,No,No,No,Yes,No,Yes,No,0.43000001,0.91799998,62.28448100000001
+22,Hershey's Milk Chocolate,Yes,No,No,No,No,No,No,Yes,No,0.43000001,0.91799998,56.490501
+23,Hershey's Special Dark,Yes,No,No,No,No,No,No,Yes,No,0.43000001,0.91799998,59.236121999999995
+24,Jawbusters,No,Yes,No,No,No,No,Yes,No,Yes,0.093000002,0.51099998,28.127439000000003
+25,Junior Mints,Yes,No,No,No,No,No,No,No,Yes,0.19699999999999998,0.51099998,57.21925
+26,Kit Kat,Yes,No,No,No,No,Yes,No,Yes,No,0.31299999,0.51099998,76.7686
+27,Laffy Taffy,No,Yes,No,No,No,No,No,No,No,0.22,0.11599999999999999,41.389557
+28,Lemonhead,No,Yes,No,No,No,No,Yes,No,No,0.046,0.10400000000000001,39.141056
+29,Lifesavers big ring gummies,No,Yes,No,No,No,No,No,No,No,0.26699999,0.27900001,52.911392000000006
+30,Peanut butter M&M's,Yes,No,No,Yes,No,No,No,No,Yes,0.82499999,0.65100002,71.46505
+31,M&M's,Yes,No,No,No,No,No,No,No,Yes,0.82499999,0.65100002,66.574585
+32,Mike & Ike,No,Yes,No,No,No,No,No,No,Yes,0.87199998,0.32499999,46.411716
+33,Milk Duds,Yes,No,Yes,No,No,No,No,No,Yes,0.30199999,0.51099998,55.064071999999996
+34,Milky Way,Yes,No,Yes,No,Yes,No,No,Yes,No,0.60399997,0.65100002,73.099556
+35,Milky Way Midnight,Yes,No,Yes,No,Yes,No,No,Yes,No,0.73199999,0.44100001,60.800701000000004
+36,Milky Way Simply Caramel,Yes,No,Yes,No,No,No,No,Yes,No,0.96499997,0.86000001,64.35334
+37,Mounds,Yes,No,No,No,No,No,No,Yes,No,0.31299999,0.86000001,47.829754
+38,Mr Good Bar,Yes,No,No,Yes,No,No,No,Yes,No,0.31299999,0.91799998,54.526451
+39,Nerds,No,Yes,No,No,No,No,Yes,No,Yes,0.84799999,0.32499999,55.354046
+40,Nestle Butterfinger,Yes,No,No,Yes,No,No,No,Yes,No,0.60399997,0.76700002,70.735641
+41,Nestle Crunch,Yes,No,No,No,No,Yes,No,Yes,No,0.31299999,0.76700002,66.47068
+42,Nik L Nip,No,Yes,No,No,No,No,No,No,Yes,0.19699999999999998,0.97600001,22.445341
+43,Now & Later,No,Yes,No,No,No,No,No,No,Yes,0.22,0.32499999,39.4468
+44,Payday,No,No,No,Yes,Yes,No,No,Yes,No,0.465,0.76700002,46.296597
+45,Peanut M&Ms,Yes,No,No,Yes,No,No,No,No,Yes,0.59299999,0.65100002,69.483788
+46,Pixie Sticks,No,No,No,No,No,No,No,No,Yes,0.093000002,0.023,37.722336
+47,Pop Rocks,No,Yes,No,No,No,No,Yes,No,Yes,0.60399997,0.83700001,41.265511
+48,Red vines,No,Yes,No,No,No,No,No,No,Yes,0.58099997,0.11599999999999999,37.348521999999996
+49,Reese's Miniatures,Yes,No,No,Yes,No,No,No,No,No,0.034000002,0.27900001,81.86625699999999
+50,Reese's Peanut Butter cup,Yes,No,No,Yes,No,No,No,No,No,0.72000003,0.65100002,84.18029
+51,Reese's pieces,Yes,No,No,Yes,No,No,No,No,Yes,0.40599999,0.65100002,73.43499
+52,Reese's stuffed with pieces,Yes,No,No,Yes,No,No,No,No,No,0.98799998,0.65100002,72.887901
+53,Ring pop,No,Yes,No,No,No,No,Yes,No,No,0.73199999,0.96499997,35.290756
+54,Rolo,Yes,No,Yes,No,No,No,No,No,Yes,0.86000001,0.86000001,65.716286
+55,Root Beer Barrels,No,No,No,No,No,No,Yes,No,Yes,0.73199999,0.06899999799999999,29.703691
+56,Runts,No,Yes,No,No,No,No,Yes,No,Yes,0.87199998,0.27900001,42.849144
+57,Sixlets,Yes,No,No,No,No,No,No,No,Yes,0.22,0.081,34.722
+58,Skittles original,No,Yes,No,No,No,No,No,No,Yes,0.94099998,0.22,63.08514
+59,Skittles wildberry,No,Yes,No,No,No,No,No,No,Yes,0.94099998,0.22,55.103694999999995
+60,Nestle Smarties,Yes,No,No,No,No,No,No,No,Yes,0.26699999,0.97600001,37.887188
+61,Smarties candy,No,Yes,No,No,No,No,Yes,No,Yes,0.26699999,0.11599999999999999,45.995827
+62,Snickers,Yes,No,Yes,Yes,Yes,No,No,Yes,No,0.546,0.65100002,76.67378199999999
+63,Snickers Crisper,Yes,No,Yes,Yes,No,Yes,No,Yes,No,0.60399997,0.65100002,59.529251
+64,Sour Patch Kids,No,Yes,No,No,No,No,No,No,Yes,0.06899999799999999,0.11599999999999999,59.863997999999995
+65,Sour Patch Tricksters,No,Yes,No,No,No,No,No,No,Yes,0.06899999799999999,0.11599999999999999,52.825947
+66,Starburst,No,Yes,No,No,No,No,No,No,Yes,0.15099999,0.22,67.037628
+67,Strawberry bon bons,No,Yes,No,No,No,No,Yes,No,Yes,0.56900001,0.057999998,34.578990999999995
+68,Sugar Babies,No,No,Yes,No,No,No,No,No,Yes,0.96499997,0.76700002,33.43755
+69,Sugar Daddy,No,No,Yes,No,No,No,No,No,No,0.41800001,0.32499999,32.230995
+70,Super Bubble,No,Yes,No,No,No,No,No,No,No,0.162,0.11599999999999999,27.303865000000002
+71,Swedish Fish,No,Yes,No,No,No,No,No,No,Yes,0.60399997,0.755,54.861111
+72,Tootsie Pop,Yes,Yes,No,No,No,No,Yes,No,No,0.60399997,0.32499999,48.982651000000004
+73,Tootsie Roll Juniors,Yes,No,No,No,No,No,No,No,No,0.31299999,0.51099998,43.068897
+74,Tootsie Roll Midgies,Yes,No,No,No,No,No,No,No,Yes,0.17399999,0.011000000000000001,45.736748
+75,Tootsie Roll Snack Bars,Yes,No,No,No,No,No,No,Yes,No,0.465,0.32499999,49.653503
+76,Trolli Sour Bites,No,Yes,No,No,No,No,No,No,Yes,0.31299999,0.255,47.173229
+77,Twix,Yes,No,Yes,No,No,Yes,No,Yes,No,0.546,0.90600002,81.642914
+78,Twizzlers,No,Yes,No,No,No,No,No,No,No,0.22,0.11599999999999999,45.466282
+79,Warheads,No,Yes,No,No,No,No,Yes,No,No,0.093000002,0.11599999999999999,39.011897999999995
+80,Welch's Fruit Snacks,No,Yes,No,No,No,No,No,No,Yes,0.31299999,0.31299999,44.375519
+81,Werther's Original Caramel,No,No,Yes,No,No,No,Yes,No,No,0.18600000000000003,0.26699999,41.904308
+82,Whoppers,Yes,No,No,No,No,Yes,No,No,Yes,0.87199998,0.84799999,49.524113

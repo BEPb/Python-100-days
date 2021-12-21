@@ -81,3 +81,7 @@ xparl stop
 visualdl --logdir .
 
 python benchmark/torch/AlphaZero/gen_submission.py saved_model/best.pth.tar
+
+
+xparl start --port 8010 --cpu_num 8
+python /home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/main.py

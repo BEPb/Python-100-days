@@ -28,7 +28,7 @@ def get_test_dataset():
     game = Connect4Game()
     test_dataset = []
     # with open("refmoves1k_kaggle") as f:
-    with open("/home/user/PycharmProjects/ConnectX/benchmark/torch/AlphaZero/refmoves1k_kaggle") as f:
+    with open("/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/refmoves1k_kaggle") as f:
 
         for line in f:
             data = json.loads(line)

@@ -50,13 +50,16 @@ args = dotdict({
 
     # folder to save model and training examples
     # папка для сохранения моделей и обучающих примеров
-    'checkpoint': './saved_model/',
+    # 'checkpoint': './saved_model/',
+    'checkpoint': '/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model',
 
     # whether to load saved model and training examples
     # загружать ли сохраненную модель и примеры обучения
     # 'load_model': False,
         'load_model': True,
-    'load_folder_file': ('./saved_model', 'checkpoint_24.pth.tar'),
+    # 'load_folder_file': ('./saved_model', 'checkpoint_24.pth.tar'),
+    'load_folder_file': ('G/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model',
+                         'checkpoint_24.pth.tar'),
 })
 
 # Plays arenaCompare games in which player1 starts arenaCompare/2 games and player2 starts arenaCompare/2 games.

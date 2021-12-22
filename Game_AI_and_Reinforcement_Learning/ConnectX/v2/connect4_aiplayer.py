@@ -1,3 +1,12 @@
+"""
+Python 3.9 программа битвы человек-машина
+программа на Python по изучению обучения с подкреплением - Reinforcement Learning
+Название файла connect4_aiplayer.py
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-22
+"""
 import math
 import random
 import sys
@@ -107,7 +116,8 @@ while not game_over:
                         current_board, turn, col)
 
                     if game.getGameEnded(current_board, PLAYER) == 1:
-                        label = my_font.render('You win !!!', 1, RED)
+                        # label = my_font.render('You win !!!', 1, RED)
+                        label = my_font.render('Ты выйграл !!!', 1, RED)
                         screen.blit(label, (40, 10))
                         game_over = True
                     elif game.getGameEnded(current_board, PLAYER) == 1e-4:
@@ -127,7 +137,8 @@ while not game_over:
             if board.is_valid_move(col):
                 current_board, _ = game.getNextState(current_board, turn, col)
                 if game.getGameEnded(current_board, PLAYER) == -1:
-                    label = my_font.render('You lose !!!', 1, RED)
+                    # label = my_font.render('You lose !!!', 1, RED)
+                    label = my_font.render('Ты проиграл !!!', 1, RED)
                     screen.blit(label, (40, 10))
                     game_over = True
                 elif game.getGameEnded(current_board, PLAYER) == 1e-4:

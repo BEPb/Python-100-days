@@ -1,9 +1,16 @@
+"""
+Python 3.9 программа на Python по изучению обучения с подкреплением - Reinforcement Learning
+Название файла main.py
 
-from Coach import Coach
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-22
+"""
+from Coach import Coach  # подключаем собственный модуль
 from connect4_game import Connect4Game
-from utils import *
+from utils import *    # подключаем собственный модуль
 
-from parl.utils import logger
+from parl.utils import logger  # подключаем логирование
 
 args = dotdict({
     # master address of xparl cluster
@@ -58,12 +65,12 @@ args = dotdict({
     # 'load_model': False,
         'load_model': True,
     # 'load_folder_file': ('./saved_model', 'checkpoint_24.pth.tar'),
-    'load_folder_file': ('G/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model',
+    'load_folder_file': ('/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model',
                          'checkpoint_24.pth.tar'),
 })
 
 # Plays arenaCompare games in which player1 starts arenaCompare/2 games and player2 starts arenaCompare/2 games.
-# Играет в игры arenaCompare, в которых игрок 1 начинает игры arenaCompare/2, а игрок 2 начинает игры arenaCompare / 2.
+# Играет в игры arenaCompare, в которых игрок 1 начинает игры arenaCompare/2, а игрок 2 начинает игры arenaCompare/2.
 assert args.arenaCompare % 2 == 0
 
 # make sure the tasks can be split evenly among different remote actors
@@ -73,20 +80,22 @@ assert (args.arenaCompare // 2) % args.actors_num == 0
 assert 1000 % args.actors_num == 0  # there are 1000 boards state in test_dataset
 
 
-def main():
+def main():  # запускаем главную функцию
     game = Connect4Game()
 
     c = Coach(game, args)
 
     if args.load_model:
-        logger.info('Loading checkpoint {}...'.format(args.load_folder_file))
+        # logger.info('Loading checkpoint {}...'.format(args.load_folder_file))  # загрузка контрольной точки
+        logger.info('Загрузка контрольной точки {}...'.format(args.load_folder_file))  # загрузка контрольной точки
         c.loadModel()
-        logger.info("Loading 'trainExamples' from file {}...".format(
-            args.load_folder_file))
+        # logger.info("Loading 'trainExamples' from file {}...".format(args.load_folder_file))
+        logger.info("Загрузка тренировочных примеров из файла {}...".format(args.load_folder_file))  # загрузка
+        # тренировочных примеров
         c.loadTrainExamples()
 
-    c.learn()
+    c.learn()   #
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__":  # если программа запущенна как главная
+    main()  #  обращаемся к главной функции

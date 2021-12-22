@@ -79,12 +79,13 @@ my_font = pygame.font.SysFont('monospace', 75)
 turn = random.choice([PLAYER, AI])
 
 args = dotdict({
-    'load_folder_file': ('./saved_model', 'best.pth.tar'),
+    'load_folder_file': ('/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model', 'best.pth.tar'),
     # 'load_folder_file': ('./saved_model', 'best_model'),
     'numMCTSSims': 800,
     'cpuct': 4,
 })
-logger.info('Loading checkpoint {}...'.format(args.load_folder_file))
+# logger.info('Loading checkpoint {}...'.format(args.load_folder_file))
+logger.info('Загрузка контрольной точки {}...'.format(args.load_folder_file))
 c = Coach(game, args)
 c.loadModel()
 agent = c.current_agent
@@ -153,3 +154,4 @@ while not game_over:
 
     if game_over:
         pygame.time.wait(5000)
+

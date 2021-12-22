@@ -69,7 +69,7 @@ python benchmark/torch/AlphaZero/main.py
 python benchmark/torch/AlphaZero/connect4_game.py
 python benchmark/torch/AlphaZero/connect4_model.py
 python benchmark/torch/AlphaZero/connect4_aiplayer.py
-
+python /home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/connect4_aiplayer.py
 
 
 xparl --help
@@ -85,3 +85,4 @@ python benchmark/torch/AlphaZero/gen_submission.py saved_model/best.pth.tar
 
 xparl start --port 8010 --cpu_num 8
 python /home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/main.py
+python /home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/gen_submission.py /home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model/best.pth.tar

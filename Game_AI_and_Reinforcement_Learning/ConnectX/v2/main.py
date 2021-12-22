@@ -24,7 +24,7 @@ args = dotdict({
 
     # total number of iteration
     # общее количество итераций
-    'numIters': 24,
+    'numIters': 1,
 
     # Number of complete self-play games to simulate during a new iteration.
     # Количество полных игр с самостоятельной игрой для моделирования во время новой итерации.
@@ -66,7 +66,7 @@ args = dotdict({
         'load_model': True,
     # 'load_folder_file': ('./saved_model', 'checkpoint_24.pth.tar'),
     'load_folder_file': ('/home/user/PycharmProjects/Python-100-days/Game_AI_and_Reinforcement_Learning/ConnectX/v2/saved_model',
-                         'checkpoint_24.pth.tar'),
+                         'checkpoint_1.pth.tar'),
 })
 
 # Plays arenaCompare games in which player1 starts arenaCompare/2 games and player2 starts arenaCompare/2 games.

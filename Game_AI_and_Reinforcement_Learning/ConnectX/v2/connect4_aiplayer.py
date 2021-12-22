@@ -35,7 +35,7 @@ WINDOW_LENGTH = 4
 SQUARESIZE = 100
 RADIUS = int(SQUARESIZE / 2 - 5)
 
-
+# функция нарисовать игровую доску
 def draw_board(board, screen, height):
     for c in range(COLUMN_COUNT):
         for r in range(ROW_COUNT):
@@ -74,7 +74,7 @@ width = COLUMN_COUNT * SQUARESIZE
 height = (ROW_COUNT + 1) * SQUARESIZE
 size = (width, height)
 screen = pygame.display.set_mode(size)
-draw_board(current_board, screen, height)
+draw_board(current_board, screen, height)  # функция нарисовать игровую доску
 my_font = pygame.font.SysFont('monospace', 75)
 turn = random.choice([PLAYER, AI])
 
@@ -91,7 +91,7 @@ c.loadModel()
 agent = c.current_agent
 mcts = MCTS(game, agent, args)
 
-while not game_over:
+while not game_over:  # пока игра не закончится
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()

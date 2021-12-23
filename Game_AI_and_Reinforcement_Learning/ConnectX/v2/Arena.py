@@ -1,5 +1,5 @@
 """
-Python 3.9 программа
+Python 3.9 программа 2 агента могут сражаться друг с другом
 программа на Python по изучению обучения с подкреплением - Reinforcement Learning
 Название файла Arena.py
 
@@ -12,21 +12,31 @@ from parl.utils import logger
 
 
 class Arena():
+    # An Arena class where any 2 agents can be pit against each other.
     """
-    An Arena class where any 2 agents can be pit against each other.
+    Класс арены, в котором любые 2 агента могут сражаться друг с другом.
     """
 
     def __init__(self, player1, player2, game, display=None):
+        # Input:
+        #             player 1,2: two functions that takes board as input, return action
+        #             game: Game object
+        #             display: a function that takes board as input and prints it (e.g.
+        #                      display in othello/OthelloGame). Is necessary for verbose
+        #                      mode.
+        #
+        #         see othello/OthelloPlayers.py for an example. See pit.py for pitting
+        #         human players/other baselines with each other.
         """
-        Input:
-            player 1,2: two functions that takes board as input, return action
-            game: Game object
-            display: a function that takes board as input and prints it (e.g.
-                     display in othello/OthelloGame). Is necessary for verbose
-                     mode.
+        Вход:
+             player 1,2: две функции, которые принимают доску в качестве входных данных, возвращают действие
+             game: Игровой объект
+             display: функция, которая принимает доску в качестве входных данных и печатает ее (например,
+                      отображать в othello / OthelloGame). Необходимо для подробного
+                      режим.
 
-        see othello/OthelloPlayers.py for an example. See pit.py for pitting
-        human players/other baselines with each other.
+         см. пример othello / OthelloPlayers.py. См. Pit.py для получения информации о питтинге
+         человеческие игроки / другие базовые уровни друг с другом.
         """
         self.player1 = player1
         self.player2 = player2
@@ -34,14 +44,18 @@ class Arena():
         self.display = display
 
     def playGame(self, verbose=False):
+        # Executes one episode of a game.
+        #
+        #         Returns:
+        #             either
+        #                 winner: player who won the game (1 if player1, -1 if player2)
+        #             or
+        #                 draw result returned from the game that is neither 1, -1, nor 0.
         """
-        Executes one episode of a game.
-
-        Returns:
-            either
-                winner: player who won the game (1 if player1, -1 if player2)
-            or
-                draw result returned from the game that is neither 1, -1, nor 0.
+        Выполняет один эпизод игры.
+         Возврат:
+             либо Победитель: игрок, выигравший игру (1, если player1, -1, если player2)
+             или Результат draw, возвращенный из игры, не равен ни 1, ни -1, ни 0.
         """
         players = [self.player2, None, self.player1]
         curPlayer = 1
@@ -72,14 +86,19 @@ class Arena():
         return curPlayer * self.game.getGameEnded(board, curPlayer)
 
     def playGames(self, num, verbose=False):
+        # Plays num games in which player1 starts num/2 games and player2 starts
+        #         num/2 games.
+        #         Returns:
+        #             oneWon: games won by player1
+        #             twoWon: games won by player2
+        #             draws:  games won by nobody
         """
-        Plays num games in which player1 starts num/2 games and player2 starts
-        num/2 games.
-
-        Returns:
-            oneWon: games won by player1
-            twoWon: games won by player2
-            draws:  games won by nobody
+        Играет количество игр, в которых player1 начинает num / 2 игры, а player2 начинает
+         кол-во / 2 игры.
+         Возврат:
+             oneWon: игры, выигранные игроком1
+             twoWon: игры, выигранные player2
+             ничьи: никем не выигранные партии
         """
 
         num = int(num / 2)

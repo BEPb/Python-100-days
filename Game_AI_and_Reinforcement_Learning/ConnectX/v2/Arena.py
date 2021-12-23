@@ -1,3 +1,12 @@
+"""
+Python 3.9 программа
+программа на Python по изучению обучения с подкреплением - Reinforcement Learning
+Название файла Arena.py
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-23
+"""
 from tqdm import tqdm
 from parl.utils import logger
 

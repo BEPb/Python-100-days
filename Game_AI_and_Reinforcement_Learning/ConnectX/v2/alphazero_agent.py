@@ -1,3 +1,12 @@
+"""
+Python 3.9 программа
+программа на Python по изучению обучения с подкреплением - Reinforcement Learning
+Название файла alphazero_agent.py
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-23
+"""
 import os
 import numpy as np
 import parl
@@ -22,9 +31,10 @@ class AlphaZero(parl.Algorithm):
         self.model = model
 
     def learn(self, boards, target_pis, target_vs, optimizer):
-        self.model.train()  # train mode
+        self.model.train()  # режим тренировки   - train mode
 
         # compute model output
+        # вычислить выходные данные модели
         out_log_pi, out_v = self.model(boards)
 
         pi_loss = -torch.sum(target_pis * out_log_pi) / target_pis.size()[0]
@@ -35,6 +45,7 @@ class AlphaZero(parl.Algorithm):
         total_loss = pi_loss + v_loss
 
         # compute gradient and do SGD step
+        # вычисляем градиент и делаем шаг SGD
         optimizer.zero_grad()
         total_loss.backward()
         optimizer.step()
@@ -42,7 +53,7 @@ class AlphaZero(parl.Algorithm):
         return total_loss, pi_loss, v_loss
 
     def predict(self, board):
-        self.model.eval()  # eval mode
+        self.model.eval()  # режим эвалюции - eval mode
 
         with torch.no_grad():
             log_pi, v = self.model(board)
@@ -73,8 +84,8 @@ class AlphaZeroAgent(parl.Agent):
 
     def learn(self, examples):
         """
-        Args:
-            examples: list of examples, each example is of form (board, pi, v)
+        Args: examples: list of examples, each example is of form (board, pi, v)
+        Аргументы: примеры: список примеров, каждый пример имеет форму (доска, пи, v)
         """
         optimizer = optim.Adam(self.alg.model.parameters(), lr=args.lr)
 
@@ -104,15 +115,19 @@ class AlphaZeroAgent(parl.Agent):
                 pbar.set_postfix(Loss_pi=pi_loss.item(), Loss_v=v_loss.item())
 
     def predict(self, board):
+        # Args:
+        #             board (np.array): input board
+        #         Return:
+        #             pi (np.array): probability of actions
+        #             v (np.array): estimated value of input
         """
-        Args:
-            board (np.array): input board
-
-        Return:
-            pi (np.array): probability of actions
-            v (np.array): estimated value of input
+        Аргументы:
+             board (np.array): плата ввода
+         Возвращение:
+             pi (np.array): вероятность действий
+             v (np.array): оценочное значение ввода
         """
-        # preparing input
+        # подготовка ввода - preparing input
         board = torch.FloatTensor(board.astype(np.float64))
         if self.cuda:
             board = board.contiguous().cuda()
@@ -121,7 +136,6 @@ class AlphaZeroAgent(parl.Agent):
         pi, v = self.alg.predict(board)
 
         return pi.data.cpu().numpy()[0], v.data.cpu().numpy()[0]
-
 
 def create_agent(game, cuda=True):
     cuda = cuda and torch.cuda.is_available()

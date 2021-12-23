@@ -1,3 +1,12 @@
+"""
+Python 3.9 программа самостоятельной игры агентов текущего и предыдущего покаления
+программа на Python по изучению обучения с подкреплением - Reinforcement Learning
+Название файла actor.py
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-23
+"""
 import numpy as np
 import parl
 import os
@@ -16,29 +25,39 @@ class Actor(object):
         self.args = args
 
         # neural network of previous generation
+        # нейронная сеть предыдущего поколения
         self.previous_agent = create_agent(self.game, cuda=False)
         # neural network of current generation
+        # нейронная сеть текущего поколения
         self.current_agent = create_agent(self.game, cuda=False)
 
         # MCTS of previous generation
+        # MCTS предыдущего поколения
         self.previous_mcts = MCTS(
             self.game, self.previous_agent, self.args, dirichlet_noise=True)
         # MCTS of current generation
+        # MCTS текущего поколения
         self.current_mcts = MCTS(
             self.game, self.current_agent, self.args, dirichlet_noise=True)
 
     def self_play(self, current_weights, game_num):
-        """Collecting training data by self-play.
-        
-        Args:
-            current_weights (numpy.array): latest weights of neural network
-            game_num (int): game number of self-play
-
-        Returns:
-            train_examples (list): examples of the form (canonicalBoard, currPlayer, pi,v)
+        # Collecting training data by self-play.
+        #         Args:
+        #             current_weights (numpy.array): latest weights of neural network
+        #             game_num (int): game number of self-play
+        #         Returns:
+        #             train_examples (list): examples of the form (canonicalBoard, currPlayer, pi,v)
+        """
+            Сбор данных о тренировках путем самостоятельной игры.
+         Аргументы:
+             current_weights (numpy.array): последние веса нейронной сети
+             game_num (int): номер игры для самостоятельной игры
+         Возврат:
+             train_examples (список): примеры формы (canonicalBoard, currPlayer, pi, v)
         """
 
         # update weights of current neural network with latest weights
+        # обновить веса текущей нейронной сети с последними весами
         self.current_agent.set_weights(current_weights)
 
         train_examples = []
@@ -50,21 +69,28 @@ class Actor(object):
         return train_examples
 
     def pitting(self, previous_weights, current_weights, games_num):
-        """Fighting between previous generation agent and current generation agent
-
-        Args:
-            previous_weights (numpy.array): weights of previous generation neural network
-            current_weights (numpy.array): weights of current generation neural network
-            game_num (int): game number of fighting 
-
-        Returns:
-            tuple of (game number of previous agent won, game number of current agent won, game number of draw)
+        # Fighting between previous generation agent and current generation agent
+        #         Args:
+        #             previous_weights (numpy.array): weights of previous generation neural network
+        #             current_weights (numpy.array): weights of
+        #         Returns:
+        #             tuple of (game number of previous agent won, game number of current agent won, game number of draw)
+        """Борьба между агентом предыдущего поколения и агентом текущего поколения
+         Аргументы:
+             previous_weights (numpy.array): веса нейронной сети предыдущего поколения
+             current_weights (numpy.array): веса нейронной сети текущего поколения
+             game_num (int): количество боев в игре
+         Возврат:
+             кортеж из (номер игры, в которой выиграл предыдущий агент, номер игры, в которой выиграл текущий агент,
+             номер игры, в которой был проведен розыгрыш)
         """
         # update weights of previous and current neural network
+        # обновить веса предыдущей и текущей нейронной сети
         self.previous_agent.set_weights(previous_weights)
         self.current_agent.set_weights(current_weights)
 
         # reset node state of MCTS
+        # сбросить состояние узла MCTS
         self.previous_mcts = MCTS(self.game, self.previous_agent, self.args)
         self.current_mcts = MCTS(self.game, self.current_agent, self.args)
 
@@ -77,16 +103,22 @@ class Actor(object):
         return (previous_wins, current_wins, draws)
 
     def evaluate_test_dataset(self, current_weights, test_dataset):
-        """Evaluate performance of latest neural nerwork
-        
-        Args:
-            current_weights (numpy.array): latest weights of neural network
-            test_dataset (list): game number of self-play
-
-        Returns:
-            tuple of (number of perfect moves, number of good moves)
+        # Evaluate performance of latest neural nerwork
+        #         Args:
+        #             current_weights (numpy.array): latest weights of neural network
+        #             test_dataset (list): game number of self-play
+        #         Returns:
+        #             tuple of (number of perfect moves, number of good moves)
+        """
+        Оценить эффективность новейших нейронных сетей
+         Аргументы:
+             current_weights (numpy.array): последние веса нейронной сети
+             test_dataset (список): номер игры для самостоятельной игры
+         Возврат:
+             кортеж из (количество совершенных ходов, количество хороших ходов)
         """
         # update weights of current neural network with latest weights
+        # обновить веса текущей нейронной сети с последними весами
         self.current_agent.set_weights(current_weights)
 
         perfect_move_count, good_move_count = 0, 0
@@ -110,21 +142,33 @@ class Actor(object):
         return (perfect_move_count, good_move_count)
 
     def _executeEpisode(self):
+        # This function executes one episode of self-play, starting with player 1.
+        #         As the game goes on, each turn is added as a training example to
+        #         trainExamples. The game is played till the game ends. After the game
+        #         ends, the outcome of the game is used to assign values to each example
+        #         in trainExamples.
+        #
+        #         It uses a temp=1 if episodeStep < tempThresholdStep, and thereafter
+        #         uses temp=0.
+        #
+        #         Returns:
+        #             trainExamples: a list of examples of the form (canonicalBoard, currPlayer, pi,v)
+        #                            pi is the MCTS informed policy vector, v is +1 if
+        #                            the player eventually won the game, else -1.
         """
+        Эта функция выполняет один эпизод самостоятельной игры, начиная с игрока 1.
+         По ходу игры каждый ход добавляется в качестве обучающего примера к
+         trainExamples. Игра длится до конца. После игры
+         заканчивается, результат игры используется для присвоения значений каждому примеру
+         в поезде Примеры.
 
-        This function executes one episode of self-play, starting with player 1.
-        As the game goes on, each turn is added as a training example to
-        trainExamples. The game is played till the game ends. After the game
-        ends, the outcome of the game is used to assign values to each example
-        in trainExamples.
+         Он использует temp = 1, если episodeStep <tempThresholdStep, и после этого
+         использует temp = 0.
 
-        It uses a temp=1 if episodeStep < tempThresholdStep, and thereafter
-        uses temp=0.
-
-        Returns:
-            trainExamples: a list of examples of the form (canonicalBoard, currPlayer, pi,v)
-                           pi is the MCTS informed policy vector, v is +1 if
-                           the player eventually won the game, else -1.
+         Возврат:
+             trainExamples: список примеров формы (canonicalBoard, currPlayer, pi, v)
+                            pi - вектор политики, проинформированный MCTS, v - +1, если
+                            игрок в конце концов выиграл игру, иначе -1.
         """
         trainExamples = []
         board = self.game.getInitBoard()
@@ -133,6 +177,7 @@ class Actor(object):
 
         while True:
             episodeStep += 1
+            print('Самостоятельная игра агентов текущего поколения и предыдущего, эпизод = ', episodeStep)
             canonicalBoard = self.game.getCanonicalForm(board, self.curPlayer)
             temp = int(episodeStep < self.args.tempThresholdStep)
 

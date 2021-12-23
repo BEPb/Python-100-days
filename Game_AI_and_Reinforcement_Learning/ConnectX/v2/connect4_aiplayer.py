@@ -122,7 +122,7 @@ while not game_over:  # пока игра не закончится
                         screen.blit(label, (40, 10))
                         game_over = True
                     elif game.getGameEnded(current_board, PLAYER) == 1e-4:
-                        label = my_font.render('Draw !!!', 1, RED)
+                        label = my_font.render('Ничья !!!', 1, RED)
                         screen.blit(label, (40, 10))
                         game_over = True
                     else:
@@ -143,7 +143,7 @@ while not game_over:  # пока игра не закончится
                     screen.blit(label, (40, 10))
                     game_over = True
                 elif game.getGameEnded(current_board, PLAYER) == 1e-4:
-                    label = my_font.render('Draw !!!', 1, RED)
+                    label = my_font.render('Ничья !!!', 1, RED)
                     screen.blit(label, (40, 10))
                     game_over = True
                 else:

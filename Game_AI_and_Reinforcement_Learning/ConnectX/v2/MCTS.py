@@ -1,7 +1,12 @@
-# Third party code
-#
-# The following code are copied or modified from:
-# https://github.com/suragnair/alpha-zero-general
+"""
+Python 3.9 программа дерева Монте-Карло на основе нейронной сети
+программа на Python по изучению обучения с подкреплением - Reinforcement Learning
+Название файла actor.py
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2021-12-23
+"""
 
 import math
 import time
@@ -14,6 +19,7 @@ EPS = 1e-8
 class MCTS():
     """
     This class handles the MCTS tree.
+    Этот класс обрабатывает дерево MCTS.
     """
 
     def __init__(self, game, nn_agent, args, dirichlet_noise=False):
@@ -30,13 +36,20 @@ class MCTS():
         self.Vs = {}  # stores game.getValidMoves for board s
 
     def getActionProb(self, canonicalBoard, temp=1):
+        # This function performs numMCTSSims simulations of MCTS starting from
+        #         canonicalBoard.
+        #
+        #         Returns:
+        #             probs: a policy vector where the probability of the ith action is
+        #                    proportional to Nsa[(s,a)]**(1./temp)
         """
-        This function performs numMCTSSims simulations of MCTS starting from
-        canonicalBoard.
 
-        Returns:
-            probs: a policy vector where the probability of the ith action is
-                   proportional to Nsa[(s,a)]**(1./temp)
+        Эта функция выполняет numMCTSSims-симуляции MCTS, начиная с
+         canonicalBoard.
+
+         Возврат:
+             probs: вектор политики, в котором вероятность i-го действия равна
+                    пропорционально Nsa [(s, a)] ** (1./temp)
         """
         for i in range(self.args.numMCTSSims):
             dir_noise = (i == 0 and self.dirichlet_noise)
@@ -61,23 +74,38 @@ class MCTS():
         return probs
 
     def search(self, canonicalBoard, dirichlet_noise=False):
+        # This function performs one iteration of MCTS. It is recursively called
+        #         till a leaf node is found. The action chosen at each node is one that
+        #         has the maximum upper confidence bound as in the paper.
+        #
+        #         Once a leaf node is found, the neural network is called to return an
+        #         initial policy P and a value v for the state. This value is propagated
+        #         up the search path. In case the leaf node is a terminal state, the
+        #         outcome is propagated up the search path. The values of Ns, Nsa, Qsa are
+        #         updated.
+        #
+        #         NOTE: the return values are the negative of the value of the current
+        #         state. This is done since v is in [-1,1] and if v is the value of a
+        #         state for the current player, then its value is -v for the other player.
+        #
+        #         Returns:
+        #             v: the negative of the value of the current canonicalBoard
         """
-        This function performs one iteration of MCTS. It is recursively called
-        till a leaf node is found. The action chosen at each node is one that
-        has the maximum upper confidence bound as in the paper.
+        Эта функция выполняет одну итерацию MCTS. Это рекурсивно называется
+         пока не будет найден листовой узел. На каждом узле выбирается действие, которое
+         имеет максимальную верхнюю доверительную границу, как в статье.
 
-        Once a leaf node is found, the neural network is called to return an
-        initial policy P and a value v for the state. This value is propagated
-        up the search path. In case the leaf node is a terminal state, the
-        outcome is propagated up the search path. The values of Ns, Nsa, Qsa are
-        updated.
+         Как только листовой узел найден, вызывается нейронная сеть, чтобы вернуть
+         начальная политика P и значение v для состояния. Это значение распространяется
+         вверх по пути поиска. В случае, если листовой узел является конечным состоянием,
+         результат распространяется вверх по пути поиска. Значения Ns, Nsa, Qsa равны
+         обновлено.
 
-        NOTE: the return values are the negative of the value of the current
-        state. This is done since v is in [-1,1] and if v is the value of a
-        state for the current player, then its value is -v for the other player.
+         ПРИМЕЧАНИЕ: возвращаемые значения являются отрицательными по отношению к текущему значению.
+         государство. Это сделано, поскольку v находится в [-1,1] и если v - значение a
+         state для текущего игрока, тогда его значение равно -v для другого игрока.
 
-        Returns:
-            v: the negative of the value of the current canonicalBoard
+         Возврат:   v: отрицательное значение текущего canonicalBoard
         """
 
         s = self.game.stringRepresentation(canonicalBoard)
@@ -104,7 +132,13 @@ class MCTS():
 
                 # NB! All valid moves may be masked if either your NNet architecture is insufficient or you've get overfitting or something else.
                 # If you have got dozens or hundreds of these messages you should pay attention to your NNet and/or training process.
-                print("All valid moves were masked, doing a workaround.")
+
+                # если все допустимые ходы были замаскированы, сделать все допустимые ходы равновероятными
+
+                # NB! Все допустимые ходы могут быть замаскированы, если либо ваша архитектура NNet недостаточна, либо у вас есть переоснащение или что-то еще.
+                # Если у вас есть десятки или сотни таких сообщений, вам следует обратить внимание на вашу NNet и / или процесс обучения.
+                # print("All valid moves were masked, doing a workaround.")
+                print("Все допустимые ходы были замаскированы, что позволяло обходное решение.")
                 self.Ps[s] = self.Ps[s] + valids
                 self.Ps[s] /= np.sum(self.Ps[s])
 
@@ -121,6 +155,7 @@ class MCTS():
         best_act = -1
 
         # pick the action with the highest upper confidence bound
+        # выбрать действие с наивысшей верхней границей уверенности
         for a in range(self.game.getActionSize()):
             if valids[a]:
                 if (s, a) in self.Qsa:

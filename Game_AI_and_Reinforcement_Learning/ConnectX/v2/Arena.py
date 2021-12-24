@@ -1,5 +1,5 @@
 """
-Python 3.9 программа 2 агента могут сражаться друг с другом
+Python 3.9 программа 2 агента могут сражаться друг с другом (нужна для оценки прогресса развития модели)
 программа на Python по изучению обучения с подкреплением - Reinforcement Learning
 Название файла Arena.py
 
@@ -61,11 +61,13 @@ class Arena():
         curPlayer = 1
         board = self.game.getInitBoard()
         it = 0
+        print('проверка развития модели на Арене')
         while self.game.getGameEnded(board, curPlayer) == 0:
             it += 1
             if verbose:
                 assert self.display
-                print("Turn ", str(it), "Player ", str(curPlayer))
+                # print("Turn ", str(it), "Player ", str(curPlayer))
+                print("Очередь ", str(it), "Игрок ", str(curPlayer))
                 self.display(board)
             action = players[curPlayer + 1](self.game.getCanonicalForm(
                 board, curPlayer))
@@ -74,14 +76,16 @@ class Arena():
                 self.game.getCanonicalForm(board, curPlayer), 1)
 
             if valids[action] == 0:
-                logger.error('Action {} is not valid!'.format(action))
-                logger.debug('valids = {}'.format(valids))
+                # logger.error('Action {} is not valid!'.format(action))
+                logger.error('Действие {} недействительно!'.format(action))
+                # logger.debug('valids = {}'.format(valids))
+                logger.debug('действительно = {}'.format(valids))
                 assert valids[action] > 0
             board, curPlayer = self.game.getNextState(board, curPlayer, action)
         if verbose:
             assert self.display
-            print("Game over: Turn ", str(it), "Result ",
-                  str(self.game.getGameEnded(board, 1)))
+            # print("Game over: Turn ", str(it), "Result ", str(self.game.getGameEnded(board, 1)))
+            print("Игра окончена: Очередь ", str(it), "Результат ", str(self.game.getGameEnded(board, 1)))
             self.display(board)
         return curPlayer * self.game.getGameEnded(board, curPlayer)
 

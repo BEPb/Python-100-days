@@ -81,31 +81,35 @@ class Coach():
 
         for iteration in range(1, self.args.numIters + 1):
             # logger.info('Starting Iter #{} ...'.format(iteration))
-            logger.info('Начало итерации № #{} ...'.format(iteration))
+            logger.info('Начало итерации №{} ...'.format(iteration))
 
             ####################
             # logger.info('Step1: self-play in parallel...')
             logger.info('Шаг 1: самостоятельная игра параллельно ...')
-            iterationTrainExamples = []
+            iterationTrainExamples = []  # пустой список
             # update weights of remote actors to the latest weights, and ask them to run self-play task
             # обновить веса удаленных участников до последних весов и попросить их запустить задачу самостоятельной игры
             episode_num_each_actor = self.args.numEps // self.args.actors_num
+            logger.info('вычисление episode_num_each_actor')
 
+            logger.info('Вычисление весов')
             weights = self.current_agent.get_weights()
-            future_object_ids  = [remote_actor.self_play(
-                weights, episode_num_each_actor) \
-                for remote_actor in self.remote_actors]
-            results = [
-                future_object.get() for future_object in future_object_ids
-            ]
+
+            future_object_ids = [remote_actor.self_play(weights, episode_num_each_actor) for remote_actor in self.remote_actors]
+            logger.info('Вычисление результатов')
+            logger.info('Ведутся самостоятельные игры между созданными агентами файл actor.py class Actor()')
+            # results = [future_object.get() for future_object in future_object_ids]
+            results = [future_object.get() for future_object in future_object_ids]
+
+            logger.info('Обработка результатов')
             for result in results:
+                logger.info('Результат: ', result)
                 iterationTrainExamples.extend(result)
 
             # save the iteration examples to the history
             # сохранить примеры итераций в истории
             self.trainExamplesHistory.append(iterationTrainExamples)
-            if len(self.trainExamplesHistory
-                   ) > self.args.numItersForTrainExamplesHistory:
+            if len(self.trainExamplesHistory) > self.args.numItersForTrainExamplesHistory:
                 # logger.warning("Removing the oldest entry in trainExamples.")
                 logger.warning("Удаление самой старой записи в поезде Примеры.")
                 self.trainExamplesHistory.pop(0)
@@ -132,7 +136,7 @@ class Coach():
             self.current_agent.learn(trainExamples)
 
             ####################
-            logger.info('Step3: evaluate test dataset in parallel...')
+            # logger.info('Step3: evaluate test dataset in parallel...')
             logger.info('Шаг 3: параллельно оцените тестовый набор данных ...')
             cnt = 0
             # update weights of remote actors to the latest weights, and ask them to evaluate assigned test dataset
@@ -145,7 +149,7 @@ class Coach():
                 split_datas.append(data)
                 cnt += len(data)
             weights = self.current_agent.get_weights()
-            future_object_ids  = [remote_actor.evaluate_test_dataset(
+            future_object_ids = [remote_actor.evaluate_test_dataset(
                 weights, data) \
                 for data, remote_actor in zip(split_datas, self.remote_actors)]
             results = [
@@ -218,6 +222,7 @@ class Coach():
         f.closed
 
     def loadModel(self):
+        print('прочитать модель')
         self.current_agent.restore(
             os.path.join(self.args.load_folder_file[0],
                          self.args.load_folder_file[1]))

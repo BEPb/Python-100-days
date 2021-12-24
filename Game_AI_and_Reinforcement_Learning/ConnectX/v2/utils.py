@@ -15,7 +15,7 @@ class dotdict(dict):
         except KeyError:
             raise AttributeError(name)
 
-
+# функция определения победа\пройгрыш\ничья
 def win_loss_draw(score):
     if score > 0:
         return 'win'

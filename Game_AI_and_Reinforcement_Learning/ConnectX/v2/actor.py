@@ -56,15 +56,17 @@ class Actor(object):
              train_examples (список): примеры формы (canonicalBoard, currPlayer, pi, v)
         """
 
+        print('Самостоятельная игра одного из созданных агентов (использует одно ядро)')
         # update weights of current neural network with latest weights
         # обновить веса текущей нейронной сети с последними весами
         self.current_agent.set_weights(current_weights)
 
-        train_examples = []
+        train_examples = []   # создаем пустую таблицу (список) тренировки
         for _ in range(game_num):
             # reset node state of MCTS
-            self.current_mcts = MCTS(
-                self.game, self.current_agent, self.args, dirichlet_noise=True)
+            print('сбросить состояние узла MCTS')
+            self.current_mcts = MCTS(self.game, self.current_agent, self.args, dirichlet_noise=True)
+            print('тренировка узла MCTS')
             train_examples.extend(self._executeEpisode())
         return train_examples
 
@@ -84,6 +86,7 @@ class Actor(object):
              кортеж из (номер игры, в которой выиграл предыдущий агент, номер игры, в которой выиграл текущий агент,
              номер игры, в которой был проведен розыгрыш)
         """
+        print('Борьба')
         # update weights of previous and current neural network
         # обновить веса предыдущей и текущей нейронной сети
         self.previous_agent.set_weights(previous_weights)
@@ -91,6 +94,7 @@ class Actor(object):
 
         # reset node state of MCTS
         # сбросить состояние узла MCTS
+        print('сбросить состояние узла MCTS перед ареной')
         self.previous_mcts = MCTS(self.game, self.previous_agent, self.args)
         self.current_mcts = MCTS(self.game, self.current_agent, self.args)
 
@@ -117,27 +121,31 @@ class Actor(object):
          Возврат:
              кортеж из (количество совершенных ходов, количество хороших ходов)
         """
+        print('Эволюция')
         # update weights of current neural network with latest weights
         # обновить веса текущей нейронной сети с последними весами
         self.current_agent.set_weights(current_weights)
 
+        # определяем качество проведенной игры
         perfect_move_count, good_move_count = 0, 0
         for data in test_dataset:
-            self.current_mcts = MCTS(self.game, self.current_agent, self.args)
+            self.current_mcts = MCTS(self.game, self.current_agent, self.args)  # обращаемся к дереву MCTS
 
             x = self.game.getCanonicalForm(data['board'], data['player'])
-            agent_move = int(
-                np.argmax(self.current_mcts.getActionProb(x, temp=0)))
+            agent_move = int(np.argmax(self.current_mcts.getActionProb(x, temp=0)))  # количество ходов
 
-            moves = data["move_score"]
-            perfect_score = max(moves)
-            perfect_moves = [i for i in range(7) if moves[i] == perfect_score]
+            moves = data["move_score"]  # список очков
+            perfect_score = max(moves)  # определяем максимальное значение в списке очков
+            perfect_moves = [i for i in range(7) if moves[i] == perfect_score]  # выбираем 7 лучших
 
             if agent_move in perfect_moves:
-                perfect_move_count += 1
-            if win_loss_draw(
-                    moves[agent_move]) == win_loss_draw(perfect_score):
-                good_move_count += 1
+                perfect_move_count += 1  # подсчет идеальных ходов
+                print('perfect_move_count', perfect_move_count)
+
+            print('Определяем победа\пройгрыш\ничья')
+            if win_loss_draw(moves[agent_move]) == win_loss_draw(perfect_score):
+                good_move_count += 1  # подсчет хороших ходов
+                print('good_move_count', good_move_count)
 
         return (perfect_move_count, good_move_count)
 
@@ -170,6 +178,7 @@ class Actor(object):
                             pi - вектор политики, проинформированный MCTS, v - +1, если
                             игрок в конце концов выиграл игру, иначе -1.
         """
+        print('Эпизод одной игры')
         trainExamples = []
         board = self.game.getInitBoard()
         self.curPlayer = 1
@@ -177,7 +186,7 @@ class Actor(object):
 
         while True:
             episodeStep += 1
-            print('Самостоятельная игра агентов текущего поколения и предыдущего, эпизод = ', episodeStep)
+            print('Самостоятельная игра агентов текущего поколения и предыдущего, ход = ', episodeStep)
             canonicalBoard = self.game.getCanonicalForm(board, self.curPlayer)
             temp = int(episodeStep < self.args.tempThresholdStep)
 

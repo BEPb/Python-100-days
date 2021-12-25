@@ -96,8 +96,12 @@ class Coach():
             weights = self.current_agent.get_weights()
 
             future_object_ids = [remote_actor.self_play(weights, episode_num_each_actor) for remote_actor in self.remote_actors]
+
             logger.info('Вычисление результатов')
-            logger.info('Ведутся самостоятельные игры между созданными агентами файл actor.py class Actor()')
+            logger.info('Ведутся самостоятельные игры между созданными агентами: \n'
+                        ' файл actor.py class Actor(), \n'
+                        'self_play() - функция сбора данных о тренировках путем самостоятельной игры  \n'
+                        '_executeEpisode() - функция одной игры \n')
             # results = [future_object.get() for future_object in future_object_ids]
             results = [future_object.get() for future_object in future_object_ids]
 
@@ -111,7 +115,7 @@ class Coach():
             self.trainExamplesHistory.append(iterationTrainExamples)
             if len(self.trainExamplesHistory) > self.args.numItersForTrainExamplesHistory:
                 # logger.warning("Removing the oldest entry in trainExamples.")
-                logger.warning("Удаление самой старой записи в поезде Примеры.")
+                logger.warning("Удаление самой старой записи в списке тренировки.")
                 self.trainExamplesHistory.pop(0)
             'история резервного копирования в файл'
             self.saveTrainExamples(iteration)  # backup history to a file

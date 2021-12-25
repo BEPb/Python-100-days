@@ -12,21 +12,11 @@ from parl.utils import logger
 
 
 class Arena():
-    # An Arena class where any 2 agents can be pit against each other.
     """
     Класс арены, в котором любые 2 агента могут сражаться друг с другом.
     """
 
     def __init__(self, player1, player2, game, display=None):
-        # Input:
-        #             player 1,2: two functions that takes board as input, return action
-        #             game: Game object
-        #             display: a function that takes board as input and prints it (e.g.
-        #                      display in othello/OthelloGame). Is necessary for verbose
-        #                      mode.
-        #
-        #         see othello/OthelloPlayers.py for an example. See pit.py for pitting
-        #         human players/other baselines with each other.
         """
         Вход:
              player 1,2: две функции, которые принимают доску в качестве входных данных, возвращают действие
@@ -44,13 +34,6 @@ class Arena():
         self.display = display
 
     def playGame(self, verbose=False):
-        # Executes one episode of a game.
-        #
-        #         Returns:
-        #             either
-        #                 winner: player who won the game (1 if player1, -1 if player2)
-        #             or
-        #                 draw result returned from the game that is neither 1, -1, nor 0.
         """
         Выполняет один эпизод игры.
          Возврат:
@@ -90,12 +73,6 @@ class Arena():
         return curPlayer * self.game.getGameEnded(board, curPlayer)
 
     def playGames(self, num, verbose=False):
-        # Plays num games in which player1 starts num/2 games and player2 starts
-        #         num/2 games.
-        #         Returns:
-        #             oneWon: games won by player1
-        #             twoWon: games won by player2
-        #             draws:  games won by nobody
         """
         Играет количество игр, в которых player1 начинает num / 2 игры, а player2 начинает
          кол-во / 2 игры.
@@ -104,7 +81,7 @@ class Arena():
              twoWon: игры, выигранные player2
              ничьи: никем не выигранные партии
         """
-
+        print('игра между моделями')
         num = int(num / 2)
         oneWon = 0
         twoWon = 0

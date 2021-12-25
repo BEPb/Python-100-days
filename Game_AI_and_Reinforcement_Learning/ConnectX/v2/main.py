@@ -28,12 +28,12 @@ args = dotdict({
 
     # Number of complete self-play games to simulate during a new iteration.
     # Количество полных игр с самостоятельной игрой для моделирования во время новой итерации.
-    'numEps': 5000,
+    'numEps': 100,  # 500
 
     # Number of games to play during arena (pitting) play to determine if new neural network will be accepted.
     # Количество игр, которые нужно сыграть во время игры на арене (питтинг), чтобы определить, будет ли принята новая
     # нейронная сеть.
-    'arenaCompare': 100,
+    'arenaCompare': 50,  # 50
 
     # Number of games moves for MCTS to simulate.
     # Количество игровых ходов для моделирования MCTS.
@@ -43,7 +43,7 @@ args = dotdict({
 
     # During arena playoff, new neural net will be accepted if threshold or more of games are won.
     # Во время плей-офф арены новая нейронная сеть будет принята, если будет выиграно пороговое или большее количество игр.
-    'updateThreshold': 0.9,
+    'updateThreshold': 0.8,  # 0.6
     # CPUCT parameter
     'cpuct': 4,
 
@@ -53,7 +53,7 @@ args = dotdict({
 
     # history of examples from numItersForTrainExamplesHistory latest iterations (training data)
     # история примеров из последних итераций numItersForTrainExamplesHistory (данные обучения)
-    'numItersForTrainExamplesHistory': 2000,
+    'numItersForTrainExamplesHistory': 20,
 
     # folder to save model and training examples
     # папка для сохранения моделей и обучающих примеров

@@ -41,12 +41,6 @@ class Actor(object):
             self.game, self.current_agent, self.args, dirichlet_noise=True)
 
     def self_play(self, current_weights, game_num):
-        # Collecting training data by self-play.
-        #         Args:
-        #             current_weights (numpy.array): latest weights of neural network
-        #             game_num (int): game number of self-play
-        #         Returns:
-        #             train_examples (list): examples of the form (canonicalBoard, currPlayer, pi,v)
         """
             Сбор данных о тренировках путем самостоятельной игры.
          Аргументы:
@@ -63,20 +57,16 @@ class Actor(object):
 
         train_examples = []   # создаем пустую таблицу (список) тренировки
         for _ in range(game_num):
+            print('Начинается игра №', _)
             # reset node state of MCTS
             print('сбросить состояние узла MCTS')
             self.current_mcts = MCTS(self.game, self.current_agent, self.args, dirichlet_noise=True)
             print('тренировка узла MCTS')
             train_examples.extend(self._executeEpisode())
+            # _executeEpisode() - функция одной игры
         return train_examples
 
     def pitting(self, previous_weights, current_weights, games_num):
-        # Fighting between previous generation agent and current generation agent
-        #         Args:
-        #             previous_weights (numpy.array): weights of previous generation neural network
-        #             current_weights (numpy.array): weights of
-        #         Returns:
-        #             tuple of (game number of previous agent won, game number of current agent won, game number of draw)
         """Борьба между агентом предыдущего поколения и агентом текущего поколения
          Аргументы:
              previous_weights (numpy.array): веса нейронной сети предыдущего поколения
@@ -104,15 +94,9 @@ class Actor(object):
             self.game)
         previous_wins, current_wins, draws = arena.playGames(games_num)
 
-        return (previous_wins, current_wins, draws)
+        return (previous_wins, current_wins, draws)  # возвращает количество предудущих побед, текущих побед и ничьих
 
     def evaluate_test_dataset(self, current_weights, test_dataset):
-        # Evaluate performance of latest neural nerwork
-        #         Args:
-        #             current_weights (numpy.array): latest weights of neural network
-        #             test_dataset (list): game number of self-play
-        #         Returns:
-        #             tuple of (number of perfect moves, number of good moves)
         """
         Оценить эффективность новейших нейронных сетей
          Аргументы:
@@ -142,27 +126,14 @@ class Actor(object):
                 perfect_move_count += 1  # подсчет идеальных ходов
                 print('perfect_move_count', perfect_move_count)
 
-            print('Определяем победа\пройгрыш\ничья')
+            print('Определяем победа\пройгрыш\ничья - ', win_loss_draw(moves[agent_move]))
             if win_loss_draw(moves[agent_move]) == win_loss_draw(perfect_score):
                 good_move_count += 1  # подсчет хороших ходов
                 print('good_move_count', good_move_count)
 
         return (perfect_move_count, good_move_count)
 
-    def _executeEpisode(self):
-        # This function executes one episode of self-play, starting with player 1.
-        #         As the game goes on, each turn is added as a training example to
-        #         trainExamples. The game is played till the game ends. After the game
-        #         ends, the outcome of the game is used to assign values to each example
-        #         in trainExamples.
-        #
-        #         It uses a temp=1 if episodeStep < tempThresholdStep, and thereafter
-        #         uses temp=0.
-        #
-        #         Returns:
-        #             trainExamples: a list of examples of the form (canonicalBoard, currPlayer, pi,v)
-        #                            pi is the MCTS informed policy vector, v is +1 if
-        #                            the player eventually won the game, else -1.
+    def _executeEpisode(self):  # функция одной игры
         """
         Эта функция выполняет один эпизод самостоятельной игры, начиная с игрока 1.
          По ходу игры каждый ход добавляется в качестве обучающего примера к

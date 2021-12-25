@@ -6,11 +6,10 @@ Version: 0.1
 Author: Andrej Marinchenko
 Date: 2021-12-22
 """
-from Coach import Coach  # подключаем собственный модуль
-from connect4_game import Connect4Game
-from utils import *    # подключаем собственный модуль
-
-from parl.utils import logger  # подключаем логирование
+from Coach import Coach  # подключаем собственный модуль (модель сохраняться, обучаться и оцениваться)
+from connect4_game import Connect4Game  # подключаем собственный модуль класса доски и класса игры между двумя игроками
+from utils import *    # подключаем собственный модуль утилит (обработки начального тестового датасета из 1000 игр, оценки результата игры)
+from parl.utils import logger  # подключаем логирование через веб интерфейс parl
 
 args = dotdict({
     # master address of xparl cluster
@@ -20,7 +19,7 @@ args = dotdict({
     # number of remote actors (execute tasks [self-play/pitting/evaluate_test_dataset] in parallel).
     # количество удаленных участников (выполняющих задачи [self-play / pitting / valu_test_dataset] параллельно).
     # не должно превышать количества ядер
-    'actors_num': 5,
+    'actors_num': 1,  # 4
 
     # total number of iteration
     # общее количество итераций
@@ -28,7 +27,7 @@ args = dotdict({
 
     # Number of complete self-play games to simulate during a new iteration.
     # Количество полных игр с самостоятельной игрой для моделирования во время новой итерации.
-    'numEps': 100,  # 500
+    'numEps': 1,  # 100 - 500
 
     # Number of games to play during arena (pitting) play to determine if new neural network will be accepted.
     # Количество игр, которые нужно сыграть во время игры на арене (питтинг), чтобы определить, будет ли принята новая
@@ -81,9 +80,9 @@ assert 1000 % args.actors_num == 0  # there are 1000 boards state in test_datase
 
 
 def main():  # запускаем главную функцию
-    game = Connect4Game()
+    game = Connect4Game()  # создаем экземпляр (объект) класса доски и игры между двумя игроками
 
-    c = Coach(game, args)
+    c = Coach(game, args)  # создаем экземпляр (объект) класса модели ее сохранения, обучаения и оценки
 
     if args.load_model:
         # logger.info('Loading checkpoint {}...'.format(args.load_folder_file))  # загрузка контрольной точки

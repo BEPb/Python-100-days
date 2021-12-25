@@ -18,11 +18,23 @@ from utils import win_loss_draw
 
 @parl.remote_class(wait=False)
 class Actor(object):
-    def __init__(self, game, args, seed):
+    def __init__(self, game, args, seed):  # инициализация класса
         np.random.seed(seed)
         os.environ['OMP_NUM_THREADS'] = "1"
-        self.game = game
-        self.args = args
+        self.game = game  # экземпляр (объект) класса доски и игры между двумя игроками
+        self.args = args  # принимает все аргументы из главной программы
+        #     'master_address': 'localhost:8010',  # главный адрес кластера xparl
+        #     'actors_num': 1,  # количество удаленных участников
+        #     'numIters': 1,  # общее количество итераций
+        #     'numEps': 1,  # Количество полных игр с самостоятельной игрой для моделирования во время новой итерации.
+        #     'arenaCompare': 50,  # Количество игр, которые нужно сыграть во время игры на арене (питтинг)
+        #     'numMCTSSims': 800,  # Количество игровых ходов для моделирования MCTS.
+        #     'updateThreshold': 0.8,  # пороговое или большее количество игр
+        #     'cpuct': 4,  # CPUCT parameter
+        #     'dirichletAlpha': 1.0,  # альфа-параметр шума дирихле
+        #     'numItersForTrainExamplesHistory': 20,  # история примеров из последних итераций
+        #     'checkpoint': './saved_model/',  # папка для сохранения моделей и обучающих примеров
+
 
         # neural network of previous generation
         # нейронная сеть предыдущего поколения

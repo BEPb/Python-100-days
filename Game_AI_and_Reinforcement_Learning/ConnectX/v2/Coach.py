@@ -26,7 +26,6 @@ from alphazero_agent import create_agent
 
 
 class Coach():
-    # This class executes the self-play, learning and evaluating.
     """
     Этот класс выполняет самостоятельную игру, обучение и оценку.
     """
@@ -58,15 +57,7 @@ class Coach():
             for seed in range(self.args.actors_num)]
 
     def learn(self):
-        # Each iteration:
-        #         1. Performs numEps episodes of self-play.
-        #         2. Retrains neural network with examples in trainExamplesHistory
-        #            (which has a maximum length of numItersForTrainExamplesHistory).
-        #         3. Evaluates the new neural network with the test dataset.
-        #         4. Pits the new neural network against the old one and accepts it
-        #            only if it wins >= updateThreshold fraction of games.
-        """
-           Каждая итерация:
+        """Каждая итерация:
          1. Выполняет множество эпизодов самостоятельной игры.
          2. Обучает нейронную сеть с примерами в trainExamplesHistory
             (который имеет максимальную длину numItersForTrainExamplesHistory).

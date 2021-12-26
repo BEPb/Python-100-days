@@ -96,13 +96,13 @@ class Coach():
             # results = [future_object.get() for future_object in future_object_ids]
             results = [future_object.get() for future_object in future_object_ids]
 
-            logger.info('Обработка результатов')
+            logger.info('Обработка результатов на каждом ходу игры')
             for result in results:
-                logger.info('Результат: ', result)
+                # logger.info('Результат: ', result)
                 iterationTrainExamples.extend(result)
 
             # save the iteration examples to the history
-            # сохранить примеры итераций в истории
+            # добавляем и сохраняем примеры итераций в истории
             self.trainExamplesHistory.append(iterationTrainExamples)
             if len(self.trainExamplesHistory) > self.args.numItersForTrainExamplesHistory:
                 # logger.warning("Removing the oldest entry in trainExamples.")
@@ -114,21 +114,20 @@ class Coach():
             ####################
             # logger.info('Step2: train neural network...')
             logger.info('Шаг 2: обучите нейронную сеть ...')
-            # shuffle examples before training
+
             # перемешайте примеры перед тренировкой
             trainExamples = []
             for e in self.trainExamplesHistory:
                 trainExamples.extend(e)
             shuffle(trainExamples)
 
-            # training new network, keeping a copy of the old one
             # обучение новой сети, сохраняя копию старой
-            self.current_agent.save(
-                os.path.join(self.args.checkpoint, 'temp.pth.tar'))
-            self.previous_agent.restore(
-                os.path.join(self.args.checkpoint, 'temp.pth.tar'))
+            self.current_agent.save(os.path.join(self.args.checkpoint, 'temp.pth.tar'))
+            self.previous_agent.restore(os.path.join(self.args.checkpoint, 'temp.pth.tar'))
 
-            self.current_agent.learn(trainExamples)
+            self.current_agent.learn(trainExamples)  # проводим тренировку модели
+            # тренировка происходит в файле alphazero_agent.py в экземпляре класса class AlphaZeroAgent()
+            # функции def learn(self, examples) на основе уже пройденных игр по эпохам (стандартно указано 5 эпох)
 
             ####################
             # logger.info('Step3: evaluate test dataset in parallel...')
@@ -178,7 +177,7 @@ class Coach():
                 future_object.get() for future_object in future_object_ids
             ]
 
-            previous_wins, current_wins, draws = 0, 0, 0
+            previous_wins, current_wins, draws = 0, 0, 0  # подсчитаем количество пред. побед, текущих побед и ничьих
             for result in results:
                 (pwins_, cwins_, draws_) = result
                 previous_wins += pwins_
@@ -186,7 +185,8 @@ class Coach():
                 draws += draws_
 
             # logger.info('NEW/PREV WINS : %d / %d ; DRAWS : %d' % (current_wins, previous_wins, draws))
-            logger.info('Новые/Предыдущие победы : %d / %d ; Розыгрыши : %d' % (current_wins, previous_wins, draws))
+            logger.info('Победы новой модели/Победы текущей модели: %d / %d ; Ничьи : %d' % (current_wins,
+                                                                                            previous_wins, draws))
             if previous_wins + current_wins == 0 or float(current_wins) / (
                     previous_wins + current_wins) < self.args.updateThreshold:
                 # logger.info('REJECTING NEW MODEL')

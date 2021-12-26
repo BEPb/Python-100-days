@@ -1,5 +1,5 @@
 """
-Python 3.9 программа
+Python 3.9 программа тренировки текущей нейронной сети
 программа на Python по изучению обучения с подкреплением - Reinforcement Learning
 Название файла alphazero_agent.py
 
@@ -20,8 +20,8 @@ from connect4_model import Connect4Model
 args = dotdict({
     'lr': 0.001,
     'dropout': 0.3,
-    'epochs': 5,
-    'batch_size': 64,
+    'epochs': 25,  # 25 - 5 количество эпох для тренировки нейронной сети
+    'batch_size': 64,  # указываем по сколько примеров обрабатывает наша нейронная сеть для обучения
     'num_channels': 64,
 })
 
@@ -53,7 +53,7 @@ class AlphaZero(parl.Algorithm):
         return total_loss, pi_loss, v_loss
 
     def predict(self, board):
-        self.model.eval()  # режим эвалюции - eval mode
+        self.model.eval()  # режим эволюции - eval mode
 
         with torch.no_grad():
             log_pi, v = self.model(board)
@@ -82,19 +82,24 @@ class AlphaZeroAgent(parl.Agent):
         self.board_x, self.board_y = game.getBoardSize()
         self.action_size = game.getActionSize()
 
-    def learn(self, examples):
+    def learn(self, examples):  # Args: examples: list of examples, each example is of form (board, pi, v)
         """
-        Args: examples: list of examples, each example is of form (board, pi, v)
+        Эта функция используется на 2-м шаге каждой итерации для тренировки модели
         Аргументы: примеры: список примеров, каждый пример имеет форму (доска, пи, v)
         """
         optimizer = optim.Adam(self.alg.model.parameters(), lr=args.lr)
 
         for epoch in range(args.epochs):
-            print('EPOCH ::: ' + str(epoch + 1))
+            # print('EPOCH ::: ' + str(epoch + 1))
+            print('Эпоха обучения нейронной сети ::: ' + str(epoch + 1))
 
             batch_count = int(len(examples) / args.batch_size)
 
-            pbar = tqdm(range(batch_count), desc='Training Net')
+            """ 
+            прогресс тренировки по эпохам наблюдаем путем загрузки примеров через бар tqdm
+            """
+            # pbar = tqdm(range(batch_count), desc='Training Net')
+            pbar = tqdm(range(batch_count), desc='Тренировка сети')
             for _ in pbar:
                 sample_ids = np.random.randint(
                     len(examples), size=args.batch_size)

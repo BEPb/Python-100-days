@@ -7,12 +7,12 @@ Version: 0.1
 Author: Andrej Marinchenko
 Date: 2021-12-23
 """
-import parl
+import parl   # подключаем веб интерфейс мониторинга за обучением
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
+import torch  # библиотека машинного обучения pytorh
+import torch.nn as nn  # подключаем нейронную сеть
+import torch.nn.functional as F  # используем Функции свертки из библиотек
+import torch.optim as optim  # пакет, реализующий различные алгоритмы оптимизации
 
 
 class Connect4Model(parl.Model):

@@ -16,9 +16,8 @@ import numpy as np
 EPS = 1e-8
 
 
-class MCTS():
+class MCTS():  # This class handles the MCTS tree.
     """
-    This class handles the MCTS tree.
     Этот класс обрабатывает дерево MCTS.
     """
 
@@ -46,7 +45,6 @@ class MCTS():
 
         Эта функция выполняет numMCTSSims-симуляции MCTS, начиная с
          canonicalBoard.
-
          Возврат:
              probs: вектор политики, в котором вероятность i-го действия равна
                     пропорционально Nsa [(s, a)] ** (1./temp)

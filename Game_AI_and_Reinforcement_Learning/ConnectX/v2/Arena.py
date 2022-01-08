@@ -74,11 +74,10 @@ class Arena():
 
     def playGames(self, num, verbose=False):
         """
-        Играет количество игр, в которых player1 начинает num / 2 игры, а player2 начинает
-         кол-во / 2 игры.
+        Играет общее количество игр, в которых player1 начинает половину игр, и player2 начинает вторую половину игр
          Возврат:
-             oneWon: игры, выигранные игроком1
-             twoWon: игры, выигранные player2
+             oneWon: игры, выигранные игроком 1
+             twoWon: игры, выигранные игроком 2
              ничьи: никем не выигранные партии
         """
         print('игра между моделями')
@@ -86,6 +85,7 @@ class Arena():
         oneWon = 0
         twoWon = 0
         draws = 0
+        print('Начинает игру игрок 1')
         for _ in tqdm(range(num), desc="Arena.playGames (1)"):
             gameResult = self.playGame(verbose=verbose)
             if gameResult == 1:
@@ -94,9 +94,11 @@ class Arena():
                 twoWon += 1
             else:
                 draws += 1
-
+        print('Результаты игр начинающим первым игроком:')
+        print('победил = %d, проиграл = %d, ничья = %d' % (oneWon, twoWon, draws))
         self.player1, self.player2 = self.player2, self.player1
 
+        print('Начинает игру игрок 2')
         for _ in tqdm(range(num), desc="Arena.playGames (2)"):
             gameResult = self.playGame(verbose=verbose)
             if gameResult == -1:
@@ -105,5 +107,6 @@ class Arena():
                 twoWon += 1
             else:
                 draws += 1
-        print('oneWon=', 'twoWon=', 'draws=', oneWon, twoWon, draws)
+        print('Результаты игр начинающим вторым игроком:')
+        print('победил = %d, проиграл = %d, ничья = %d' % (oneWon, twoWon, draws))
         return oneWon, twoWon, draws

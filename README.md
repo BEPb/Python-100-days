@@ -12,7 +12,7 @@
 
 <div align="center">
 
-<img src="./img/py.png" alt="Bot logo" width="300" height="356.5">
+<img src="./img/python.jpg" alt="Bot logo" width="1000" height="356.5">
 
 </div>
 
@@ -355,3 +355,8 @@ SMS-сервис-вызов SMS-сервисный шлюз
 
 ## День 91 ~ 100- Разработка командного проекта
  
+<div align="center">
+
+<img src="./img/py.png" alt="Bot logo" width="200" height="200">
+
+</div>

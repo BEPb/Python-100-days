@@ -6,7 +6,7 @@
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-04
+Date: 2023-03-04
 """
 
 salary = float(input('Введите зарплату в этом месяце: '))

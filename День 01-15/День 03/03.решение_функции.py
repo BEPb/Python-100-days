@@ -10,7 +10,7 @@ f(x) =  39x + 72   (-15 <= x <= 66)
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-04
+Date: 2023-03-04
 """
 
 print("Введите значение переменной 'x'")

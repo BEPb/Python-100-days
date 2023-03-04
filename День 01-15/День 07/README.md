@@ -1,3 +1,6 @@
+[Вернуться на главную](https://github.com/BEPb/Python-100-days)
+
+
 ## Строки и общие структуры данных
 
 ### Строки
@@ -500,3 +503,6 @@ print(scores.pop('яблоко', 65))
 scores.clear()
 print(scores)
 ```
+
+
+[Вернуться на главную](https://github.com/BEPb/Python-100-days)

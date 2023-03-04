@@ -1,3 +1,6 @@
+[Вернуться на главную](https://github.com/BEPb/Python-100-days)
+
+
 ## Условные операторы
 
 ### Сценарий применения
@@ -98,5 +101,6 @@ else:
 
 
 
+[Вернуться на главную](https://github.com/BEPb/Python-100-days)
 
 

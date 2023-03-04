@@ -29,10 +29,10 @@ ____
 ## День 01 ~ 15 - Основы языка Python
 ### [День 01 - Знакомство с Python](https://github.com/BEPb/Python-100-days/tree/master/%D0%94%D0%B5%D0%BD%D1%8C%2001-15/%D0%94%D0%B5%D0%BD%D1%8C%2001/README.md)
 - Введение в Python-История Python / Преимущества и недостатки Python / Области применения Python
-- Настройка среды программирования - среда Windows / среда Linux / среда MacOS
+- Настройка среды программирования - среда Windows / среда Linux
 - Запустить программу Python из терминала - Hello, world / print function / run program
-- Используйте IDLE-Interactive Environment (REPL) / напишите несколько строк кода / запустите программу / выйдите из 
-  IDLE
+- Используйте IDE- PyCharm / напишите несколько строк кода / запустите программу / выйдите из 
+  IDE
 - Комментарий - роль комментариев / однострочных комментариев / многострочных комментариев
 
 ### [День 02 - Элементы языка](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2001-15/%D0%94%D0%B5%D0%BD%D1%8C%2002/README.md)

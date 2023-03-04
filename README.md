@@ -27,7 +27,7 @@ ____
 ____
 
 ## День 01 ~ 15 - Основы языка Python
-### [День 01 - Знакомство с Python](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2001-15/%D0%94%D0%B5%D0%BD%D1%8C%2001/00.%D0%97%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D1%81%D1%82%D0%B2%D0%BE%20%D1%81%20Python.md)
+### [День 01 - Знакомство с Python](День_01-15/День_01/README.md)
 - Введение в Python-История Python / Преимущества и недостатки Python / Области применения Python
 - Настройка среды программирования - среда Windows / среда Linux / среда MacOS
 - Запустить программу Python из терминала - Hello, world / print function / run program

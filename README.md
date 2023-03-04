@@ -12,12 +12,11 @@
 
 <div align="center">
 
-
 <img src="./img/py.png" alt="Bot logo" width="300" height="356.5">
 
-# Github бот для создания армии подписчиков
-
 </div>
+
+
 ## Python-100 дней от новичка до мастера
 
 ____

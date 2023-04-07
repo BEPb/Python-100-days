@@ -4,7 +4,7 @@
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-05
+Date: 2023-03-04
 """
 
 import math  # подключаем модуль для математических операций

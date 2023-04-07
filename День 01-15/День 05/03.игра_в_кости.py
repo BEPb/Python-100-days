@@ -1,10 +1,10 @@
 """
-Python 3.9 Игра в кости CRAPS
+Python 3.10 Игра в кости CRAPS
 Название файла '03.игра_в_кости.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-05
+Date: 2023-03-04
 """
 
 from random import randint  # подключаем модуль генерации случайных чисел

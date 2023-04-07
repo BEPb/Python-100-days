@@ -1,10 +1,10 @@
 """
-Python 3.9 Часы
+Python 3.10 Часы
 Название файла '01.часы.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-08
+Date: 2023-03-04
 """
 
 import time  # модуль работы с временем

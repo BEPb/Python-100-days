@@ -1,5 +1,5 @@
 """
-Python 3.9 Встроенные функции Python
+Python 3.10 Встроенные функции Python
 -Математика: abs / divmod / pow / round / min / max / sum
 -Последовательность корреляции: len / range / next / filter / map / sorted / slice / reverse
 -Преобразование типов: chr / ord / str / bool / int / float / complex / bin / oct / hex
@@ -9,7 +9,7 @@ Python 3.9 Встроенные функции Python
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-06
+Date: 2023-03-04
 """
 
 

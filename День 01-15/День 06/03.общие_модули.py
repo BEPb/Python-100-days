@@ -1,5 +1,5 @@
 """
-Python 3.9 Общие модули Python
+Python 3.10 Общие модули Python
 -Модули, связанные с сервисом выполнения: copy / pickle / sys / ...
 -Модули, связанные с математикой: decimal / math / random / ...
 -Модуль обработки строк: codecs / re / ...
@@ -13,7 +13,7 @@ Python 3.9 Общие модули Python
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-06
+Date: 2023-03-04
 """
 
 import time  # подключаем модуль работы со временем

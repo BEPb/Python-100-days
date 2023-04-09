@@ -1,15 +1,14 @@
 """
-Python 3.9 Используйте tkinter для создания графического интерфейса
+Python 3.10 Используйте tkinter для создания графического интерфейса
 - анимация движения шара
 Название файла '03.анимация_движение.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-10
+Date: 2023-04-09
 """
 
 import tkinter
-import time
 
 def play_animation():  # Функция воспроизведения эффекта анимации
     canvas.move(oval, 2, 2)

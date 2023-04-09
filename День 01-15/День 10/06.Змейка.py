@@ -1,10 +1,10 @@
 """
-Python 3.9 Используйте pygame для создания игры змейка
+Python 3.10 Используйте pygame для создания игры змейка
 Название файла '06.Змейка.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-10
+Date: 2023-04-09
 """
 
 from abc import ABCMeta, abstractmethod

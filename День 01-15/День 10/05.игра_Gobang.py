@@ -1,10 +1,10 @@
 """
-Python 3.9 игра Gobang
+Python 3.10 игра Gobang
 Название файла '05.игра_Gobang.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-10
+Date: 2023-04-09
 """
 
 import pygame  # подключить модуль создания игр

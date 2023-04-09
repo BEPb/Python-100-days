@@ -4,7 +4,7 @@ Python 3.9 Механизм исключения - состояние, кото�
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-11
+Date: 2023-04-09
 """
 
 import time

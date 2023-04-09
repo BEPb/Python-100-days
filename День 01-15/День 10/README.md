@@ -294,5 +294,5 @@ class Ball(object):
 [Вернуться на главную](https://github.com/BEPb/Python-100-days)
 
 
-[К следующему занятию](https://github.com/BEPb/Python-100-days/tree/master/%D0%94%D0%B5%D0%BD%D1%8C%2001-15/%D0%94%D0%B5%D0%BD%D1%8C%20011/README.md)
+[К следующему занятию](https://github.com/BEPb/Python-100-days/tree/master/%D0%94%D0%B5%D0%BD%D1%8C%2001-15/%D0%94%D0%B5%D0%BD%D1%8C%2011/README.md)
 

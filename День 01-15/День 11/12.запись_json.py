@@ -1,10 +1,10 @@
 """
-Python 3.9 Записать в файл JSON
+Python 3.10 Записать в файл JSON
 Название файла '12.запись_json.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-11
+Date: 2023-04-09
 """
 
 import json

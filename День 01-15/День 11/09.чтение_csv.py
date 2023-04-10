@@ -1,10 +1,10 @@
 """
-Python 3.9 Прочитать файл CSV
+Python 3.10 Прочитать файл CSV
 Название файла '09.чтение_csv.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-10
+Date: 2023-04-09
 """
 
 import csv

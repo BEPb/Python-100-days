@@ -1,10 +1,10 @@
 """
-Python 3.9 Модуль асинхронной операции ввода-вывода asyncio
+Python 3.10 Модуль асинхронной операции ввода-вывода asyncio
 Название файла '13.асихронная_работа.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-10
 """
 import asyncio
 

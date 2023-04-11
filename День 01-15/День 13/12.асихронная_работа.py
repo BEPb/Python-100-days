@@ -1,10 +1,10 @@
 """
-Python 3.9 Асинхронные операции ввода-вывода - async и await
+Python 3.10 Асинхронные операции ввода-вывода - async и await
 Название файла '12.асихронная_работа.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-10
 """
 import asyncio
 import threading

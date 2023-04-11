@@ -1,10 +1,10 @@
 """
-Python 3.9 Осуществляйте межпроцессное взаимодействие
+Python 3.10 Осуществляйте межпроцессное взаимодействие
 Название файла '19.межпроцессное_взаимодействие.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-10
 """
 import multiprocessing
 import os

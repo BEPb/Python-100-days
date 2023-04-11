@@ -1,10 +1,10 @@
 """
-Python 3.9 Вычисление последовательно в 8 процессов.
+Python 3.10 Вычисление последовательно в 8 процессов.
 Название файла '10.многопроцессорная_работа.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-10
 """
 
 from multiprocessing import Process, Queue

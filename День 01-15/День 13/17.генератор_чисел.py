@@ -1,10 +1,10 @@
 """
-Python 3.9 генератор синтаксис
+Python 3.10 генератор синтаксис
 Название файла '17.генератор_чисел.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-10
 """
 
 seq = [x * x for x in range(10)]

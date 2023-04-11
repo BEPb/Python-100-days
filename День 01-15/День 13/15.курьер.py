@@ -1,10 +1,10 @@
 """
-Python 3.9 Используйте центр экспресс-доставки coroutine-simulate для экспресс-доставки
+Python 3.10 Используйте центр экспресс-доставки coroutine-simulate для экспресс-доставки
 Название файла '15.курьер.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-10
 """
 
 from time import sleep

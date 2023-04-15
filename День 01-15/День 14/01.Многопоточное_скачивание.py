@@ -1,40 +1,39 @@
 """
-Python 3.9 Многопоточное скачивание
+Python 3.10 Многопоточное скачивание
 Название файла '01.Многопоточное_скачивание.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-15
 """
-
-from threading import Thread
 import requests
+import threading
+
+# Список URL для скачивания
+urls = ['https://i.postimg.cc/yNdnFR8y/Screenshot-11.png', 'https://i.postimg.cc/BvmWNyF3/Screenshot-3.png', 'https://i.postimg.cc/g2WN0XZb/Screenshot-1.png']
 
 
-class DownloadHanlder(Thread):
-
-    def __init__(self, url):
-        super().__init__()
-        self.url = url
-
-    def run(self):
-        filename = self.url[self.url.rfind('/') + 1:]
-        resp = requests.get(self.url)
-        with open('/Users/Downloads/' + filename, 'wb') as f:
-            f.write(resp.content)
+def download(url):
+    # Отправить запрос GET и сохранить содержимое ответа в файл
+    response = requests.get(url)
+    with open(url.split('/')[-1], 'wb') as file:
+        file.write(response.content)
+    print(f'Скачивание по ссылке {url} заврешено')
 
 
-def main():  # главная функция
-    # Получение сетевых ресурсов через функцию get модуля запросов
-    resp = requests.get(
-        'http://api.tianapi.com/meinv/?key=772a81a51ae5c780251b1f98ea431b84&num=10')
-    # Разобрать данные в формате JSON, возвращенные сервером, в словарь
-    data_model = resp.json()
-    for mm_dict in data_model['newslist']:
-        url = mm_dict['picUrl']
-        # Реализуйте загрузку изображений через многопоточность
-        DownloadHanlder(url).start()
+if __name__ == '__main__':
+    # Создайте новый поток для каждого URL-адреса в списке URL-адресов
+    threads = []
+    for url in urls:
+        t = threading.Thread(target=download, args=(url,))
+        threads.append(t)
 
+    # Начать загрузку каждого файла одновременно
+    for thread in threads:
+        thread.start()
 
-if __name__ == '__main__':  # если запущена это программа как главная
-    main()  # запускаем главную функцию
+    # Дождитесь завершения всех потоков перед выходом из основного потока.
+    for thread in threads:
+        thread.join()
+
+print('Все загрузки завершены!')

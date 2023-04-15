@@ -1,10 +1,10 @@
 """
-Python 3.9 временной-сервер
+Python 3.10 временной-сервер
 Название файла '02.временной-сервер.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-15
 """
 
 from socket import socket, SOCK_STREAM, AF_INET

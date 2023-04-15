@@ -20,7 +20,7 @@ def main():
     # type=SOCK_RAW - raw сокет
     server = socket(family=AF_INET, type=SOCK_STREAM)
     # 2.Привязать IP-адрес и порт (чтобы различать разные сервисы)
-    server.bind(('192.168.1.2', 6789))
+    server.bind(('localhost', 12345))
     # 3.Включите мониторинг-прослушивание клиентских подключений к серверу.
     server.listen(512)
     print('Сервер запускается и начинает слушать...')
@@ -36,7 +36,6 @@ def main():
         client.send(str(datetime.now()).encode('utf-8'))
         # 6.Отключитесь
         client.close()
-
 
 if __name__ == '__main__':  # если запущена это программа как главная
     main()  # запускаем главную функцию

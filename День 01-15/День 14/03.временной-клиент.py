@@ -1,17 +1,17 @@
 """
-Python 3.9 временной-клиент
+Python 3.10 временной-клиент
 Название файла '03.временной-клиент.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-15
 """
 from socket import socket
 
 
 def main():
     client = socket()
-    client.connect(('192.168.1.9', 6789))
+    client.connect(('192.168.1.9', 12345))  # указываем IP адрес и порт временного сервера
     print(client.recv(1024).decode('utf-8'))
     client.close()
 

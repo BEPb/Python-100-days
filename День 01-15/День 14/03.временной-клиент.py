@@ -11,7 +11,7 @@ from socket import socket
 
 def main():
     client = socket()
-    client.connect(('192.168.1.9', 12345))  # указываем IP адрес и порт временного сервера
+    client.connect(('192.168.0.102', 5566))  # указываем IP адрес и порт временного сервера
     print(client.recv(1024).decode('utf-8'))
     client.close()
 

@@ -1,10 +1,10 @@
 """
-Python 3.9 файловый-сервер
+Python 3.10 файловый-сервер
 Название файла '04.файловый-сервер.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-16
 """
 from socket import socket, SOCK_STREAM, AF_INET
 from base64 import b64encode
@@ -23,7 +23,7 @@ def main():
 
         def run(self):
             my_dict = {}
-            my_dict['filename'] = '99.guido.jpg'
+            my_dict['filename'] = 'Screenshot-1.png'
             # JSON - это простой текст и не может переносить двоичные данные
             # Таким образом, двоичные данные изображения должны быть обработаны в кодировке base64
             my_dict['filedata'] = data
@@ -36,11 +36,11 @@ def main():
     # 1. Создайте объект сокета и укажите, какой транспортный сервис использовать.
     server = socket()
     # 2. Привязать IP-адрес и порт (чтобы различать разные сервисы)
-    server.bind(('192.168.1.2', 5566))
+    server.bind(('192.168.0.102', 5566))  # обязательно укажите свой локальный IP-адрес
     # 3. Включите мониторинг-прослушивание клиентских подключений к серверу.
     server.listen(512)
     print('Сервер запускается и начинает слушать .....')
-    with open('99.guido.jpg', 'rb') as f:
+    with open('Screenshot-1.png', 'rb') as f:
         # Обработать двоичные данные в base64 и затем декодировать их в строку
         data = b64encode(f.read()).decode('utf-8')
     while True:

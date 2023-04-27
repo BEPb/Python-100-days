@@ -1,19 +1,19 @@
 """
-Python 3.9 чтение pdf документа
+Python 3.10 чтение pdf документа
 Название файла '06.pdf.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-27
 """
 
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 
-with open('./res/Docker.pdf', 'rb') as f:
-    reader = PdfFileReader(f, strict=False)
-    print(reader.numPages)
-    if reader.isEncrypted:
+with open('./res/rukovodstvo.pdf', 'rb') as f:
+    reader = PdfReader(f, strict=False)
+    print(len(reader.pages))
+    if reader.is_encrypted:
         reader.decrypt('')
-    current_page = reader.getPage(5)
+    current_page = reader.pages[5]
     print(current_page)
-    print(current_page.extractText())
+    print(current_page.extract_text())

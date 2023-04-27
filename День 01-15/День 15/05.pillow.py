@@ -1,10 +1,10 @@
 """
-Python 3.9 чтение, преобразование, сохранение pillow документа
+Python 3.10 чтение, преобразование, сохранение pillow документа
 Название файла '05.pillow.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-27
 """
 from PIL import Image
 

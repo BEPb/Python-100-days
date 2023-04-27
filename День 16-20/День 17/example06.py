@@ -24,8 +24,6 @@ import base64
 import json
 import redis
 
-from example02 import Person
-
 
 class PersonJsonEncoder(json.JSONEncoder):
 

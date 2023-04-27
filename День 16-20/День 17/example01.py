@@ -53,17 +53,18 @@ def bin_search(items, elem):
 
 def main():
     """"" "Основная функция (ввод программы)" """""
-    num = 6
+    num = 6  # максимальное значение по оси х
     styles = ['r-.', 'g-*', 'b-o', 'y-x', 'c-^', 'm-+', 'k-d']
-    legends = [ 'логарифм' , 'линейный' , 'линейный логарифм' , 'квадрат' , 'кубический' , 'геометрический ряд' , 'факториал']
-    x_data = [x for x in range(1, num + 1)]
-    y_data1 = [log2(y) for y in range(1, num + 1)]
-    y_data2 = [y for y in range(1, num + 1)]
-    y_data3 = [y * log2(y) for y in range(1, num + 1)]
-    y_data4 = [y ** 2 for y in range(1, num + 1)]
-    y_data5 = [y ** 3 for y in range(1, num + 1)]
-    y_data6 = [3 ** y for y in range(1, num + 1)]
-    y_data7 = [factorial(y) for y in range(1, num + 1)]
+    legends = ['логарифм', 'линейный', 'линейный логарифм', 'квадрат', 'кубический', 'геометрический ряд', 'факториал']
+    x_data = [x for x in range(1, num + 1)]  # установим список значений по оси х от 1 до 6
+    y_data1 = [log2(y) for y in range(1, num + 1)]  # вычисление двоичного логарифма у=log2(х)
+    y_data2 = [y for y in range(1, num + 1)]  # вычисление линейной функции у=х
+    y_data3 = [y * log2(y) for y in range(1, num + 1)]  # у=х*log2(х)
+    y_data4 = [y ** 2 for y in range(1, num + 1)]  # у=х**2
+    y_data5 = [y ** 3 for y in range(1, num + 1)]  # у=х**3
+    y_data6 = [3 ** y for y in range(1, num + 1)]  # у=3**х
+    y_data7 = [factorial(y) for y in range(1, num + 1)]  # у=factorial(х)
+
     y_datas = [y_data1, y_data2, y_data3, y_data4, y_data5, y_data6, y_data7]
     for index, y_data in enumerate(y_datas):
         pyplot.plot(x_data, y_data, styles[index])

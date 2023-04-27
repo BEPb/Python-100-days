@@ -4,12 +4,12 @@ Python 3.9 чтение Word документа
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-27
 """
 
 from docx import Document
 
-doc = Document('./res/98.docx')
+doc = Document('./res/test.docx')
 print(len(doc.paragraphs))
 print(doc.paragraphs[0].text)
 # print(doc.paragraphs[1].runs[0].text)

@@ -13,8 +13,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-
-
 def main():  # главная функция
     message = MIMEMultipart()
     text_content = MIMEText('текст сообщения', 'plain', 'utf-8')

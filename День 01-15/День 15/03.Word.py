@@ -1,46 +1,46 @@
 """
-Python 3.9 создание Word документа
+Python 3.10 создание Word документа
 Название файла '03.Word.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-13
+Date: 2023-04-27
 """
 from docx import Document
 from docx.shared import Inches
 
 document = Document()
 
-document.add_heading('Document Title', 0)
+document.add_heading('Оглавление документа', 0)
 
-p = document.add_paragraph('A plain paragraph having some ')
-p.add_run('bold').bold = True
-p.add_run(' and some ')
-p.add_run('italic.').italic = True
+p = document.add_paragraph('Простой абзац, имеющий некоторые символы ')
+p.add_run('жирные').bold = True
+p.add_run(' а некоторые ')
+p.add_run('курсивом.').italic = True
 
-document.add_heading('Heading, level 1', level=1)
-document.add_paragraph('Intense quote', style='Intense Quote')
+document.add_heading('Заголовок, уровень 1', level=1)
+document.add_paragraph('Интенсивная цитата', style='Intense Quote')
 
 document.add_paragraph(
-    'first item in unordered list', style='List Bullet'
+    'первый элемент в неупорядоченном списке', style='List Bullet'
 )
 document.add_paragraph(
-    'first item in ordered list', style='List Number'
+    'первый элемент в упорядоченном списке', style='List Number'
 )
 
-document.add_picture('monty-truth.png', width=Inches(1.25))
+document.add_picture('./res/guido.jpg', width=Inches(1.25))
 
 records = (
-    (3, '101', 'Spam'),
-    (7, '422', 'Eggs'),
-    (4, '631', 'Spam, spam, eggs, and spam')
+    (3, '101', 'Спам'),
+    (7, '422', 'тест'),
+    (4, '631', 'проверка')
 )
 
 table = document.add_table(rows=1, cols=3)
 hdr_cells = table.rows[0].cells
-hdr_cells[0].text = 'Qty'
-hdr_cells[1].text = 'Id'
-hdr_cells[2].text = 'Desc'
+hdr_cells[0].text = 'столбец 1'
+hdr_cells[1].text = 'столбец 2'
+hdr_cells[2].text = 'столбец 3'
 for qty, id, desc in records:
     row_cells = table.add_row().cells
     row_cells[0].text = str(qty)
@@ -49,4 +49,4 @@ for qty, id, desc in records:
 
 document.add_page_break()
 
-document.save('demo.docx')
+document.save('./res/demo.docx')

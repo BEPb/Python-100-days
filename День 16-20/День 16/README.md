@@ -547,7 +547,7 @@ for i in range(len(arr)):
   ```
 
 2. Сортировка выбором (Selection Sort)
-```
+```python
 def selection_sort(array):
     n = len(array)
     for i in range(n):
@@ -560,7 +560,7 @@ def selection_sort(array):
 ```
 
 3. Сортировка вставкой (Insertion Sort)
-```
+```python
 def insertion_sort(array):
     n = len(array)
     for i in range(1, n):
@@ -574,7 +574,7 @@ def insertion_sort(array):
 ```
 
 4. Быстрая сортировка (Quick Sort)
-```
+```python
 def partition(arr, low, high):
     i = (low-1)
     pivot = arr[high]
@@ -596,7 +596,7 @@ def quick_sort(arr, low, high):
 ```
 
 5. Сортировка слиянием (Merge Sort)
-```
+```python
 def merge_sort(array):
     if len(array) > 1:
         mid = len(array)//2
@@ -627,79 +627,10 @@ def merge_sort(array):
 Это лишь некоторые из алгоритмов сортировки, которые можно найти в Python. Выбор того, какой алгоритм использовать, 
 зависит от конкретного случая и требований к скорости и эффективности. 
 
+### распространенные алгоритмы
 
-  ```Python
-  def select_sort(items, comp=lambda x, y: x < y):
-      """простая сортировка выбора"""
-      items = items[:]
-      for i in range(len(items) - 1):
-          min_index = i
-          for j in range(i + 1, len(items)):
-              if comp(items[j], items[min_index]):
-                  min_index = j
-          items[i], items[min_index] = items[min_index], items[i]
-      return items
-  ```
-
-
-  ```Python
-  def merge(items1, items2, comp=lambda x, y: x < y):
-      """Merge (объединить два упорядоченных списков в один упорядоченный список)"""
-      items = []
-      index1, index2 = 0, 0
-      while index1 < len(items1) and index2 < len(items2):
-          if comp(items1[index1], items2[index2]):
-              items.append(items1[index1])
-              index1 += 1
-          else:
-              items.append(items2[index2])
-              index2 += 1
-      items += items1[index1:]
-      items += items2[index2:]
-      return items
-  
-  
-  def merge_sort(items, comp=lambda x, y: x < y):
-      return _merge_sort(list(items), comp)
-  
-  
-  def _merge_sort(items, comp):
-      """Сортировка слиянием"""
-      if len(items) < 2:
-          return items
-      mid = len(items) // 2
-      left = _merge_sort(items[:mid], comp)
-      right = _merge_sort(items[mid:], comp)
-      return merge(left, right, comp)
-  ```
-
-  ```Python
-  def seq_search(items, key):
-      """Последовательный поиск"""
-      for index, item in enumerate(items):
-          if item == key:
-              return index
-      return -1
-  ```
-
-  ```Python
-  def bin_search(items, key):
-      """двоичный поиск"""
-      start, end = 0, len(items) - 1
-      while start <= end:
-          mid = (start + end) // 2
-          if key > items[mid]:
-              start = mid + 1
-          elif key < items[mid]:
-              end = mid - 1
-          else:
-              return mid
-      return -1
-  ```
-
-- распространенные алгоритмы:
-
-  - метод бедности - также известный как насильственный взлом, проверяет все возможности до тех пор, пока не будет найден правильный ответ.
+  - метод бедности - также известный как насильственный взлом, проверяет все возможности до тех пор, пока не будет 
+    найден правильный ответ. 
   - жадный метод - всегда делается в настоящее время при решении проблемы
   - лучший выбор, не преследуя оптимального решения, быстро найти удовлетворительное решение.
   - разделение - разделите сложную проблему на две или более идентичных или похожих подпрофех, а затем разделите 
@@ -709,204 +640,116 @@ def merge_sort(array):
   - динамическое планирование - основная идея заключается в том, чтобы разбить проблему, которую необходимо решить, 
     на несколько подпросов, сначала решить и сохранить решение этих подпроцеснований, чтобы избежать большого количества повторяющихся операций.
 
-  пример бедности: 100-долларовая курица и пятичеловечная рыба.
 
-```Python
-# Овца 5 юаней, курица, 3 юаней, немного курицы, 1 юаней, три 
-# Купить 100 кур за 100 юаней и спросить , сколько петух / курица / курица каждый 
-for x in range(20):
-    for y in range(33):
-        z = 100 - x - y
-        if 5 * x + 3 * y + z // 3 == 100 and z % 3 == 0:
-            print(x, y, z)
 
-# A, B, C, D, E - это пять человек рыбачили целый день и ночь на рыбалке и наконец устали и заснули 
-# B - Второй человек просыпается и делит рыбу на 5 частей. Выбрасывает лишнюю. и забирает свою часть. 
-# Затем C, D и E просыпаются по очереди и делят рыбу таким же образом 
+Метод бедности - это алгоритм, который используется для решения линейных уравнений с большим количеством неизвестных.
+Вот два примера его использования на языке Python: 
 
-fish = 6
+Пример 1:
+
+```python
+# Решаем линейное уравнение методом бедности
+
+# задаем коэффициенты уравнения (3x + 2y + z = 6)
+A = [[3, 2, 1], [1, -1, 1], [1, 2, -5]]
+b = [6, 2, -1]
+
+# инициализируем решение
+x = [0, 0, 0]
+
+# повторяем итерации до сходимости
 while True:
-    total = fish
-    enough = True
-    for _ in range(5):
-        if (total - 1) % 5 == 0:
-            total = (total - 1) // 5 * 4
-        else:
-            enough = False
-            break
-    if enough:
-        print(fish)
+    # инициализируем сумму
+    s = 0
+    
+    # итерируем по коэффициентам
+    for i in range(3):
+        # инициализируем вспомогательную переменную
+        t = 0
+        
+        # итерируем по элементам в строке, кроме диагонального
+        for j in range(3):
+            if i != j:
+                t += A[i][j] * x[j]
+        
+        # вычисляем текущее значение x[i]
+        x[i] = (b[i] - t) / A[i][i]
+        
+        # обновляем сумму
+        s += abs(x[i] - t)
+    
+    # проверяем условие сходимости
+    if s < 0.0001:
         break
-    fish += 5
+
+# выводим результаты
+print('x =', x[0])
+print('y =', x[1])
+print('z =', x[2])
 ```
 
-  пример жадности: предполагая, что у вора есть рюкзак, способный содержать до 20 кг краденого, он ворвался в дом и 
-  нашел предметы, показанные в таблице ниже. Очевидно, что он не может упаковать все вещи в рюкзак, поэтому он 
-  должен определить, какие предметы (самые дорогие) взять.
-  
-  |  имя  | цена (в долл. сша) 	 | вес (кг) |
-  | :----: | :----------: | :--------: |
-  |  компьютер  |     200      |     20     |
-  | радио |      20      |     4      |
-  |   часы   |     175      |     10     |
-  |  ваза  |      50      |     2      |
-  |  книги   |      10      |     1      |
-  |  масляная живопись 	  |      90      |     9      |
+Пример 2:
 
-  ```Python
-"""
- Жадный метод: решая проблему, всегда делайте лучший выбор, который кажется лучшим на данный момент, не ищите 
- оптимального решения и быстро находите удовлетворительное решение. 
-  """
-class Thing(object):
-    """вещь"""
+```python
+# Решаем линейное уравнение методом бедности
 
-    def __init__(self, name, price, weight):
-        self.name = name
-        self.price = price
-        self.weight = weight
+# задаем коэффициенты уравнения (2x + 3y + z = 3, x + 2y - z = -2, 3x + y - 2z = 1)
+A = [[2, 3, 1], [1, 2, -1], [3, 1, -2]]
+b = [3, -2, 1]
 
-    @property
-    def value(self):
-        """Отношение цены к весу"""
-        return self.price / self.weight
+# инициализируем решение
+x = [0, 0, 0]
 
+# повторяем итерации до сходимости
+while True:
+    # инициализируем сумму
+    s = 0
+    
+    # итерируем по коэффициентам
+    for i in range(3):
+        # инициализируем вспомогательную переменную
+        t = 0
+        
+        # итерируем по элементам в строке, кроме диагонального
+        for j in range(3):
+            if i != j:
+                t += A[i][j] * x[j]
+        
+        # вычисляем текущее значение x[i]
+        x[i] = (b[i] - t) / A[i][i]
+        
+        # обновляем сумму
+        s += abs(x[i] - t)
+    
+    # проверяем условие сходимости
+    if s < 0.0001:
+        break
 
-def input_thing():
-    """Введите информацию об элементе"""
-    name_str, price_str, weight_str = input().split()
-    return name_str, int(price_str), int(weight_str)
-
-
-def main():
-    """Основная функция"""
-    max_weight, num_of_things = map(int, input().split())
-    all_things = []
-    for _ in range(num_of_things):
-        all_things.append(Thing(*input_thing()))
-    all_things.sort(key=lambda x: x.value, reverse=True)
-    total_weight = 0
-    total_price = 0
-    for thing in all_things:
-        if total_weight + thing.weight <= max_weight:
-            print(f'вор взял{thing.name}')
-            total_weight += thing.weight
-            total_price += thing.price
-    print(f'Итого украдено на сумму: {total_price} долл. США')
-
-
-if __name__ == '__main__':
-    main()
+# выводим результаты
+print('x =', x[0])
+print('y =', x[1])
+print('z =', x[2])
 ```
 
-пример раздела: быстрая сортировка.
-```Python
-"""
-Быстрая сортировка - выберите точку поворота для разделения элементов, левая часть меньше точки поворота, а правая больше точки поворота 
-"""
-def quick_sort(items, comp=lambda x, y: x <= y):
-    items = list(items)[:]
-    _quick_sort(items, 0, len(items) - 1, comp)
-    return items
+Метод бедности в Python - это алгоритм для нахождения минимального элемента в списке. Он основан на сравнении 
+каждого элемента списка с текущим минимальным элементом. Если текущий элемент меньше текущего минимального элемента, 
+то он становится новым минимальным элементом.  
 
+Пример реализации метода бедности на языке Python:
 
-def _quick_sort(items, start, end, comp):
-    if start < end:
-        pos = _partition(items, start, end, comp)
-        _quick_sort(items, start, pos - 1, comp)
-        _quick_sort(items, pos + 1, end, comp)
+```python
+def find_minimum(lst):
+    if len(lst) == 0:
+        return None
+    min_elem = lst[0]
+    for elem in lst:
+        if elem < min_elem:
+            min_elem = elem
+    return min_elem
+```
 
-
-def _partition(items, start, end, comp):
-    pivot = items[end]
-    i = start - 1
-    for j in range(start, end):
-        if comp(items[j], pivot):
-            i += 1
-            items[i], items[j] = items[j], items[i]
-    items[i + 1], items[end] = items[end], items[i + 1]
-    return i + 1
-  ```
-
-пример ретроспективного метода: рыцарский патруль.
-```Python
-"""
-Рекурсивный метод обратного отслеживания: называется эвристическим методом, поиск вперед в соответствии с критериями выбора, при поиске определенного шага и обнаружении, что исходный выбор не подходит или не достигает цели, он возвращается на один шаг назад и повторно выбирает, a более классическая задача Включая рыцарский патруль, восемь королев и поиск в лабиринте и т. д. 
-"""
-import sys
-import time
-
-SIZE = 5
-total = 0
-
-
-def print_board(board):
-    for row in board:
-        for col in row:
-            print(str(col).center(4), end='')
-        print()
-
-
-def patrol(board, row, col, step=1):
-    if row >= 0 and row < SIZE and \
-        col >= 0 and col < SIZE and \
-        board[row][col] == 0:
-        board[row][col] = step
-        if step == SIZE * SIZE:
-            global total
-            total += 1
-            print(f'всего {total} видов движений: ')
-            print_board(board)
-        patrol(board, row - 2, col - 1, step + 1)
-        patrol(board, row - 1, col - 2, step + 1)
-        patrol(board, row + 1, col - 2, step + 1)
-        patrol(board, row + 2, col - 1, step + 1)
-        patrol(board, row + 2, col + 1, step + 1)
-        patrol(board, row + 1, col + 2, step + 1)
-        patrol(board, row - 1, col + 2, step + 1)
-        patrol(board, row - 2, col + 1, step + 1)
-        board[row][col] = 0
-
-
-def main():
-    board = [[0] * SIZE for _ in range(SIZE)]
-    patrol(board, SIZE - 1, SIZE - 1)
-
-
-if __name__ == '__main__':
-    main()
-  ```
-
-пример динамического планирования: максимальное значение для подлистовых элементов.
-
-  > описание: подсегмент относится к списку, состоящим из последовательных элементов индекса (подстроки) в списке, 
-  > элементы в списке являются типами int, которые могут содержать положительные целые числа, 0, отрицательные 
-  > целые числа, элементы в списке ввода программы, максимальные значения суммирования выходных элементов подлиста, 
-  > такие как:
-
-    вход: 1 -2 3 5 -3 2
-    выход: 8
-    вход: 0 -2 3 5 -1 2
-    выход: 9
-    вход: -9 -2 -3 -5 -3
-    выход: -2
-
-
-  ```Python
-  def main():
-      items = list(map(int, input().split()))
-      overall = partial = items[0]
-      for i in range(1, len(items)):
-          partial = max(items[i], partial + items[i])
-          overall = max(partial, overall)
-      print(overall)
-  
-  
-  if __name__ == '__main__':
-      main()
-  ```
-
-  > Описание: Самое простое решение этой темы заключается в использовании дуэта, но производительность кода во 
-  > времени может стать очень плохой. Используя идею динамического планирования, просто используя две другие 
-  > переменные, проблема сложности первоначального $O (N^2)$ превратилась в $O (N)$.
-
+Этот алгоритм принимает список `lst` в качестве аргумента и возвращает минимальный элемент из списка. Если список 
+пуст, то возвращается значение `None`. Алгоритм начинает сравнивать элементы списка с первым элементом и присваивает 
+его значение переменной `min_elem`. Затем он проходит по каждому элементу списка и сравнивает его с текущим 
+минимальным элементом. Если он меньше, то он заменяет текущий минимальный элемент. После прохода по всем элементам 
+списка, функция возвращает значение текущего минимального элемента.

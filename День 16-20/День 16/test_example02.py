@@ -1,10 +1,13 @@
 '''
-Python 3.9
+Python 3.10
+Название файла 'test_example02.py'
 
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2023-04-28
 '''
 
 from unittest import TestCase
-
 from example02 import select_sort, merge
 
 

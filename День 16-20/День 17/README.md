@@ -137,12 +137,13 @@ print(squared_numbers) # Output: [1, 4, 9, 16, 25]
    возвращает истинное значение. Пример: 
 
 ```python
+# функция определения не четных чисел
 def is_odd(x):
-    return x % 2 != 0
+    return x % 2 != 0  # возвращает число не кратное двум
 
 numbers = [1, 2, 3, 4, 5]
 odd_numbers = list(filter(is_odd, numbers))
-print(odd_numbers) # Output: [1, 3, 5]
+print(odd_numbers)  # Output: [1, 3, 5]
 ```
 
 3. reduce(function, iterable[, initializer]) - применяет функцию к элементам итерируемого объекта, частично сводя 
@@ -172,7 +173,7 @@ print(square(5)) # Output: 25
 
 ```python
 names = ['Alice', 'Bob', 'Charlie', 'Dave']
-sorted_names = sorted(names, key=len)
+sorted_names = sorted(names, key=len)  # отсортирует список по длине каждого слова
 print(sorted_names) # Output: ['Bob', 'Dave', 'Alice', 'Charlie']
 ```
 
@@ -181,46 +182,183 @@ print(sorted_names) # Output: ['Bob', 'Dave', 'Alice', 'Charlie']
 функции могут делать.  
 
 
+### Лямбда-функции
 
-### как используются функции
+Лямбда-функции в Python - это анонимные функции, которые могут быть определены в одной строке. Они могут быть 
+использованы везде, где требуется функция, но не требуется назначать ее имени. Вот несколько примеров лямбда-функций 
+в Python:  
 
-- рассматривайте функцию как "гражданина первого класса"
+```python
+'''Пример 1:'''
+lambda x: x**2 
+# Эта лямбда-функция берет один аргумент x и возвращает квадрат этого аргумента.
 
-  - функция может быть назначена переменной
-  - функция может выступать в качестве аргумента функции
-  - функция может служить возвращаемым значением функции
+'''Пример 2:'''
+lambda x, y: x + y 
+# Эта лямбда-функция берет два аргумента, x и y, и возвращает их сумму.
 
-- использование функций более высокого порядка（`filter`、`map`）
-```Python
-items1 = list(map(lambda x: x ** 2, filter(lambda x: x % 2, range(1, 10))))
-items2 = [x ** 2 for x in range(1, 10) if x % 2]
+'''Пример 3:'''
+lambda x: True if x >= 0 else False 
+# Эта лямбда-функция берет один аргумент x и возвращает True, если x больше или равен нулю, и False в обратном случае.
+
+'''Пример 4:'''
+lambda x: x[0] 
+# Эта лямбда-функция берет один аргумент x, который является списком или кортежем, и возвращает первый элемент этого списка.
+
+'''Пример 5:'''
+(lambda x: x**2)(3) 
+# Этот пример показывает, как вызвать лямбда-функцию с аргументом. Здесь мы вызываем функцию, которая берет один 
+# аргумент x и возвращает его квадрат, передавая в нее значение 3. Результатом выполнения будет число 9. 
+
+```
+Это только несколько из возможных примеров использования лямбда-функций в Python. Они могут быть использованы в 
+любом контексте, где необходима быстрая, одноразовая функция. 
+
+
+
+### Области видимости и замыкания функций
+Область видимости определяет область, в которой переменная доступна и может быть использована. В Python есть две 
+основные области видимости: глобальная и локальная. 
+
+
+Локальная область видимости ограничена функцией, в которой переменная была определена. Переменные, созданные внутри 
+функции, не могут быть использованы за ее пределами.
+
+Пример:
+```python
+def my_function():
+    x = 10
+    print(x)
+
+my_function()  # результат: 10
+print(x)  # ошибка, переменная x не определена в глобальной области видимости
 ```
 
+Глобальная область видимости доступна для всего кода, который находится в файле. Переменные, созданные в глобальной 
+области видимости, могут быть использованы в любой другой функции или классе. 
 
-- параметры местоположения, переменные параметры, параметры ключевых слов, параметры именованных ключевых слов
+Пример:
+```python
+x = 20
 
-- метаинформация параметров (проблема удобочитаемости кода)
+def my_function():
+    print(x)
 
-- использование анонимных и встроенных функций (функций)lambda
+my_function()  # результат: 20
+print(x)  # результат: 20
+```
 
-- проблемы с замыканиями и областью
+Замыкание функций это возможность сохранить переменные внутри функции, даже после ее завершения работы. Это 
+позволяет сделать эти переменные доступными для использования в другом месте программы. 
 
-    * Порядок LEGB переменных поиска Python (Local >>> Embedded >>> Global >>> Built-in)
+Пример:
+```python
+def outer_function(x):
+    def inner_function(y):
+        return x + y
+    return inner_function
 
-    * globalи то, что ключевые слова делают nonlocal
+result = outer_function(10)
+print(result(20))  # результат: 30
+```
 
-    * global: объявляет или определяет глобальные переменные (либо непосредственно с помощью переменной существующей глобальной области, либо определяет переменную, помещенную в глобальную область).
+Этот пример создает функцию `outer_function`, которая возвращает другую функцию `inner_function`. При вызове 
+`outer_function(10)` в переменной `result` сохраняется результат `inner_function`. Поэтому `result(20)` вызывает 
+`inner_function(20)` с результатом 30. Хотя `x` была определена в `outer_function`, она все еще доступна для 
+использования внутри `inner_function` благодаря замыканию функций.   
 
-    * nonlocal: объявляет переменную, использующую вложенную область (вложенная область должна существовать, в 
-  противном случае она будет сообщена об ошибке).
+### Декораторы
+Декораторы функций - это специальные функции, которые используются для обертки или изменения других функций 
+без необходимости изменения их самостоятельно. Они позволяют добавлять дополнительную функциональность к функциям, 
+не затрагивая ее исходного кода. 
 
-- функция декоратора (с помощью декоратора и декоратора отмены)
+Примеры декораторов функций:  
+
+1. @classmethod - это декоратор класса, который используется для создания методов класса.
+
+Пример:
+
+```python
+class MyClass:
+    count = 0
+
+    def __init__(self):
+        MyClass.count += 1
+
+    @classmethod
+    def get_count(cls):
+        return cls.count
+```
+
+2. @property - это декоратор, который позволяет превратить метод класса в свойство.
+
+Пример:
+
+```python
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+
+    @property
+    def radius(self):
+        return self._radius
+
+    @radius.setter
+    def radius(self, value):
+        if value < 0:
+            raise ValueError("Radius cannot be negative")
+        self._radius = value
+
+    @property
+    def area(self):
+        return 3.14 * self._radius ** 2
+```
+
+3. @staticmethod - это декоратор, который объявляет метод класса как статический.
+
+Пример:
+
+```python
+class MyClass:
+    @staticmethod
+    def get_square(number):
+        return number ** 2
+```
+
+В этом примере мы объявляем метод get_square() статическим, чтобы использовать его без необходимости создания 
+экземпляра класса. 
+
+4. @log - это декоратор, который добавляет логирование в функцию.
+
+Пример:
+
+```python
+import logging
+
+logging.basicConfig(filename='logfile.txt',level=logging.DEBUG)
+
+def log(func):
+    def wrapper(*args, **kwargs):
+        logging.debug(f"Executing function {func.__name__}")
+        result = func(*args, **kwargs)
+        logging.debug(f"Function {func.__name__} returned {result}")
+        return result
+    return wrapper
+
+@log
+def add(x, y):
+    return x + y
+```
+
+В этом примере мы создаем декоратор log(), который добавляет логирование для функции add(), чтобы мы могли 
+отслеживать ее выполнение. 
+
 
 пример: декоратор времени выполнения выходной функции.
 
   ```Python
   def record_time(func):
-      """自定义装饰函数的装饰器"""
+      """Декоратор для индивидуально оформленных функций"""
       
       @wraps(func)
       def wrapper(*args, **kwargs):
@@ -231,112 +369,84 @@ items2 = [x ** 2 for x in range(1, 10) if x % 2]
           
       return wrapper
   ```
+В этом примере мы создаем функцию которая предназначена для оценки времени выполнения другой функции, принимаемой на 
+вход, на выходе этой функции мы получаем результат принимаемой на вход функции, а также ее время выполнения
 
-  если декоратор не хочет быть связан с функцией, можно написать декоратор, который может быть параметризирован.print
 
-  ```Python
-  from functools import wraps
-  from time import time
-  
-  
-  def record(output):
-      """可以参数化的装饰器"""
-  	
-  	def decorate(func):
-  		
-  		@wraps(func)
-  		def wrapper(*args, **kwargs):
-  			start = time()
-  			result = func(*args, **kwargs)
-  			output(func.__name__, time() - start)
-  			return result
-              
-  		return wrapper
-  	
-  	return decorate
-  ```
+Декоратор в Python - это функция, которая принимает в качестве аргументов другую функцию, выполняет некоторые 
+действия и возвращает эту функцию. Параметризуемые декораторы в Python - это декораторы, которые могут принимать 
+аргументы. Вот несколько примеров параметризуемых декораторов:  
 
-  ```Python
-  from functools import wraps
-  from time import time
-  
-  
-  class Record():
-      """通过定义类的方式定义装饰器"""
-  
-      def __init__(self, output):
-          self.output = output
-  
-      def __call__(self, func):
-  
-          @wraps(func)
-          def wrapper(*args, **kwargs):
-              start = time()
-              result = func(*args, **kwargs)
-              self.output(func.__name__, time() - start)
-              return result
-  
-          return wrapper
-  ```
+1. Декоратор, который выполняет функцию указанное количество раз:
+```python
+def repeat(num):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for i in range(num):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
 
-  > 
+@repeat(num=3)
+def hello(name):
+    print(f"Hello, {name}")
 
-    описание: из-за добавления @wraps декоратора к функции с декоративной функцией можно отменить роль декоратора, получив функцию или класс, предшествующий украшению.func.__wrapped__
+hello("Jack")  # Hello, Jack
+               # Hello, Jack
+               # Hello, Jack
+```
 
-  пример: используйте декоратор для реализации одного шаблона.
+2. Декоратор, который замеряет время выполнения функции:
+```python
+import time
 
-  ```Python
-  from functools import wraps
-  
-  
-  def singleton(cls):
-      """装饰类的装饰器"""
-      instances = {}
-  
-      @wraps(cls)
-      def wrapper(*args, **kwargs):
-          if cls not in instances:
-              instances[cls] = cls(*args, **kwargs)
-          return instances[cls]
-  
-      return wrapper
-  
-  
-  @singleton
-  class President:
-      """总统(单例类)"""
-      pass
-  ```
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        total_time = end_time - start_time
+        print(f"Execution time: {total_time}")
+        return result
+    return wrapper
 
-  > совет: замыкание (closure) используется в приведенном выше коде, и я не знаю, понимаете ли вы это. существует еще одна небольшая проблема заключается в том, что приведенный выше код не реализует один случай потокобезопасности, что делать, если вы хотите реализовать один случай потоковой безопасности? 
+@timer
+def count():
+    num = 0
+    for i in range(1000000):
+        num += i
+    return num
 
-одноэлементный декоратор для потокобезопасности.。
+count()  # Execution time: 0.07399797439575195
+         # 499999500000
+```
 
-  ```Python
-  from functools import wraps
-  from threading import RLock
-  
-  
-  def singleton(cls):
-      """线程安全的单例装饰器"""
-      instances = {}
-      locker = RLock()
-  
-      @wraps(cls)
-      def wrapper(*args, **kwargs):
-          if cls not in instances:
-              with locker:
-                  if cls not in instances:
-                      instances[cls] = cls(*args, **kwargs)
-          return instances[cls]
-  
-      return wrapper
-  ```
+3. Декоратор, который выполняет функцию только если ее аргументы удовлетворяют условие:
+```python
+def check_args(type):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for arg in args:
+                if type(arg) != type:
+                    return f"Invalid argument type: {arg}"
+            for key, value in kwargs.items():
+                if type(value) != type:
+                    return f"Invalid argument type: {key}"
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
 
-  > 
+@check_args(int)
+def sum(x, y):
+    return x + y
 
-    совет: приведенный выше код использует контекстный синтаксис для операций блокировки, поскольку объект блокировки сам по себе является объектом диспетчера контекстов (методы поддержки и магии). в функции мы делаем проверку без блокировки, а затем проверку с блокировкой, которая лучше, чем проверка непосредственной блокировки, и если объект был создан, мы не должны быть заблокированы, а вернуться непосредственно к объекту.with__enter____exit__wrapper
+print(sum(1, 2))        # 3
+print(sum("a", "b"))    # Invalid argument type: a
+print(sum(1, "b"))      # Invalid argument type: b
+```
+Эти примеры помогут вам понять, как можно использовать параметризуемые декораторы в Python.
 
+### Рекурсивная функция
 
 
 [Вернуться на главную](https://github.com/BEPb/Python-100-days)

@@ -31,3 +31,12 @@ print(calculator("divide", square(10), 5))  # 20.0 =((10*10)/5)
 numbers = [1, 2, 3, 4, 5]
 squared_numbers = list(map(square, numbers))
 print(squared_numbers)  # Output: [1, 4, 9, 16, 25]
+
+# функция определения не четных чисел
+def is_odd(x):
+    return x % 2 != 0  # возвращает число не кратное двум
+
+numbers = [1, 2, 3, 4, 5]
+odd_numbers = list(filter(is_odd, numbers))
+print(odd_numbers)  # Output: [1, 3, 5]
+

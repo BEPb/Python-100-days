@@ -1,12 +1,12 @@
 '''
-Python 3.9
+Python 3.10 Пример применения модуля с ранее созданными классами сотрудниками завода
 Название файла 'example13.py'
 
 Version: 0.1
 Author: Andrej Marinchenko
-Date: 2021-11-18
+Date: 2023-05-03
 '''
-from example12 import EmployeeFactory
+from example01 import EmployeeFactory
 
 
 def main():

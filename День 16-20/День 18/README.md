@@ -4,9 +4,156 @@
 
 ### Расширенные объектно-ориентированные знания (день 18)
 
-### объектно-ориентированные знания
+### Три столпа: инкапсуляция, наследование, полиморфизм
 
-- три столпа: инкапсуляция, наследование, полиморфизм
+Инкапсуляция, наследование и полиморфизм - это три основных принципа объектно-ориентированного программирования. 
+Рассмотрим примеры этих принципов на языке Python. 
+
+#### Инкапсуляция
+
+Инкапсуляция - это принцип, который предписывает скрывать сложность кода и предоставлять доступ только к необходимым 
+свойствам и методам класса. Вот пример: 
+
+```python
+class Car:
+    def __init__(self, make, model, color):
+        self.__make = make
+        self.__model = model
+        self.__color = color
+
+    def drive(self):
+        print("Driving...")
+
+    def get_make(self):
+        return self.__make
+
+    def get_model(self):
+        return self.__model
+
+    def get_color(self):
+        return self.__color
+
+car = Car("Honda", "Civic", "red")
+print(car.get_make()) # "Honda"
+print(car.get_model()) # "Civic"
+```
+
+В этом примере мы определили класс Car, который имеет атрибуты make, model и color и методы drive, get_make, 
+get_model и get_color. Мы также определили эти атрибуты как приватные (__make, __model и __color), что означает, что 
+они не могут быть изменены непосредственно извне класса. Вместо этого мы предоставляем только методы получения 
+доступа к этим атрибутам, которые позволяют получать значения этих атрибутов.   
+
+#### Наследование
+
+Наследование - это принцип, который позволяет создавать классы на основе уже существующих классов с добавлением 
+новых свойств и методов или переопределением уже существующих методов. Вот пример: 
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        pass
+
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def make_sound(self):
+        print("Woof!")
+
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def make_sound(self):
+        print("Meow!")
+
+dog = Dog("Spot")
+cat = Cat("Whiskers")
+
+dog.make_sound() # "Woof!"
+cat.make_sound() # "Meow!"
+```
+
+В этом примере мы определили класс Animal с методом make_sound и два класса, Dog и Cat, которые наследуются от 
+класса Animal. Когда мы вызываем метод make_sound на экземпляре класса Dog или Cat, мы получаем разные звуки - "Woof!
+" или "Meow!" - в зависимости от типа животного.   
+
+Пример:
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age, id_number):
+        super().__init__(name, age)
+        self.id_number = id_number
+
+student = Student("John", 20, 12345)
+print(student.name)
+print(student.age)
+print(student.id_number)
+```
+
+Результат:
+```commandline
+John
+20
+12345
+```
+
+
+#### Полиморфизм
+
+Полиморфизм - это принцип, который позволяет использовать объекты разных классов с одинаковыми интерфейсами. Вот 
+пример: 
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        pass
+
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def make_sound(self):
+        print("Woof!")
+
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+
+    def make_sound(self):
+        print("Meow!")
+
+def make_animal_sound(animal):
+    animal.make_sound()
+
+dog = Dog("Spot")
+cat = Cat("Whiskers")
+
+make_animal_sound(dog) # "Woof!"
+make_animal_sound(cat) # "Meow!"
+```
+
+В этом примере мы определили класс Animal с методом make_sound и два класса, Dog и Cat, которые наследуются от 
+класса Animal и переопределяют метод make_sound. У нас также есть функция make_animal_sound, которая принимает 
+экземпляр класса Animal и вызывает его метод make_sound. Когда мы вызываем эту функцию с экземплярами классов Dog и 
+Cat, мы получаем разные звуки - "Woof!" или "Meow!" - но это не имеет значения для функции make_animal_sound, потому 
+что она просто вызывает метод make_sound, который ожидается у любого экземпляра класса Animal. Это и есть пример 
+полиморфизма.     
+
+
+
 
 пример: система расчетов заработной платы.
 
@@ -84,6 +231,9 @@
   if __name__ == '__main__':
       main()
   ```
+
+
+
 
 - связь между классом и классом
 
@@ -294,7 +444,8 @@ Mixin
 
 - метапрограммирование и метаклассы
 
-объект создается через класс, а класс — через метакласс, который предоставляет метаинформацию для создания класса. все классы прямо или косвенно наследуются, а все метаклассы прямо или косвенно наследуются.objecttype
+объект создается через класс, а класс — через метакласс, который предоставляет метаинформацию для создания класса. 
+все классы прямо или косвенно наследуются, а все метаклассы прямо или косвенно наследуются.objecttype 
 
 пример: реализация одноэлементного шаблона с метаклассом.
 
@@ -324,7 +475,8 @@ Mixin
       pass
   ```
 
-- 
+###	ОБЪЕКТНО-ОРИЕНТИРОВАННЫЕ ПРИНЦИПЫ ПРОЕКТИРОВАНИЯ: ПРИНЦИПЫ SOLID
+###	Объектно-ориентированный режим проектирования: режим проектирования GoF (один случай, фабрика, агент, политика, итератор)
 
 принципы объектно-ориентированного проектирования
 

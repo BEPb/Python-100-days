@@ -7,6 +7,7 @@ Author: Andrej Marinchenko
 Date: 2023-05-03
 """
 
+'''Функция которая на входе принимает действие и две переменные'''
 def calculator(operation, x, y):
     if operation == "add":
         return x+y

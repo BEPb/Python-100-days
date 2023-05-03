@@ -26,14 +26,14 @@ class Employee(metaclass=ABCMeta):
 
 
 class Manager(Employee):
-    """部门经理"""
+    """Менеджер отдела"""
 
     def get_salary(self):
         return 15000.0
 
 
 class Programmer(Employee):
-    """менеджер отдела"""
+    """Программист отдела"""
 
     def __init__(self, name, working_hour=0):
         self.working_hour = working_hour

@@ -8,7 +8,6 @@ Author: Andrej Marinchenko
 Date: 2023-05-05
 """
 from enum import Enum, unique
-
 import random
 
 
@@ -19,7 +18,6 @@ class Suite(Enum):
 
     def __lt__(self, other):
         return self.value < other.value
-
 
 class Card():
     """Необычные (перечисление)"""
@@ -63,7 +61,6 @@ class Poker():
         """Есть еще карточки?"""
         return self.index < len(self.cards)
 
-
 class Player():
     """Игрок"""
 
@@ -85,8 +82,8 @@ def main():
     poker = Poker()
     poker.shuffle()
     players = [
-        Player('восток'), Player('запад'),
-        Player('юг'), Player('север')
+        Player('Игрок 1'), Player('Игрок 2'),
+        Player('Игрок 3'), Player('Игрок 4')
     ]
     while poker.has_more:
         for player in players:
@@ -95,7 +92,6 @@ def main():
         player.arrange()
         print(player.name, end=': ')
         print(player.cards)
-
 
 if __name__ == '__main__':
     main()

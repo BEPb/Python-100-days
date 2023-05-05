@@ -157,82 +157,111 @@ Cat, мы получаем разные звуки - "Woof!" или "Meow!" - н
 
 пример: система расчетов заработной платы.
 
-  ```Python
+```Python
   """
-  月薪结算系统 - 部门经理每月15000 程序员每小时200 销售员1800底薪加销售额5%提成
-  """
-  from abc import ABCMeta, abstractmethod
-  
-  
-  class Employee(metaclass=ABCMeta):
-      """员工(抽象类)"""
-  
-      def __init__(self, name):
-          self.name = name
-  
-      @abstractmethod
-      def get_salary(self):
-          """结算月薪(抽象方法)"""
-          pass
-  
-  
-  class Manager(Employee):
-      """部门经理"""
-  
-      def get_salary(self):
-          return 15000.0
-  
-  
-  class Programmer(Employee):
-      """程序员"""
-  
-      def __init__(self, name, working_hour=0):
-          self.working_hour = working_hour
-          super().__init__(name)
-  
-      def get_salary(self):
-          return 200.0 * self.working_hour
-  
-  
-  class Salesman(Employee):
-      """销售员"""
-  
-      def __init__(self, name, sales=0.0):
-          self.sales = sales
-          super().__init__(name)
-  
-      def get_salary(self):
-          return 1800.0 + self.sales * 0.05
-  
-  
-  class EmployeeFactory:
-      """创建员工的工厂（工厂模式 - 通过工厂实现对象使用者和对象之间的解耦合）"""
-  
-      @staticmethod
-      def create(emp_type, *args, **kwargs):
-          """创建员工"""
-          all_emp_types = {'M': Manager, 'P': Programmer, 'S': Salesman}
-          cls = all_emp_types[emp_type.upper()]
-          return cls(*args, **kwargs) if cls else None
-  
-  
-  def main():
-      """主函数"""
-      emps = [
-          EmployeeFactory.create('M', '曹操'), 
-          EmployeeFactory.create('P', '荀彧', 120),
-          EmployeeFactory.create('P', '郭嘉', 85), 
-          EmployeeFactory.create('S', '典韦', 123000),
-      ]
-      for emp in emps:
-          print(f'{emp.name}: {emp.get_salary():.2f}元')
-  
-  
-  if __name__ == '__main__':
-      main()
-  ```
+Python 3.10 ежемесячная система расчетов заработной платы - менеджер отдела 15000 программистов в месяц 200 продавцов 1800 нижней заработной платы плюс 5% увеличение продаж
+пример ООП: инкапсуляция, наследование, полиморфизм
+в этом примере мы создаем различные классы, в следующем примере мы их применяем (создаем экземпляры классов)
+Название файла '01.Factory.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2023-05-03
+"""
+from abc import ABCMeta, abstractmethod
+
+'''создадим сначала мета класс сотрудника, который имеет имя и зарплату без указания конкретных значений'''
+class Employee(metaclass=ABCMeta):
+    """сотрудник (абстрактный класс)"""
+
+    def __init__(self, name):
+        self.name = name
+
+    @abstractmethod
+    def get_salary(self):
+        """расчет ежемесячной заработной платы (абстрактный метод)"""
+        pass
+
+'''создадим класс менеджера отдела, который наследутся от класса сотрудник, и переопределим его зарплату в 15000'''
+class Manager(Employee):
+    """Менеджер отдела"""
+
+    def get_salary(self):
+        return 15000.0
+
+'''создадим класс программиста отдела, который наследутся от класса сотрудник, и переопределим его зарплату, 
+которая зависит от количества часов его работы, за каждый час 200'''
+class Programmer(Employee):
+    """Программист отдела"""
+
+    def __init__(self, name, working_hour=0):
+        self.working_hour = working_hour
+        super().__init__(name)
+
+    def get_salary(self):
+        return 200.0 * self.working_hour
+
+'''создадим класс продавец, который наследутся от класса сотрудник, и переопределим его зарплату, 
+которая зависит от количества проданных товаров'''
+class Salesman(Employee):
+    """продавец"""
+
+    def __init__(self, name, sales=0.0):
+        self.sales = sales
+        super().__init__(name)
+
+    def get_salary(self):
+        return 1800.0 + self.sales * 0.05
+
+'''На основании ранее созданных классов сотрудников создадим класс завода, который и будут использывать бухгалтерия 
+при расчете заработной платы сотрудников, при этом для ускорения создания, начисления з.п. по профессии будет 
+указываться только первый символ этой профессии'''
+class EmployeeFactory():
+    """создание фабрики сотрудников (заводской режим)"""
+
+    @staticmethod
+    def create(emp_type, *args, **kwargs):
+        """создать сотрудника"""
+        emp_type = emp_type.upper()
+        emp = None
+        if emp_type == 'M':
+            emp = Manager(*args, **kwargs)
+        elif emp_type == 'P':
+            emp = Programmer(*args, **kwargs)
+        elif emp_type == 'S':
+            emp = Salesman(*args, **kwargs)
+        return emp
+
+```
+
+```python
+'''
+Python 3.10 Пример применения модуля с ранее созданными классами сотрудниками завода
+Название файла 'example13.py'
+
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2023-05-03
+'''
+from example01 import EmployeeFactory
 
 
+def main():
+    """основная функция"""
+    emps = [
+        EmployeeFactory.create('M', 'тюлень'),
+        EmployeeFactory.create('P', 'олень', 120),
+        EmployeeFactory.create('P', 'заяц', 85),
+        EmployeeFactory.create('S', 'волк', 123000),
+    ]
+    for emp in emps:
+        print('%s: %.2f' % (emp.name, emp.get_salary()))
+
+
+if __name__ == '__main__':
+    main()
+
+```
 
 
 - связь между классом и классом

@@ -158,6 +158,10 @@ for num in my_generator:
 Обратите внимание, что можно использовать любые выражения вместо x**2 в данном примере. За счет этого вы можете 
 генерировать любые значения в вашем генераторе. 
 
+Примеры:
+  - example01.py
+  - example02.py
+
 [Вернуться на главную](https://github.com/BEPb/Python-100-days)
 
 [К следующему занятию](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2016-20/%D0%94%D0%B5%D0%BD%D1%8C%2020/README.md)

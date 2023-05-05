@@ -272,146 +272,117 @@ if __name__ == '__main__':
 
 пример: игра в покер.
 
-  ```Python
-  """
-  经验：符号常量总是优于字面常量，枚举类型是定义符号常量的最佳选择
-  """
-  from enum import Enum, unique
-  
-  import random
-  
-  
-  @unique
-  class Suite(Enum):
-      """花色"""
-  
-      SPADE, HEART, CLUB, DIAMOND = range(4)
-  
-      def __lt__(self, other):
-          return self.value < other.value
-  
-  
-  class Card():
-      """牌"""
-  
-      def __init__(self, suite, face):
-          """初始化方法"""
-          self.suite = suite
-          self.face = face
-  
-      def show(self):
-          """显示牌面"""
-          suites = ['♠︎', '♥︎', '♣︎', '♦︎']
-          faces = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-          return f'{suites[self.suite.value]}{faces[self.face]}'
-  
-      def __repr__(self):
-          return self.show()
-  
-  
-  class Poker():
-      """扑克"""
-  
-      def __init__(self):
-          self.index = 0
-          self.cards = [Card(suite, face)
-                        for suite in Suite
-                        for face in range(1, 14)]
-  
-      def shuffle(self):
-          """洗牌（随机乱序）"""
-          random.shuffle(self.cards)
-          self.index = 0
-  
-      def deal(self):
-          """发牌"""
-          card = self.cards[self.index]
-          self.index += 1
-          return card
-  
-      @property
-      def has_more(self):
-          return self.index < len(self.cards)
-  
-  
-  class Player():
-      """玩家"""
-  
-      def __init__(self, name):
-          self.name = name
-          self.cards = []
-  
-      def get_one(self, card):
-          """摸一张牌"""
-          self.cards.append(card)
-  
-      def sort(self, comp=lambda card: (card.suite, card.face)):
-          """整理手上的牌"""
-          self.cards.sort(key=comp)
-  
-  
-  def main():
-      """主函数"""
-      poker = Poker()
-      poker.shuffle()
-      players = [Player('东邪'), Player('西毒'), Player('南帝'), Player('北丐')]
-      while poker.has_more:
-          for player in players:
-                  player.get_one(poker.deal())
-      for player in players:
-          player.sort()
-          print(player.name, end=': ')
-          print(player.cards)
-  
-  
-  if __name__ == '__main__':
-      main()
-  ```
+```Python
+"""
+Python 3.10 Игра в покер
+Объектно-ориентированный
+Название файла 'example03.py'
 
-  > **说明**：上面的代码中使用了Emoji字符来表示扑克牌的四种花色，在某些不支持Emoji字符的系统上可能无法显示。
+Version: 0.1
+Author: Andrej Marinchenko
+Date: 2023-05-05
+"""
+from enum import Enum, unique
+import random
 
-- 对象的复制（深复制/深拷贝/深度克隆和浅复制/浅拷贝/影子克隆）
 
-- 垃圾回收、循环引用和弱引用
+@unique
+class Suite(Enum):
+    """перечисление"""
+    SPADE, HEART, CLUB, DIAMOND = range(4)
 
-  Python使用了自动化内存管理，这种管理机制以**引用计数**为基础，同时也引入了**标记-清除**和**分代收集**两种机制为辅的策略。
+    def __lt__(self, other):
+        return self.value < other.value
 
-  ```C
-  typedef struct _object {
-      /* 引用计数 */
-      int ob_refcnt;
-      /* 对象指针 */
-      struct _typeobject *ob_type;
-  } PyObject;
-  ```
+class Card():
+    """Необычные (перечисление)"""
+    
+    def __init__(self, suite, face):
+        self.suite = suite
+        self.face = face
 
-  ```C
-  /* 增加引用计数的宏定义 */
-  #define Py_INCREF(op)   ((op)->ob_refcnt++)
-  /* 减少引用计数的宏定义 */
-  #define Py_DECREF(op) \ //减少计数
-      if (--(op)->ob_refcnt != 0) \
-          ; \
-      else \
-          __Py_Dealloc((PyObject *)(op))
-  ```
+    def __repr__(self):
+        return self.__str__()
 
-  导致引用计数+1的情况：
+    def __str__(self):
+        suites = ('♠️', '♥️', '♣️', '♦️')
+        faces = ('', 'A', '2', '3', '4', '5', '6', 
+                 '7', '8', '9', '10', 'J', 'Q', 'K')
+        return f'{suites[self.suite.value]} {faces[self.face]}'
 
-  - 对象被创建，例如`a = 23`
-  - 对象被引用，例如`b = a`
-  - 对象被作为参数，传入到一个函数中，例如`f(a)`
-  - 对象作为一个元素，存储在容器中，例如`list1 = [a, a]`
 
-  导致引用计数-1的情况：
+class Poker():
+    """покер"""
+    
+    def __init__(self):
+        self.index = 0
+        self.cards = [Card(suite, face)
+                      for suite in Suite
+                      for face in range(1, 14)]
 
-  - 对象的别名被显式销毁，例如`del a`
-  - 对象的别名被赋予新的对象，例如`a = 24`
-  - 一个对象离开它的作用域，例如f函数执行完毕时，f函数中的局部变量（全局变量不会）
-  - 对象所在的容器被销毁，或从容器中删除对象
+    def shuffle(self):
+        """Перемешать"""
+        self.index = 0
+        random.shuffle(self.cards)
 
-  引用计数可能会导致循环引用问题，而循环引用会导致内存泄露，如下面的代码所示。为了解决这个问题，Python中引入了“标记-清除”和“分代收集”。在创建一个对象的时候，对象被放在第一代中，如果在第一代的垃圾检查中对象存活了下来，该对象就会被放到第二代中，同理在第二代的垃圾检查中对象存活下来，该对象就会被放到第三代中。
+    def deal(self):
+        """Лицензирование"""
+        card = self.cards[self.index]
+        self.index += 1
+        return card
 
+    @property
+    def has_more(self):
+        """Есть еще карточки?"""
+        return self.index < len(self.cards)
+
+class Player():
+    """Игрок"""
+
+    def __init__(self, name):
+        self.name = name
+        self.cards = []
+
+    def get_card(self, card):
+        """Коснитесь карты"""
+        self.cards.append(card)
+
+    def arrange(self):
+        """Разложите карты в руке"""
+        self.cards.sort(key=lambda card: (card.suite, card.face))
+
+
+def main():
+    """Основная функция"""
+    poker = Poker()
+    poker.shuffle()
+    players = [
+        Player('Игрок 1'), Player('Игрок 2'),
+        Player('Игрок 3'), Player('Игрок 4')
+    ]
+    while poker.has_more:
+        for player in players:
+            player.get_card(poker.deal())
+    for player in players:
+        player.arrange()
+        print(player.name, end=': ')
+        print(player.cards)
+
+if __name__ == '__main__':
+    main()
+
+```
+
+> **Примечание**. В приведенном выше коде символы эмодзи используются для обозначения четырех мастей игральных карт, 
+> которые могут не отображаться в некоторых системах, не поддерживающих символы эмодзи. 
+
+- Дублирование объектов (глубокое копирование/глубокое копирование/глубокое клонирование и поверхностное 
+  копирование/поверхностное копирование/теневое клонирование) 
+
+- Сборка мусора, круговые и слабые ссылки
+
+   Python использует автоматическое управление памятью, основанное на **подсчете ссылок**, а также вводит стратегии, 
+  дополненные двумя механизмами: **маркировка-очистка** и **коллекция поколений**. 
   ```Python
   # 循环引用会导致内存泄露 - Python除了引用技术还引入了标记清理和分代回收
   # 在Python 3.6以前如果重写__del__魔术方法会导致循环引用处理失效
@@ -445,7 +416,8 @@ if __name__ == '__main__':
 
 Mixin
 
-пример: пользовательские ограничения словаря могут задавать пары значений ключей в словаре только в том случае, если указанный ключ не существует.
+пример: пользовательские ограничения словаря могут задавать пары значений ключей в словаре только в том случае, если 
+указанный ключ не существует. 
   ```Python
   class SetOnceMappingMixin:
       """自定义混入类"""

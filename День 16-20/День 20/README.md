@@ -400,6 +400,15 @@ if __name__ == '__main__':
 использование расширений CPython, таких как NumPy и Pandas. Они предоставляют эффективные инструменты для обработки 
 данных и вычислений, что может значительно улучшить производительность приложения.  
 
+Примеры:
+- example01.py
+- example02.py
+- example03.py
+- example04.py
+- example05.py
+- example06.py
+- example07.py
+
 
 [Вернуться на главную](https://github.com/BEPb/Python-100-days)
 

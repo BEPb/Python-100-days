@@ -12,50 +12,17 @@ import os
 import time
 
 from concurrent.futures import ThreadPoolExecutor
-from threading import Thread
-
 from PIL import Image
-
-
-# class ThumbnailThread(Thread):
-#
-#     def __init__(self, infile):
-#         self.infile = infile
-#         super().__init__()
-#
-#     def run(self):
-#         file, ext = os.path.splitext(self.infile)
-#         filename = file[file.rfind('/') + 1:]
-#         for size in (32, 64, 128):
-#             outfile = f'thumbnails/{filename}_{size}_{size}.png'
-#             image = Image.open(self.infile)
-#             image.thumbnail((size, size))
-#             image.save(outfile, format='PNG')
 
 
 def gen_thumbnail(infile):
     file, ext = os.path.splitext(infile)
     filename = file[file.rfind('/') + 1:]
     for size in (32, 64, 128):
-        # outfile = f'thumbnails/{filename}_{size}_{size}.png'
         outfile = f'{filename}_{size}_{size}.png'
         image = Image.open(infile)
         image.thumbnail((size, size))
         image.save(outfile, format='PNG')
-
-
-# def main():
-#     start = time.time()
-#     threads = []
-#     for infile in glob.glob('images/*'):
-#         # t = Thread(target=gen_thumbnail, args=(infile, ))
-#         t = ThumbnailThread(infile)
-#         t.start()
-#         threads.append(t)
-#     for t in threads:
-#         t.join()
-#     end = time.time()
-#     print(f'Время затраченное на выполнение: {end - start} секунд')
 
 
 def main():

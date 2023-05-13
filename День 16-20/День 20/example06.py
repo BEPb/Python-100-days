@@ -2,8 +2,6 @@
 Python 3.10
 Эта программа использует asyncio, чтобы запустить две асинхронные задачи для фильтрации простых чисел и создания
 списка квадратов в заданном диапазоне чисел.
-
-Функция `is_prime(n)` используется для проверки, является ли число `n` простым числом.
 Название файла 'example06.py'
 
 Version: 0.1
@@ -11,7 +9,7 @@ Author: Andrej Marinchenko
 Date: 2023-05-13
 """
 import asyncio
-from example05 import is_prime
+from example05 import is_prime  # Функция `is_prime(n)` используется для проверки, является ли число `n` простым числом
 
 
 def num_generator(m, n):

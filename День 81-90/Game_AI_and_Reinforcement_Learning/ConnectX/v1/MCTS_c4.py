@@ -224,15 +224,15 @@ def run_MCTS(args, start_idx=0, iteration=0):
         net.share_memory()
         net.eval()
     
-        current_net_filename = os.path.join("./model_data/",\
-                                        net_to_play)
+        current_net_filename = os.path.join("model_data/", \
+                                            net_to_play)
         if os.path.isfile(current_net_filename):
             checkpoint = torch.load(current_net_filename)
             net.load_state_dict(checkpoint['state_dict'])
             logger.info("Loaded %s model." % current_net_filename)
         else:
-            torch.save({'state_dict': net.state_dict()}, os.path.join("./model_data/",\
-                        net_to_play))
+            torch.save({'state_dict': net.state_dict()}, os.path.join("model_data/", \
+                                                                      net_to_play))
             logger.info("Initialized model.")
         
         processes = []
@@ -256,15 +256,15 @@ def run_MCTS(args, start_idx=0, iteration=0):
         logger.info("Preparing model for MCTS...")
         net.eval()
         
-        current_net_filename = os.path.join("./model_data/",\
-                                        net_to_play)
+        current_net_filename = os.path.join("model_data/", \
+                                            net_to_play)
         if os.path.isfile(current_net_filename):
             checkpoint = torch.load(current_net_filename)
             net.load_state_dict(checkpoint['state_dict'])
             logger.info("Loaded %s model." % current_net_filename)
         else:
-            torch.save({'state_dict': net.state_dict()}, os.path.join("./model_data/",\
-                        net_to_play))
+            torch.save({'state_dict': net.state_dict()}, os.path.join("model_data/", \
+                                                                      net_to_play))
             logger.info("Initialized model.")
         
         with torch.no_grad():

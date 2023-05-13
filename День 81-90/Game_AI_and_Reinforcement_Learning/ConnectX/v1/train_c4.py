@@ -25,13 +25,13 @@ logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s', \
 logger = logging.getLogger(__file__)
 
 def save_as_pickle(filename, data):
-    completeName = os.path.join("./model_data/",\
+    completeName = os.path.join("model_data/", \
                                 filename)
     with open(completeName, 'wb') as output:
         pickle.dump(data, output)
         
 def load_pickle(filename):
-    completeName = os.path.join("./model_data/",\
+    completeName = os.path.join("model_data/", \
                                 filename)
     with open(completeName, 'rb') as pkl_file:
         data = pickle.load(pkl_file)
@@ -39,7 +39,7 @@ def load_pickle(filename):
 
 def load_state(net, optimizer, scheduler, args, iteration, new_optim_state=True):
     """ Loads saved model and optimizer states if exists """
-    base_path = "./model_data/"
+    base_path = "model_data/"
     checkpoint_path = os.path.join(base_path, "%s_iter%d.pth.tar" % (args.neural_net_name, iteration))
     start_epoch, checkpoint = 0, None
     if os.path.isfile(checkpoint_path):
@@ -119,7 +119,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
                     'state_dict': net.state_dict(),\
                     'optimizer' : optimizer.state_dict(),\
                     'scheduler' : scheduler.state_dict(),\
-                }, os.path.join("./model_data/",\
+                }, os.path.join("model_data/",\
                     "%s_iter%d.pth.tar" % (args.neural_net_name, (iteration + 1))))
         '''
         # Early stopping
@@ -134,7 +134,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
     ax.set_xlabel("Epoch")
     ax.set_ylabel("Loss per batch")
     ax.set_title("Loss vs Epoch")
-    plt.savefig(os.path.join("./model_data/", "Loss_vs_Epoch_iter%d_%s.png" % ((iteration + 1), datetime.datetime.today().strftime("%Y-%m-%d"))))
+    plt.savefig(os.path.join("model_data/", "Loss_vs_Epoch_iter%d_%s.png" % ((iteration + 1), datetime.datetime.today().strftime("%Y-%m-%d"))))
     plt.show()
     
 def train_connectnet(args, iteration, new_optim_state):

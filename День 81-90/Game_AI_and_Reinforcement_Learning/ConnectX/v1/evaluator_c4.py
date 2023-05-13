@@ -106,10 +106,10 @@ def fork_process(arena_obj, num_games, cpu): # make arena picklable
 def evaluate_nets(args, iteration_1, iteration_2) :
     logger.info("Loading nets...")
     current_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_2); best_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_1)
-    current_net_filename = os.path.join("./model_data/",\
-                                    current_net)
-    best_net_filename = os.path.join("./model_data/",\
-                                    best_net)
+    current_net_filename = os.path.join("model_data/", \
+                                        current_net)
+    best_net_filename = os.path.join("model_data/", \
+                                     best_net)
     
     logger.info("Current net: %s" % current_net)
     logger.info("Previous (Best) net: %s" % best_net)

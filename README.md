@@ -332,10 +332,10 @@ SMS-сервис-вызов SMS-сервисный шлюз
 ### [День 24 - jQuery](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2024/README.md)
 ### [День 25 - Vue.js](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2025/README.md)
 ### [День 26 - Bootstrap](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2026/README.md)
-### [День 27 - Работа с шаблонами веб-страниц]()
-### [День 28 - Работа с HTTP-запросами и ответами]()
-### [День 29 - Сессии и куки]()
-### [День 30 - AJAX]()
+### [День 27 - Работа с шаблонами веб-страниц](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2027/README.md)
+### [День 28 - Работа с HTTP-запросами и ответами](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2028/README.md)
+### [День 29 - Сессии и куки](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2029/README.md)
+### [День 30 - AJAX](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2030/README.md)
 
 
 ## День 31 ~ 35 - Развлечение с операционной системой Linux

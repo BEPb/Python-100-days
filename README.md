@@ -326,12 +326,12 @@ SMS-сервис-вызов SMS-сервисный шлюз
 
 
 ## День 21 – 30 - Начало работы с веб-интерфейсом
-### [День 21 - HTML]()
-### [День 22 - CSS]()
-### [День 23 - JavaScript]()
-### [День 24 - jQuery]()
-### [День 25 - Vue.js]()
-### [День 26 - Bootstrap]()
+### [День 21 - HTML](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2021/README.md)
+### [День 22 - CSS](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2022/README.md)
+### [День 23 - JavaScript](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2023/README.md)
+### [День 24 - jQuery](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2024/README.md)
+### [День 25 - Vue.js](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2025/README.md)
+### [День 26 - Bootstrap](https://github.com/BEPb/Python-100-days/blob/master/%D0%94%D0%B5%D0%BD%D1%8C%2021-30/%D0%94%D0%B5%D0%BD%D1%8C%2026/README.md)
 ### [День 27 - Работа с шаблонами веб-страниц]()
 ### [День 28 - Работа с HTTP-запросами и ответами]()
 ### [День 29 - Сессии и куки]()
